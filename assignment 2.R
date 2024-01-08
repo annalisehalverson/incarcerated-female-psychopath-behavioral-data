@@ -1,7 +1,7 @@
 library(tidyverse)
 library(papaja)
 require(graphics)
-## this is commented text
+## this is a line of commented text
 x <- 6
 x + 2
 my_string1 <- 'My name is annalise and'
