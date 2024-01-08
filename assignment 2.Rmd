@@ -1,5 +1,5 @@
 ---
-title             : "Annalise's R Notebook for Assignment 2"
+title             : "Annalise's R Notebook for d2m Assignment 2"
 shorttitle        : "Assigment 2"
 
 author: 
