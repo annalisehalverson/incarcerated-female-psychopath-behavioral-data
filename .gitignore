@@ -1,6 +1,9 @@
 # New dedicated directory
 /localonly/
 
+# Ignore specific file brainstorming about thesis
+thesis-wordvomit-copy.docx
+
 # History files
 .Rhistory
 .Rapp.history
