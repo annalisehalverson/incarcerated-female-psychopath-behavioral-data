@@ -12,12 +12,12 @@ repository for (d2m) &amp; ma thesis
 ### A likely hypothesis I propose: The presence of psychopathy will impact the relationship between borderline personality disorder and alexithymia in incarcerated women. More specifically, increased psychopathy will exacerbate alexithymia symptoms in those with BPD.
 
 ## PLANNED ORGANIZATION
-### ~/repos/incarcerated-female-psychopath-behavioral-data1
-###     |--Documentation
-###         |--README
-###         |--Files with extensive descriptions
-###     |--Code
-###         |--R scripts directly applicable to analysis
-###     |--Tests
-###         |--Practice assignments for class
-###         |--Practice codes with toy data
+ ~/repos/incarcerated-female-psychopath-behavioral-data1
+     |--Documentation
+         |--README
+         |--Files with extensive descriptions
+     |--Code
+         |--R scripts directly applicable to analysis
+     |--Tests
+         |--Practice assignments for class
+         |--Practice codes with toy data
