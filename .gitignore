@@ -1,3 +1,6 @@
+# New dedicated directory
+/localonly/
+
 # History files
 .Rhistory
 .Rapp.history
