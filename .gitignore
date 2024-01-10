@@ -1,5 +1,6 @@
 # New dedicated directory
 /localonly/
+## this directory includes a copy of behavioral assessment data, in excel format, i will use for analysis.
 
 # Ignore specific file brainstorming about thesis
 thesis-wordvomit-copy.docx
