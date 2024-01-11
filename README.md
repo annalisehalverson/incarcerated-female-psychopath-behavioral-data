@@ -16,9 +16,9 @@ A likely hypothesis I propose: The presence of psychopathy will impact the relat
     |--README
      |--Documentation
          |--Files with extensive descriptions
+         |--R markdown files, ultimately for final project/thesis
      |--Code
          |--R scripts directly applicable to analysis
-         |--R markdown files that aid in analysis
      |--Tests
          |--Practice assignments for class
          |--Practice codes with toy data
