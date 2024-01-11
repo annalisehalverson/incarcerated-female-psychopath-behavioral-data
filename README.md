@@ -13,11 +13,12 @@ A likely hypothesis I propose: The presence of psychopathy will impact the relat
 
 ### PLANNED ORGANIZATION
 #### ~/repos/incarcerated-female-psychopath-behavioral-data1
+    |--README
      |--Documentation
-         |--README
          |--Files with extensive descriptions
      |--Code
          |--R scripts directly applicable to analysis
+         |--R markdown files that aid in analysis
      |--Tests
          |--Practice assignments for class
          |--Practice codes with toy data
