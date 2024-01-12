@@ -61,6 +61,8 @@ output            : papaja::apa6_pdf
 ```{r setup, include = FALSE}
 library("papaja")
 r_refs("r-references.bib")
+getwd()
+setwd("../Tests/")
 source("assignment 2.R")
 ```
 
@@ -71,8 +73,10 @@ knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
 ```
 
 ```{r callhello_worldfunction}
+getwd()
+setwd("../Code/")
 source("defining-functions.R")
-call(hello_world)
+call("hello_world")
 ```
 
 
@@ -104,7 +108,7 @@ We used `r cite_r("r-references.bib")` for all our analyses.
 3. **_Australia_**
 
 ### Header C
-[R class website] (https://nrdowling.github.io/d2m/index.html)
+[R class website](https://nrdowling.github.io/d2m/index.html)
 <!-- reference this page whenever you have a question -->
 
 \newpage

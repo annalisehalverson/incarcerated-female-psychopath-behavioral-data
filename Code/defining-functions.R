@@ -18,4 +18,4 @@ user_input <- as.numeric(readline("How big are the waves? Enter a number in feet
   paste0(route)
 }
 
-hello_world()
+hello_world(TRUE)
