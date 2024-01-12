@@ -1,6 +1,6 @@
 ---
-title             : "Annalise's R Notebook for d2m Assignment 2"
-shorttitle        : "Assigment 2"
+title             : "Annalise's R Notebook for d2m/psychopathy"
+shorttitle        : "d2m/psychopathy"
 
 author: 
   - name          : "Annalise Halverson"
@@ -70,6 +70,10 @@ set.seed(42)
 knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
 ```
 
+```{r callhello_worldfunction}
+source("defining-functions.R")
+call(hello_world)
+```
 
 
 # Methods
