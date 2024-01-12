@@ -93,6 +93,19 @@ We used `r cite_r("r-references.bib")` for all our analyses.
 
 # Discussion
 
+# Header A
+* **bananas**
+* *carrots*
+* eggs
+
+## Header B
+1. France
+2. Spain
+3. **_Australia_**
+
+### Header C
+[R class website] (https://nrdowling.github.io/d2m/index.html)
+<!-- reference this page whenever you have a question -->
 
 \newpage
 
