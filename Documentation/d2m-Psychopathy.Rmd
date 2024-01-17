@@ -95,10 +95,11 @@ We used `r cite_r("r-references.bib")` for all our analyses.
 ```{r PAI_BOR_data_readin}
 
 getwd()
-setwd("../localonly/") #
-messy_PAI_BOR_df1 <- read_xlsx("Decety_assessment_data_copy.xlsx", sheet = "PAI_BOR", range = cell_cols("A"))
-messy_PAI_BOR_df2 <- read_xlsx("Decety_assessment_data_copy.xlsx", sheet = "PAI_BOR", range = cell_cols("Z"))
-messy_PAI_BOR_df <- cbind(messy_PAI_BOR_df1, messy_PAI_BOR_df2)
+setwd("../localonly/") # I don't know if I should be doing this every time but it's the only way I've figured out how to set path
+
+messy_PAI_BOR_df1 <- read_xlsx("Decety_assessment_data_copy.xlsx", sheet = "PAI_BOR", range = cell_cols("A")) # grab ID column
+messy_PAI_BOR_df2 <- read_xlsx("Decety_assessment_data_copy.xlsx", sheet = "PAI_BOR", range = cell_cols("Z")) # grab PAI total score column
+messy_PAI_BOR_df <- cbind(messy_PAI_BOR_df1, messy_PAI_BOR_df2) # combine 2 columns into one dataframe displaying unique ID and PAI BOR total score
 
 print(messy_PAI_BOR_df)
   
@@ -117,6 +118,7 @@ sorted_filtered_messy_PAI_BOR_df <- filtered_messy_PAI_BOR_df %>% arrange(PAIBOR
 print(sorted_filtered_messy_PAI_BOR_df)
 
 write.csv(sorted_filtered_messy_PAI_BOR_df, "cleanish_PAIBOR_sorted_filtered.csv", row.names = FALSE)
+# not sure if I should keep lowest to highest as that ruins the order for the other sheets. it was a good test
 
 ```
 
