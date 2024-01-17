@@ -92,6 +92,33 @@ We report how we determined our sample size, all data exclusions (if any), all m
 ## Data analysis
 We used `r cite_r("r-references.bib")` for all our analyses.
 
+```{r PAI_BOR_data_readin}
+
+getwd()
+setwd("../localonly/") #
+messy_PAI_BOR_df1 <- read_xlsx("Decety_assessment_data_copy.xlsx", sheet = "PAI_BOR", range = cell_cols("A"))
+messy_PAI_BOR_df2 <- read_xlsx("Decety_assessment_data_copy.xlsx", sheet = "PAI_BOR", range = cell_cols("Z"))
+messy_PAI_BOR_df <- cbind(messy_PAI_BOR_df1, messy_PAI_BOR_df2)
+
+print(messy_PAI_BOR_df)
+  
+```
+
+```{r create_PAI_BOR_intermediate_dataset}
+
+# 2 dplyr functions for pai-bor
+# filter out non -1001 data points
+PAIBOR_Total_Score <- ("PAIBOR_Total_Score")
+filtered_messy_PAI_BOR_df <- messy_PAI_BOR_df %>% filter(PAIBOR_Total_Score > 0)
+print(filtered_messy_PAI_BOR_df)
+
+# arrange lowest to highest
+sorted_filtered_messy_PAI_BOR_df <- filtered_messy_PAI_BOR_df %>% arrange(PAIBOR_Total_Score)
+print(sorted_filtered_messy_PAI_BOR_df)
+
+write.csv(sorted_filtered_messy_PAI_BOR_df, "cleanish_PAIBOR_sorted_filtered.csv", row.names = FALSE)
+
+```
 
 # Results
 
