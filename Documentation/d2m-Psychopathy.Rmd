@@ -102,6 +102,9 @@ messy_PAI_BOR_df2 <- read_xlsx("Decety_assessment_data_copy.xlsx", sheet = "PAI_
 messy_PAI_BOR_df <- cbind(messy_PAI_BOR_df1, messy_PAI_BOR_df2) # combine 2 columns into one dataframe displaying unique ID and PAI BOR total score
 
 print(messy_PAI_BOR_df)
+
+# my data here is tidy since i only copied over columns i needed. however, this is a very simplified version of all the data i will be using. i purposefully picked an 'easy' sheet to practice with.
+# the original sheet had score ticks for each question. for my purposes, this information was unnecessary.
   
 ```
 
