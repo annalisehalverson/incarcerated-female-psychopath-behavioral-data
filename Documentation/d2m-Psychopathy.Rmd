@@ -60,6 +60,7 @@ output            : papaja::apa6_pdf
 
 ```{r setup, include = FALSE}
 library("papaja")
+library(tidyverse)
 r_refs("r-references.bib")
 getwd()
 setwd("../Tests/")
@@ -97,8 +98,10 @@ We used `r cite_r("r-references.bib")` for all our analyses.
 getwd()
 setwd("../localonly/") # I don't know if I should be doing this every time but it's the only way I've figured out how to set path
 
-messy_PAI_BOR_df1 <- read_xlsx("Decety_assessment_data_copy.xlsx", sheet = "PAI_BOR", range = cell_cols("A")) # grab ID column
-messy_PAI_BOR_df2 <- read_xlsx("Decety_assessment_data_copy.xlsx", sheet = "PAI_BOR", range = cell_cols("Z")) # grab PAI total score column
+library(readxl)
+
+messy_PAI_BOR_df1 <- read_excel("Decety_assessment_data_copy.xlsx", sheet = "PAI_BOR", range = cell_cols("A")) # grab ID column
+messy_PAI_BOR_df2 <- read_excel("Decety_assessment_data_copy.xlsx", sheet = "PAI_BOR", range = cell_cols("Z")) # grab PAI total score column
 messy_PAI_BOR_df <- cbind(messy_PAI_BOR_df1, messy_PAI_BOR_df2) # combine 2 columns into one dataframe displaying unique ID and PAI BOR total score
 
 print(messy_PAI_BOR_df)
@@ -126,6 +129,43 @@ write.csv(sorted_filtered_messy_PAI_BOR_df, "cleanish_PAIBOR_sorted_filtered.csv
 ```
 
 # Results
+
+``` {r simple plot of mediation relationship, echo=FALSE, out.width='100%'}
+
+# this visual is to generically demonstrate the relationship i will be looking at
+knitr::include_graphics("images/IMG_0418.jpg")
+
+```
+
+```{r scatterplot of c path, echo=FALSE, out.width='100%'}
+
+# this graph is to confirm a statistically significant relationship between psychopathyXanxiety (interactive predictor) and alexithymia (outcome)
+knitr::include_graphics("images/IMG_0419.jpg")
+
+```
+
+``` {r scatterplot of a path, echo=FALSE, out.width='100%'}
+
+# this graph is to confirm a statistically significant relationship between psychopathyXanxiety (interactive predictor) and BPD (mediator)
+knitr::include_graphics("images/IMG_0420.jpg")
+
+```
+
+``` {r mediation plot, echo=FALSE, out.width='100%'}
+
+# this graph is to answer my research question: how is the relationship between psychopathyXanxiety and alexithymia impacted by the inclusion of BPD symptoms?
+knitr::include_graphics("images/IMG_0421.jpg")
+
+```
+
+``` {r structural equation modeling of factors}
+
+# i have in my dataset factors that break down psychopathy, BPD, and alexithymia
+# i think, especially for BPD(ZAN), it would be cool to analyze how these different factors might play into the relationship differently
+# this reasoning is due to the inherent heterogeneity of what we consider in the literature to constitute a BPD diagnosis
+# i have no idea how to approach this question though, and need to do more research into structural equation modeling (which i was told might be a useful approach here)
+
+```
 
 # Discussion
 
