@@ -135,12 +135,30 @@ write.csv(sorted_filtered_messy_PAI_BOR_df, "cleanish_PAIBOR_sorted_filtered.csv
 # this visual is to generically demonstrate the relationship i will be looking at
 knitr::include_graphics("images/IMG_0418.jpg")
 
+read.csv("filtered_wide_data.csv")
+
+library(diagram)
+data <- c(0, "'*'", 0,
+          0, 0, 0, 
+          "'*'", "'*'", 0)
+M <- matrix (nrow=3, ncol=3, byrow = TRUE, data=data)
+plot <- plotmat (M, pos=c(1,2), 
+            name= c( "BPD","Psychopathy \n X \n Anxiety", "Alexithymia"), 
+            box.type = "rect", box.size = 0.14, box.prop=0.5,  curve=0)
+# need to make clearer (not sure how) or change code to represent same graphic
 ```
 
 ```{r scatterplot of c path, echo=FALSE, out.width='100%'}
 
 # this graph is to confirm a statistically significant relationship between psychopathyXanxiety (interactive predictor) and alexithymia (outcome)
 knitr::include_graphics("images/IMG_0419.jpg")
+
+ggplot(filtered_wide_data, aes(x = PCLR_STAI_Trait, y = TAS_Total_Score)) +
+  geom_point() + 
+   geom_smooth(method = "loess", se = FALSE)
+# need to make prettier
+psytascorrelation <- cor(filtered_wide_data$PCLR_STAI_Trait, filtered_wide_data$TAS_Total_Score)
+print(psytascorrelation)
 
 ```
 
@@ -149,12 +167,58 @@ knitr::include_graphics("images/IMG_0419.jpg")
 # this graph is to confirm a statistically significant relationship between psychopathyXanxiety (interactive predictor) and BPD (mediator)
 knitr::include_graphics("images/IMG_0420.jpg")
 
+ggplot(filtered_wide_data, aes(x = PCLR_STAI_Trait, y = PAIBOR_Total_Score)) +
+  geom_point() + 
+   geom_smooth(method = "loess", se = FALSE)
+# so cool! need to make prettier though. not sure if want to do linear instead of lowess
+psybpdcorrelation <- cor(filtered_wide_data$PCLR_STAI_Trait, filtered_wide_data$PAIBOR_Total_Score)
+print(psybpdcorrelation)
+
 ```
 
 ``` {r mediation plot, echo=FALSE, out.width='100%'}
 
 # this graph is to answer my research question: how is the relationship between psychopathyXanxiety and alexithymia impacted by the inclusion of BPD symptoms?
 knitr::include_graphics("images/IMG_0421.jpg")
+
+library(mediation)
+
+c.path <- lm(TAS_Total_Score ~ PCLR_STAI_Trait, data = filtered_wide_data)
+summary(c.path) # significant relationship between predictor and outcome
+c1.path <- lm(TAS_Factor1_Difficulty_Identifying_Feeling ~ PCLR_STAI_Trait, data = filtered_wide_data)
+summary(c1.path) # significant relationship between predictor and one part of outcome
+c2.path <- lm(TAS_Factor2_Difficulty_Describing_Feelings ~ PCLR_STAI_Trait, data = filtered_wide_data)
+summary(c2.path) # significant relationship between predictor and another part of outcome
+c3.path <- lm(TAS_Factor3_Externally_Oriented_Thinking ~ PCLR_STAI_Trait, data = filtered_wide_data)
+summary(c3.path) # (trending) significant relationship between predictor and third part of outcome
+a.path <- lm(PAIBOR_Total_Score ~ PCLR_STAI_Trait, data = filtered_wide_data)
+summary(a.path) # significant relationship between predictor and mediator
+bc.path <- lm(TAS_Total_Score ~ PCLR_STAI_Trait + PAIBOR_Total_Score, data = filtered_wide_data)
+summary(bc.path)
+
+mediator_model_total <- lm(PAIBOR_Total_Score ~ PCLR_STAI_Trait, data = filtered_wide_data)
+model_total <- lm(TAS_Total_Score ~ PCLR_STAI_Trait + PAIBOR_Total_Score, data = filtered_wide_data)
+mediation_result_total <- mediate(mediator_model_total, model_total, treat = "PCLR_STAI_Trait", mediator = "PAIBOR_Total_Score", boot=TRUE, sims=500)
+plot(mediation_result_total)
+summary(mediation_result_total) # full mediation?!
+
+mediator_model_tasf1 <- lm(PAIBOR_Total_Score ~ PCLR_STAI_Trait, data = filtered_wide_data)
+model_tasf1 <- lm(TAS_Factor1_Difficulty_Identifying_Feeling ~ PCLR_STAI_Trait + PAIBOR_Total_Score, data = filtered_wide_data)
+mediation_result_tasf1 <- mediate(mediator_model_tasf1, model_tasf1, treat = "PCLR_STAI_Trait", mediator = "PAIBOR_Total_Score", boot=TRUE, sims=500)
+plot(mediation_result_tasf1)
+summary(mediation_result_tasf1) # full mediation?!
+
+mediator_model_tasf2 <- lm(PAIBOR_Total_Score ~ PCLR_STAI_Trait, data = filtered_wide_data)
+model_tasf2 <- lm(TAS_Factor2_Difficulty_Describing_Feelings ~ PCLR_STAI_Trait + PAIBOR_Total_Score, data = filtered_wide_data)
+mediation_result_tasf2 <- mediate(mediator_model_tasf2, model_tasf2, treat = "PCLR_STAI_Trait", mediator = "PAIBOR_Total_Score", boot=TRUE, sims=500)
+plot(mediation_result_tasf2)
+summary(mediation_result_tasf2) # full mediation?!
+
+mediator_model_tasf3 <- lm(PAIBOR_Total_Score ~ PCLR_STAI_Trait, data = filtered_wide_data)
+model_tasf3 <- lm(TAS_Factor3_Externally_Oriented_Thinking ~ PCLR_STAI_Trait + PAIBOR_Total_Score, data = filtered_wide_data)
+mediation_result_tasf3 <- mediate(mediator_model_tasf3, model_tasf3, treat = "PCLR_STAI_Trait", mediator = "PAIBOR_Total_Score", boot=TRUE, sims=500)
+plot(mediation_result_tasf3)
+summary(mediation_result_tasf3) # effect goes away... so interesting!!!!
 
 ```
 

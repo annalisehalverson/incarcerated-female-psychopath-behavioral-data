@@ -1,7 +1,8 @@
 # PREPARING DATA FOR ANALYSIS IN R #
 
 library(tidyverse)
-library(mediation)
+library(readxl)
+#library(mediation)
 
 # 1. determine assessments and scores needed for analysis /c
 # 2. mock up ideal data structure, in long format /c
@@ -57,6 +58,13 @@ assessment_data_wide <- full_join(
   full_join(filtered_STAI_df, by = "URSI")
 print(assessment_data_wide)
 
+filtered_wide_data <- assessment_data_wide %>%
+  filter(PAIBOR_Total_Score != -1001 & TAS_Total_Score != -1001)
+
+view(assessment_data_wide)
+view(filtered_wide_data)
+write.csv(filtered_wide_data, "filtered_wide_data.csv", row.names = FALSE)
+
 # step 6
 assessment_data_long <- assessment_data_wide %>% 
   pivot_longer(cols = c("PAIBOR_Total_Score", 
@@ -82,7 +90,7 @@ assessment_data_long <- assessment_data_wide %>%
                values_to = "Score")
 print(assessment_data_long)
 
-# step 7
+# step 7 ### i think i should remove participants with any NA data
 # there are some NAs at the bottom, replace with -1001 for consistency
 assessment_data_long$Score[is.na(assessment_data_long$Score)] <- -1001
 # replace missing ages as NA so they don't impact descriptives
@@ -96,6 +104,18 @@ sub_assessment_data_long <- assessment_data_long[assessment_data_long$Score != -
 # view both data frames
 view(assessment_data_long) # 2,945 entries
 view(sub_assessment_data_long) # 2,611 entries (334 missing)
+
+write.csv(sub_assessment_data_long, "sub_assessment_data_long.csv", row.names = FALSE)
+
+# create psychopathyXanxiety interaction term
+PCLR_STAI_Trait <- filtered_wide_data$PCLR_Total_Score_Prorated * 
+  filtered_wide_data$STAI_Trait_Anxiety
+print(PCLR_STAI_Trait)
+
+filtered_wide_data$PCLR_STAI_Trait <- PCLR_STAI_Trait
+
+view(filtered_wide_data)
+
 
 
 
