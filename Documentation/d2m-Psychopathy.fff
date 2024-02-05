@@ -1,0 +1,20 @@
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\includegraphics[width=1\linewidth]{images/IMG_0418} \caption{ }(\#fig:simple plot of mediation relationship)
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\includegraphics[width=1\linewidth]{images/IMG_0419} \caption{ }(\#fig:scatterplot of c path)
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\includegraphics[width=1\linewidth]{images/IMG_0420} \caption{ }(\#fig:scatterplot of a path)
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\includegraphics[width=1\linewidth]{images/IMG_0421} \caption{ }(\#fig:mediation plot)
+\end{figure*}
