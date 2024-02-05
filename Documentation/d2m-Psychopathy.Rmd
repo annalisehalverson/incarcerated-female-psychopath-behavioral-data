@@ -63,21 +63,13 @@ library("papaja")
 library(tidyverse)
 r_refs("r-references.bib")
 getwd()
-setwd("../Tests/")
-source("assignment 2.R")
+setwd("../Documentation/")
 ```
 
 ```{r analysis-preferences}
 # Seed for random number generation
 set.seed(42)
 knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
-```
-
-```{r callhello_worldfunction}
-getwd()
-setwd("../Code/")
-source("defining-functions.R")
-call("hello_world")
 ```
 
 
@@ -130,6 +122,78 @@ write.csv(sorted_filtered_messy_PAI_BOR_df, "cleanish_PAIBOR_sorted_filtered.csv
 
 # Results
 
+``` {r, PCLR descriptives}
+
+ggplot(data = filtered_wide_data, aes(x = PCLR_Total_Score_Prorated)) +
+  geom_density(color = "saddlebrown") +
+  ggtitle("Density Plot of Psychopathy") +
+  labs(x = "PCL-R", y = "Density") +
+  xlim(0,40)
+
+ggplot(data = filtered_wide_data, aes(x = PCLR_Total_Score_Prorated)) +
+  geom_histogram(fill = "seagreen", color = "black", binwidth = 2) +
+  scale_y_continuous(limits = c(0,12), breaks = seq(0, 12, 2)) +
+  ggtitle("Histogram of Psychopathy") +
+  labs(x = "PCL-R", y = "Count") +
+  xlim(0,40) +
+  theme_classic()
+
+```
+
+```{r, STAI descriptives}
+
+ggplot(data = filtered_wide_data, aes(x = STAI_Trait_Anxiety)) +
+  geom_density(color = "saddlebrown") +
+  ggtitle("Density Plot of Trait Anxiety") +
+  labs(x = "STAI_Trait", y = "Density") +
+  xlim(0,80)
+
+ggplot(data = filtered_wide_data, aes(x = STAI_Trait_Anxiety)) +
+  geom_histogram(fill = "seagreen", color = "black", binwidth = 2) +
+  scale_y_continuous(limits = c(0,10), breaks = seq(0, 10, 2)) +
+  ggtitle("Histogram of Trait Anxiety") +
+  labs(x = "STAI_Trait", y = "Count") +
+  xlim(20,80) +
+  theme_classic()
+
+```
+
+```{r, PAI descriptives}
+
+ggplot(data = filtered_wide_data, aes(x = PAIBOR_Total_Score)) +
+  geom_density(color = "saddlebrown") +
+  ggtitle("Density Plot of BPD") +
+  labs(x = "PAI-BOR", y = "Density") +
+  xlim(0,65)
+
+ggplot(data = filtered_wide_data, aes(x = PAIBOR_Total_Score)) +
+  geom_histogram(fill = "seagreen", color = "black", binwidth = 2) +
+  scale_y_continuous(limits = c(0,10), breaks = seq(0, 10, 2)) +
+  ggtitle("Histogram of BPD") +
+  labs(x = "PAI-BOR", y = "Count") +
+  xlim(0,65) +
+  theme_classic()
+
+```
+
+```{r, TAS descriptives}
+
+ggplot(data = filtered_wide_data, aes(x = TAS_Total_Score)) +
+  geom_density(color = "saddlebrown") +
+  ggtitle("Density Plot of Alexithymia") +
+  labs(x = "TAS", y = "Density") +
+  xlim(0,80)
+
+ggplot(data = filtered_wide_data, aes(x = TAS_Total_Score)) +
+  geom_histogram(fill = "seagreen", color = "black", binwidth = 2) +
+  scale_y_continuous(limits = c(0,10), breaks = seq(0, 10, 2)) +
+  ggtitle("Histogram of Alexithymia") +
+  labs(x = "TAS", y = "Count") +
+  xlim(20,80) +
+  theme_classic()
+
+```
+
 ``` {r simple plot of mediation relationship, echo=FALSE, out.width='100%'}
 
 # this visual is to generically demonstrate the relationship i will be looking at
@@ -154,9 +218,11 @@ plot <- plotmat (M, pos=c(1,2),
 knitr::include_graphics("images/IMG_0419.jpg")
 
 ggplot(filtered_wide_data, aes(x = PCLR_STAI_Trait, y = TAS_Total_Score)) +
-  geom_point() + 
-   geom_smooth(method = "loess", se = FALSE)
-# need to make prettier
+  geom_point(color = "orchid3") + 
+   geom_smooth(method = "lm", color = "paleturquoise4") +
+  labs(x = "Psychopathy X Anxiety", y = "Alexithymia", title = "Relationship between Psychopathy X Anxiety, Alexithymia") +
+  theme_classic()
+
 psytascorrelation <- cor(filtered_wide_data$PCLR_STAI_Trait, filtered_wide_data$TAS_Total_Score)
 print(psytascorrelation)
 
@@ -168,9 +234,11 @@ print(psytascorrelation)
 knitr::include_graphics("images/IMG_0420.jpg")
 
 ggplot(filtered_wide_data, aes(x = PCLR_STAI_Trait, y = PAIBOR_Total_Score)) +
-  geom_point() + 
-   geom_smooth(method = "loess", se = FALSE)
-# so cool! need to make prettier though. not sure if want to do linear instead of lowess
+  geom_point(color = "orchid3") + 
+   geom_smooth(method = "lm", color = "paleturquoise4") +
+  labs(x = "Psychopathy X Anxiety", y = "BPD", title = "Relationship between Psychopathy X Anxiety, BPD") +
+  theme_classic()
+
 psybpdcorrelation <- cor(filtered_wide_data$PCLR_STAI_Trait, filtered_wide_data$PAIBOR_Total_Score)
 print(psybpdcorrelation)
 
@@ -219,6 +287,11 @@ model_tasf3 <- lm(TAS_Factor3_Externally_Oriented_Thinking ~ PCLR_STAI_Trait + P
 mediation_result_tasf3 <- mediate(mediator_model_tasf3, model_tasf3, treat = "PCLR_STAI_Trait", mediator = "PAIBOR_Total_Score", boot=TRUE, sims=500)
 plot(mediation_result_tasf3)
 summary(mediation_result_tasf3) # effect goes away... so interesting!!!!
+
+## bar graph (with error bars) showing breakdown of total effects?
+## add in some controlling variables might be able to explain more of model
+
+## I want to add a scatter plot of predictor on outcome with original slope of relationship and new slope mapped on top, but have to fix m at a certain value (maybe sample average) in order to produce a line. representative of change in slope but not all values
 
 ```
 

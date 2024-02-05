@@ -75,3 +75,27 @@ ggplot(data = sw.wrangled) +
 ggplot(data = sw.wrangled) + 
   geom_point(shape = 17, aes(x = height_in, y = mass)) + 
   xlim(20,100) + ylim(0,165)
+
+# intermediate plot 1
+sw.wrangled$hair <- factor(sw.wrangled$hair, levels = c("none", "brown", "black", "bald", "white", "blond", "auburn, white", "blonde", "brown, grey", "grey"))
+ggplot(data = sw.wrangled) +
+  geom_boxplot(aes(x = hair, y = mass, fill = hair)) +
+  ylim(0,160) +
+  scale_fill_manual(values = c("red", "orange", "yellow", "green", "seagreen", "lightblue", "blue", "purple", "pink", "hotpink")) +
+  labs(x = "Hair color(s)", y = "Mass(kg)")
+
+# intermediate plot 2
+ggplot(data = sw.wrangled, aes(x = mass, y = height_in)) +
+  facet_wrap(~ brown_hair) +
+  geom_point() +
+  scale_x_continuous(limits = c(-200,200)) +
+  geom_smooth(method = "lm", color = "blue") +
+  labs(title = "Mass vs. height by brown-hair-havingness",
+       subtitle = "A critically irrelevant analysis") +
+  theme_minimal()
+
+# intermediate plot 3
+sw.wrangled <- sw.wrangled %>% 
+  mutate(species_first_letter = substr(species, 1, 1))
+ggplot(data = sw.wrangled, aes(y = species_first_letter, fill = gender)) +
+  geom_bar()
