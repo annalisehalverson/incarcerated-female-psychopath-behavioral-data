@@ -1,18 +1,18 @@
 ---
-title             : "Annalise's R Notebook for d2m/psychopathy"
-shorttitle        : "d2m/psychopathy"
+title             : "Psychopathy, borderline personality disorder, and emotional processing in incarcerated women"
+shorttitle        : "psychopathy and psychopathology correlates in women"
 
 author: 
-  - name          : "Annalise Halverson"
+  - name          : "Annalise S Halverson"
     affiliation   : "1"
     corresponding : yes    # Define only one corresponding author
     address       : "Postal address"
-    email         : "my@email.com"
+    email         : "asdh@uchicago.edu"
     role: # Contributorship roles (e.g., CRediT, https://credit.niso.org/)
       - "Conceptualization"
       - "Writing - Original Draft Preparation"
       - "Writing - Review & Editing"
-  - name          : "Ernst-August Doelle"
+  - name          : "Natalie Dowling"
     affiliation   : "1,2"
     role:
       - "Writing - Review & Editing"
@@ -20,9 +20,9 @@ author:
 
 affiliation:
   - id            : "1"
-    institution   : "Wilhelm-Wundt-University"
+    institution   : "University of Chicago"
   - id            : "2"
-    institution   : "Konstanz Business School"
+    institution   : "Department of Psychology"
 
 authornote: |
   Add complete departmental affiliations for each author here. Each new line herein must be indented, like this line.
@@ -61,9 +61,12 @@ output            : papaja::apa6_pdf
 ```{r setup, include = FALSE}
 library("papaja")
 library(tidyverse)
+library(ggsci)
+library(mediation)
 r_refs("r-references.bib")
 getwd()
 setwd("../Documentation/")
+theme_set(theme_classic(base_family = "serif"))
 ```
 
 ```{r analysis-preferences}
@@ -85,44 +88,12 @@ We report how we determined our sample size, all data exclusions (if any), all m
 ## Data analysis
 We used `r cite_r("r-references.bib")` for all our analyses.
 
-```{r PAI_BOR_data_readin}
-
-getwd()
-setwd("../localonly/") # I don't know if I should be doing this every time but it's the only way I've figured out how to set path
-
-library(readxl)
-
-messy_PAI_BOR_df1 <- read_excel("Decety_assessment_data_copy.xlsx", sheet = "PAI_BOR", range = cell_cols("A")) # grab ID column
-messy_PAI_BOR_df2 <- read_excel("Decety_assessment_data_copy.xlsx", sheet = "PAI_BOR", range = cell_cols("Z")) # grab PAI total score column
-messy_PAI_BOR_df <- cbind(messy_PAI_BOR_df1, messy_PAI_BOR_df2) # combine 2 columns into one dataframe displaying unique ID and PAI BOR total score
-
-print(messy_PAI_BOR_df)
-
-# my data here is tidy since i only copied over columns i needed. however, this is a very simplified version of all the data i will be using. i purposefully picked an 'easy' sheet to practice with.
-# the original sheet had score ticks for each question. for my purposes, this information was unnecessary.
-  
-```
-
-```{r create_PAI_BOR_intermediate_dataset}
-
-# 2 dplyr functions for pai-bor
-# filter out non -1001 data points
-PAIBOR_Total_Score <- ("PAIBOR_Total_Score")
-filtered_messy_PAI_BOR_df <- messy_PAI_BOR_df %>% filter(PAIBOR_Total_Score > 0)
-print(filtered_messy_PAI_BOR_df)
-
-# arrange lowest to highest
-sorted_filtered_messy_PAI_BOR_df <- filtered_messy_PAI_BOR_df %>% arrange(PAIBOR_Total_Score)
-print(sorted_filtered_messy_PAI_BOR_df)
-
-write.csv(sorted_filtered_messy_PAI_BOR_df, "cleanish_PAIBOR_sorted_filtered.csv", row.names = FALSE)
-# not sure if I should keep lowest to highest as that ruins the order for the other sheets. it was a good test
-
-```
 
 # Results
 
 ``` {r, PCLR descriptives}
+
+filtered_wide_data <- read.csv("filtered_wide_data.csv")
 
 ggplot(data = filtered_wide_data, aes(x = PCLR_Total_Score_Prorated)) +
   geom_density(color = "saddlebrown") +
@@ -135,8 +106,7 @@ ggplot(data = filtered_wide_data, aes(x = PCLR_Total_Score_Prorated)) +
   scale_y_continuous(limits = c(0,12), breaks = seq(0, 12, 2)) +
   ggtitle("Histogram of Psychopathy") +
   labs(x = "PCL-R", y = "Count") +
-  xlim(0,40) +
-  theme_classic()
+  xlim(0,40)
 
 ```
 
@@ -153,8 +123,7 @@ ggplot(data = filtered_wide_data, aes(x = STAI_Trait_Anxiety)) +
   scale_y_continuous(limits = c(0,10), breaks = seq(0, 10, 2)) +
   ggtitle("Histogram of Trait Anxiety") +
   labs(x = "STAI_Trait", y = "Count") +
-  xlim(20,80) +
-  theme_classic()
+  xlim(20,80)
 
 ```
 
@@ -171,8 +140,7 @@ ggplot(data = filtered_wide_data, aes(x = PAIBOR_Total_Score)) +
   scale_y_continuous(limits = c(0,10), breaks = seq(0, 10, 2)) +
   ggtitle("Histogram of BPD") +
   labs(x = "PAI-BOR", y = "Count") +
-  xlim(0,65) +
-  theme_classic()
+  xlim(0,65)
 
 ```
 
@@ -189,8 +157,7 @@ ggplot(data = filtered_wide_data, aes(x = TAS_Total_Score)) +
   scale_y_continuous(limits = c(0,10), breaks = seq(0, 10, 2)) +
   ggtitle("Histogram of Alexithymia") +
   labs(x = "TAS", y = "Count") +
-  xlim(20,80) +
-  theme_classic()
+  xlim(20,80)
 
 ```
 
@@ -212,32 +179,33 @@ plot <- plotmat (M, pos=c(1,2),
 # need to make clearer (not sure how) or change code to represent same graphic
 ```
 
-```{r scatterplot of c path, echo=FALSE, out.width='100%'}
+(ref:c-path-caption) Scatterplot demonstrating relationship between the interactive term of psychopathy and trait anxiety with alexithymia in our sample of incarcerated women.
+
+```{r c-path-scatterplot, fig.cap="(ref:c-path-caption)", echo=FALSE, out.width='100%'}
 
 # this graph is to confirm a statistically significant relationship between psychopathyXanxiety (interactive predictor) and alexithymia (outcome)
-knitr::include_graphics("images/IMG_0419.jpg")
 
 ggplot(filtered_wide_data, aes(x = PCLR_STAI_Trait, y = TAS_Total_Score)) +
-  geom_point(color = "orchid3") + 
-   geom_smooth(method = "lm", color = "paleturquoise4") +
-  labs(x = "Psychopathy X Anxiety", y = "Alexithymia", title = "Relationship between Psychopathy X Anxiety, Alexithymia") +
-  theme_classic()
+  geom_smooth(method = "lm", color = "black") +
+  geom_point(color = "seagreen") + 
+  labs(x = "Psychopathy X Anxiety", y = "Alexithymia", title = "Relationship between Psychopathy X Anxiety, Alexithymia")
 
 psytascorrelation <- cor(filtered_wide_data$PCLR_STAI_Trait, filtered_wide_data$TAS_Total_Score)
 print(psytascorrelation)
 
 ```
 
-``` {r scatterplot of a path, echo=FALSE, out.width='100%'}
+(ref:a-path-caption) Scatterplot demonstrating relationship between the interactive term of psychopathy and trait anxiety with borderline personality disorder in our sample of incarcerated women.
+
+``` {r a-path-scatterplot, fig.cap="(ref:c-path-caption)", echo=FALSE, out.width='100%'}
 
 # this graph is to confirm a statistically significant relationship between psychopathyXanxiety (interactive predictor) and BPD (mediator)
 knitr::include_graphics("images/IMG_0420.jpg")
 
 ggplot(filtered_wide_data, aes(x = PCLR_STAI_Trait, y = PAIBOR_Total_Score)) +
-  geom_point(color = "orchid3") + 
-   geom_smooth(method = "lm", color = "paleturquoise4") +
-  labs(x = "Psychopathy X Anxiety", y = "BPD", title = "Relationship between Psychopathy X Anxiety, BPD") +
-  theme_classic()
+  geom_smooth(method = "lm", color = "black") +
+  geom_point(color = "seagreen") + 
+  labs(x = "Psychopathy X Anxiety", y = "BPD", title = "Relationship between Psychopathy X Anxiety, BPD")
 
 psybpdcorrelation <- cor(filtered_wide_data$PCLR_STAI_Trait, filtered_wide_data$PAIBOR_Total_Score)
 print(psybpdcorrelation)
@@ -248,8 +216,6 @@ print(psybpdcorrelation)
 
 # this graph is to answer my research question: how is the relationship between psychopathyXanxiety and alexithymia impacted by the inclusion of BPD symptoms?
 knitr::include_graphics("images/IMG_0421.jpg")
-
-library(mediation)
 
 c.path <- lm(TAS_Total_Score ~ PCLR_STAI_Trait, data = filtered_wide_data)
 summary(c.path) # significant relationship between predictor and outcome
@@ -292,6 +258,8 @@ summary(mediation_result_tasf3) # effect goes away... so interesting!!!!
 ## add in some controlling variables might be able to explain more of model
 
 ## I want to add a scatter plot of predictor on outcome with original slope of relationship and new slope mapped on top, but have to fix m at a certain value (maybe sample average) in order to produce a line. representative of change in slope but not all values
+
+## should i standardize??
 
 ```
 

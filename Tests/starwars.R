@@ -24,7 +24,7 @@ library(tidyverse)
 # ## Check that your sw.wrangled df is identical to the goal df
 # # Use any returned information about mismatches to adjust your code as needed
 # all.equal(sw.wrangled.goal, sw.wrangled.goal)
-
+view(starwars)
 
 sw.wrangled <- starwars %>% 
   # Select only needed columns & rename height (to height_cm) and hair_color (to hair)
@@ -99,3 +99,41 @@ sw.wrangled <- sw.wrangled %>%
   mutate(species_first_letter = substr(species, 1, 1))
 ggplot(data = sw.wrangled, aes(y = species_first_letter, fill = gender)) +
   geom_bar()
+
+# advanced plot (i'm going to really try here but it's very possible it will be the worst thing i've ever done in my life)
+library(ggsci)
+
+sw.wrangled <- sw.wrangled %>% 
+  mutate(gender = ifelse(is.na(gender), "Other",
+                         ifelse(gender == "m", "Male",
+                                ifelse(gender == "f", "Female", gender))))
+
+ggplot(data = sw.wrangled, aes(x = height_cm, y = mass, color = gender)) +
+  theme_classic() +
+  facet_wrap(vars(gender), scales = "free_y") +
+  geom_smooth(method = "lm", fill = "#E9E1F5", alpha = 0.9) +
+  geom_point(position = "identity", alpha = 0.5) +
+  scale_color_uchicago() +
+  scale_x_continuous(breaks = seq(60, 270, by = 30)) +
+  labs(
+          title = "Height and weight across gender presentation",
+          subtitle = 'A cautionary tale in misleading "free" axis scales & bad design choices',
+          x = "Height (cm)",
+          y = "Mass (kg)",
+          color = "Gender Presentation"
+        ) +
+  theme(
+    text = element_text(family = "Comic Sans MS",
+                        face = "plain",
+                        size = 9),
+    strip.background = element_rect(fill = "#036402"),
+    panel.background = element_rect(fill = "#FFEEEE"),
+    panel.grid.major.y = element_line(color = "grey", linetype = 4, size = 1),
+    panel.grid.major.x = element_line(color = "white", linetype = 2, size = 0.5),
+    strip.text = element_text(color = "white", family = "Courier", hjust = 0),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "bottom",
+    legend.title = element_text(family = "Brush Script MT", size = 16),
+    legend.background = element_rect(fill = "#CBCCFF")
+    )
+# yay, mostly
