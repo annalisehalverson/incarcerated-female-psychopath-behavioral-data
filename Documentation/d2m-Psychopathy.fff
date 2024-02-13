@@ -1,20 +1,50 @@
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
 
-\includegraphics[width=1\linewidth]{images/IMG_0418} \caption{ }(\#fig:simple plot of mediation relationship)
+\includegraphics[width=1\linewidth]{images/IMG_0418} \caption{ }(\#fig:simple plot of mediation relationship-1)
 \end{figure*}
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
 
-\includegraphics[width=1\linewidth]{images/IMG_0419} \caption{ }(\#fig:scatterplot of c path)
+\includegraphics[width=1\linewidth]{d2m-Psychopathy_files/figure-latex/simple plot of mediation relationship-2} \caption{ }(\#fig:simple plot of mediation relationship-2)
 \end{figure*}
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
 
-\includegraphics[width=1\linewidth]{images/IMG_0420} \caption{ }(\#fig:scatterplot of a path)
+\includegraphics[width=1\linewidth]{d2m-Psychopathy_files/figure-latex/c-path-scatterplot-1} \caption{Figure X. Scatterplot demonstrating relationship between the interactive term of psychopathy and trait anxiety with alexithymia in our sample of incarcerated women.}\label{fig:c-path-scatterplot}
 \end{figure*}
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
 
-\includegraphics[width=1\linewidth]{images/IMG_0421} \caption{ }(\#fig:mediation plot)
+\includegraphics[width=1\linewidth]{images/IMG_0420} \caption{ }(\#fig:scatterplot of a path-1)
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\includegraphics[width=1\linewidth]{d2m-Psychopathy_files/figure-latex/scatterplot of a path-2} \caption{ }(\#fig:scatterplot of a path-2)
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\includegraphics[width=1\linewidth]{images/IMG_0421} \caption{ }(\#fig:mediation plot-1)
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\includegraphics[width=1\linewidth]{d2m-Psychopathy_files/figure-latex/mediation plot-2} \caption{ }(\#fig:mediation plot-2)
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\includegraphics[width=1\linewidth]{d2m-Psychopathy_files/figure-latex/mediation plot-3} \caption{ }(\#fig:mediation plot-3)
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\includegraphics[width=1\linewidth]{d2m-Psychopathy_files/figure-latex/mediation plot-4} \caption{ }(\#fig:mediation plot-4)
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\includegraphics[width=1\linewidth]{d2m-Psychopathy_files/figure-latex/mediation plot-5} \caption{ }(\#fig:mediation plot-5)
 \end{figure*}

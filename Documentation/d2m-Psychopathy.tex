@@ -3,7 +3,7 @@
 \PassOptionsToPackage{hyphens}{url}
 %
 \documentclass[
-  man]{apa6}
+  man,floatsintext]{apa6}
 \usepackage{amsmath,amssymb}
 \usepackage{iftex}
 \ifPDFTeX
@@ -159,12 +159,6 @@
   }
 {}{\PatchFailed}
 \keywords{keywords\newline\indent Word count: X}
-\DeclareDelayedFloatFlavor{ThreePartTable}{table}
-\DeclareDelayedFloatFlavor{lltable}{table}
-\DeclareDelayedFloatFlavor*{longtable}{table}
-\makeatletter
-\renewcommand{\efloat@iwrite}[1]{\immediate\expandafter\protected@write\csname efloat@post#1\endcsname{}}
-\makeatother
 \usepackage{lineno}
 
 \linenumbers
@@ -176,19 +170,19 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdftitle={Annalise's R Notebook for d2m/psychopathy},
-  pdfauthor={Annalise Halverson1 \& Ernst-August Doelle1,2},
+  pdftitle={Psychopathy, borderline personality disorder, and emotional processing in incarcerated women},
+  pdfauthor={Annalise S Halverson1 \& Natalie Dowling1,2},
   pdflang={en-EN},
   pdfkeywords={keywords},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
-\title{Annalise's R Notebook for d2m/psychopathy}
-\author{Annalise Halverson\textsuperscript{1} \& Ernst-August Doelle\textsuperscript{1,2}}
+\title{Psychopathy, borderline personality disorder, and emotional processing in incarcerated women}
+\author{Annalise S Halverson\textsuperscript{1} \& Natalie Dowling\textsuperscript{1,2}}
 \date{}
 
 
-\shorttitle{d2m/psychopathy}
+\shorttitle{psychopathy and psychopathology correlates in women}
 
 \authornote{
 
@@ -196,13 +190,13 @@ Add complete departmental affiliations for each author here. Each new line herei
 
 Enter author note here.
 
-The authors made the following contributions. Annalise Halverson: Conceptualization, Writing - Original Draft Preparation, Writing - Review \& Editing; Ernst-August Doelle: Writing - Review \& Editing, Supervision.
+The authors made the following contributions. Annalise S Halverson: Conceptualization, Writing - Original Draft Preparation, Writing - Review \& Editing; Natalie Dowling: Writing - Review \& Editing, Supervision.
 
-Correspondence concerning this article should be addressed to Annalise Halverson, Postal address. E-mail: \href{mailto:my@email.com}{\nolinkurl{my@email.com}}
+Correspondence concerning this article should be addressed to Annalise S Halverson, Postal address. E-mail: \href{mailto:asdh@uchicago.edu}{\nolinkurl{asdh@uchicago.edu}}
 
 }
 
-\affiliation{\vspace{0.5cm}\textsuperscript{1} Wilhelm-Wundt-University\\\textsuperscript{2} Konstanz Business School}
+\affiliation{\vspace{0.5cm}\textsuperscript{1} University of Chicago\\\textsuperscript{2} Department of Psychology}
 
 \abstract{%
 One or two sentences providing a \textbf{basic introduction} to the field, comprehensible to a scientist in any discipline.
@@ -219,17 +213,15 @@ Two or three sentences to provide a \textbf{broader perspective}, readily compre
 \begin{document}
 \maketitle
 
-\begin{verbatim}
-## [1] "/Users/annalisehalverson/repos/incarcerated-female-psychopath-behavioral-data1/Documentation"
-\end{verbatim}
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
 
-\begin{verbatim}
-## How big are the waves? Enter a number in feet:
-\end{verbatim}
+\hypertarget{present-aims}{%
+\section{Present Aims}\label{present-aims}}
 
-\begin{verbatim}
-## hello_world()
-\end{verbatim}
+\begin{figure}
+\includegraphics[width=1\linewidth]{d2m-Psychopathy_files/figure-latex/simple plot of mediation relationship-1} \caption{ }(\#fig:simple plot of mediation relationship)
+\end{figure}
 
 \hypertarget{methods}{%
 \section{Methods}\label{methods}}
@@ -239,8 +231,8 @@ We report how we determined our sample size, all data exclusions (if any), all m
 \hypertarget{participants}{%
 \subsection{Participants}\label{participants}}
 
-\hypertarget{material}{%
-\subsection{Material}\label{material}}
+\hypertarget{measures}{%
+\subsection{Measures}\label{measures}}
 
 \hypertarget{procedure}{%
 \subsection{Procedure}\label{procedure}}
@@ -248,440 +240,192 @@ We report how we determined our sample size, all data exclusions (if any), all m
 \hypertarget{data-analysis}{%
 \subsection{Data analysis}\label{data-analysis}}
 
-We used R (Version 4.3.2; R Core Team, 2023) and the R-packages \emph{dplyr} (Version 1.1.4; Wickham, François, Henry, Müller, \& Vaughan, 2023), \emph{forcats} (Version 1.0.0; Wickham, 2023a), \emph{ggplot2} (Version 3.4.4; Wickham, 2016), \emph{lubridate} (Version 1.9.3; Grolemund \& Wickham, 2011), \emph{papaja} (Version 0.1.2; Aust \& Barth, 2023), \emph{purrr} (Version 1.0.2; Wickham \& Henry, 2023), \emph{readr} (Version 2.1.4; Wickham, Hester, \& Bryan, 2023), \emph{readxl} (Version 1.4.3; Wickham \& Bryan, 2023), \emph{stringr} (Version 1.5.1; Wickham, 2023b), \emph{tibble} (Version 3.2.1; Müller \& Wickham, 2023), \emph{tidyr} (Version 1.3.0; Wickham, Vaughan, \& Girlich, 2023), \emph{tidyverse} (Version 2.0.0; Wickham et al., 2019), and \emph{tinylabels} (Version 0.2.4; Barth, 2023) for all our analyses.
-
-\begin{verbatim}
-## [1] "/Users/annalisehalverson/repos/incarcerated-female-psychopath-behavioral-data1/Documentation"
-\end{verbatim}
-
-\begin{verbatim}
-##          URSI PAIBOR_Total_Score
-## 1   M87100136                 43
-## 2   M87104603                 28
-## 3   M87105399                 29
-## 4   M87108781                 41
-## 5   M87109594                 41
-## 6   M87110877              -1001
-## 7   M87111002                 34
-## 8   M87111104                 25
-## 9   M87111321                 36
-## 10  M87112366                 26
-## 11  M87112581                 48
-## 12  M87116338              -1001
-## 13  M87119142                 33
-## 14  M87120999              -1001
-## 15  M87121826                 24
-## 16  M87122171              -1001
-## 17  M87122326              -1001
-## 18  M87123081                 39
-## 19  M87123245              -1001
-## 20  M87123572              -1001
-## 21  M87125179              -1001
-## 22  M87125473                 35
-## 23  M87125943                 19
-## 24  M87126160                 25
-## 25  M87126249                 40
-## 26  M87126318                 40
-## 27  M87127480                 45
-## 28  M87127762              -1001
-## 29  M87128583                 31
-## 30  M87128651                 49
-## 31  M87128716                 27
-## 32  M87128849                 15
-## 33  M87129178                 52
-## 34  M87129404                 18
-## 35  M87129428              -1001
-## 36  M87130982                 28
-## 37  M87132177              -1001
-## 38  M87134521                 46
-## 39  M87134896              -1001
-## 40  M87139617              -1001
-## 41  M87142454              -1001
-## 42  M87143209              -1001
-## 43  M87144512              -1001
-## 44  M87145795                 55
-## 45  M87146972                 48
-## 46  M87147282              -1001
-## 47  M87148305                 36
-## 48  M87150494              -1001
-## 49  M87150857                 49
-## 50  M87151123              -1001
-## 51  M87152502                 24
-## 52  M87153728                 35
-## 53  M87154850                 30
-## 54  M87155403                 42
-## 55  M87156585              -1001
-## 56  M87156663                 27
-## 57  M87156670              -1001
-## 58  M87157220              -1001
-## 59  M87157352              -1001
-## 60  M87157521              -1001
-## 61  M87157887              -1001
-## 62  M87159426              -1001
-## 63  M87159432              -1001
-## 64  M87160137                 23
-## 65  M87161366              -1001
-## 66  M87161809              -1001
-## 67  M87162414              -1001
-## 68  M87162902                 50
-## 69  M87162971              -1001
-## 70  M87163191                 48
-## 71  M87163757                 29
-## 72  M87163769                 43
-## 73  M87163946                 30
-## 74  M87164345              -1001
-## 75  M87164449                 16
-## 76  M87164540                 28
-## 77  M87164648                 35
-## 78  M87165375                 27
-## 79  M87165527                 58
-## 80  M87165797                 32
-## 81  M87166710                 41
-## 82  M87166878                 32
-## 83  M87166910                 28
-## 84  M87167398              -1001
-## 85  M87167459              -1001
-## 86  M87168328              -1001
-## 87  M87169021                 31
-## 88  M87169150              -1001
-## 89  M87169334                 24
-## 90  M87169513                 23
-## 91  M87169514                 22
-## 92  M87170474                 27
-## 93  M87170476                 32
-## 94  M87170908                 47
-## 95  M87171764                 29
-## 96  M87172248                 26
-## 97  M87172333                 49
-## 98  M87172650                 54
-## 99  M87172784                 53
-## 100 M87172852                 35
-## 101 M87173067                 51
-## 102 M87173373                 52
-## 103 M87176680                 40
-## 104 M87177701                 54
-## 105 M87177926                 48
-## 106 M87178061                 42
-## 107 M87178826              -1001
-## 108 M87178986                 41
-## 109 M87179102                 52
-## 110 M87179161              -1001
-## 111 M87179731                 44
-## 112 M87179833                 40
-## 113 M87180769                 56
-## 114 M87182682                 20
-## 115 M87183398              -1001
-## 116 M87183729              -1001
-## 117 M87183952                 35
-## 118 M87184046                 47
-## 119 M87184276                 31
-## 120 M87184325                 52
-## 121 M87185273                 42
-## 122 M87186305              -1001
-## 123 M87186373                 43
-## 124 M87186909              -1001
-## 125 M87186922                 51
-## 126 M87186962                 29
-## 127 M87187120                 26
-## 128 M87187913                 49
-## 129 M87188957                 27
-## 130 M87189848                 53
-## 131 M87190502              -1001
-## 132 M87190506              -1001
-## 133 M87190683                 54
-## 134 M87191322                 38
-## 135 M87191416                 25
-## 136 M87191827              -1001
-## 137 M87192540                 45
-## 138 M87192762              -1001
-## 139 M87193111              -1001
-## 140 M87193407                 40
-## 141 M87193473              -1001
-## 142 M87193577              -1001
-## 143 M87194163              -1001
-## 144 M87194943                 52
-## 145 M87194985                 16
-## 146 M87195071                 39
-## 147 M87195410                 11
-## 148 M87195713                 55
-## 149 M87196149              -1001
-## 150 M87196383                 38
-## 151 M87196696                 27
-## 152 M87197223                 15
-## 153 M87197246                 45
-## 154 M87198343                 51
-## 155 M87199813                 11
-\end{verbatim}
-
-\begin{verbatim}
-##          URSI PAIBOR_Total_Score
-## 1   M87100136                 43
-## 2   M87104603                 28
-## 3   M87105399                 29
-## 4   M87108781                 41
-## 5   M87109594                 41
-## 6   M87111002                 34
-## 7   M87111104                 25
-## 8   M87111321                 36
-## 9   M87112366                 26
-## 10  M87112581                 48
-## 11  M87119142                 33
-## 12  M87121826                 24
-## 13  M87123081                 39
-## 14  M87125473                 35
-## 15  M87125943                 19
-## 16  M87126160                 25
-## 17  M87126249                 40
-## 18  M87126318                 40
-## 19  M87127480                 45
-## 20  M87128583                 31
-## 21  M87128651                 49
-## 22  M87128716                 27
-## 23  M87128849                 15
-## 24  M87129178                 52
-## 25  M87129404                 18
-## 26  M87130982                 28
-## 27  M87134521                 46
-## 28  M87145795                 55
-## 29  M87146972                 48
-## 30  M87148305                 36
-## 31  M87150857                 49
-## 32  M87152502                 24
-## 33  M87153728                 35
-## 34  M87154850                 30
-## 35  M87155403                 42
-## 36  M87156663                 27
-## 37  M87160137                 23
-## 38  M87162902                 50
-## 39  M87163191                 48
-## 40  M87163757                 29
-## 41  M87163769                 43
-## 42  M87163946                 30
-## 43  M87164449                 16
-## 44  M87164540                 28
-## 45  M87164648                 35
-## 46  M87165375                 27
-## 47  M87165527                 58
-## 48  M87165797                 32
-## 49  M87166710                 41
-## 50  M87166878                 32
-## 51  M87166910                 28
-## 52  M87169021                 31
-## 53  M87169334                 24
-## 54  M87169513                 23
-## 55  M87169514                 22
-## 56  M87170474                 27
-## 57  M87170476                 32
-## 58  M87170908                 47
-## 59  M87171764                 29
-## 60  M87172248                 26
-## 61  M87172333                 49
-## 62  M87172650                 54
-## 63  M87172784                 53
-## 64  M87172852                 35
-## 65  M87173067                 51
-## 66  M87173373                 52
-## 67  M87176680                 40
-## 68  M87177701                 54
-## 69  M87177926                 48
-## 70  M87178061                 42
-## 71  M87178986                 41
-## 72  M87179102                 52
-## 73  M87179731                 44
-## 74  M87179833                 40
-## 75  M87180769                 56
-## 76  M87182682                 20
-## 77  M87183952                 35
-## 78  M87184046                 47
-## 79  M87184276                 31
-## 80  M87184325                 52
-## 81  M87185273                 42
-## 82  M87186373                 43
-## 83  M87186922                 51
-## 84  M87186962                 29
-## 85  M87187120                 26
-## 86  M87187913                 49
-## 87  M87188957                 27
-## 88  M87189848                 53
-## 89  M87190683                 54
-## 90  M87191322                 38
-## 91  M87191416                 25
-## 92  M87192540                 45
-## 93  M87193407                 40
-## 94  M87194943                 52
-## 95  M87194985                 16
-## 96  M87195071                 39
-## 97  M87195410                 11
-## 98  M87195713                 55
-## 99  M87196383                 38
-## 100 M87196696                 27
-## 101 M87197223                 15
-## 102 M87197246                 45
-## 103 M87198343                 51
-## 104 M87199813                 11
-\end{verbatim}
-
-\begin{verbatim}
-##          URSI PAIBOR_Total_Score
-## 1   M87195410                 11
-## 2   M87199813                 11
-## 3   M87128849                 15
-## 4   M87197223                 15
-## 5   M87164449                 16
-## 6   M87194985                 16
-## 7   M87129404                 18
-## 8   M87125943                 19
-## 9   M87182682                 20
-## 10  M87169514                 22
-## 11  M87160137                 23
-## 12  M87169513                 23
-## 13  M87121826                 24
-## 14  M87152502                 24
-## 15  M87169334                 24
-## 16  M87111104                 25
-## 17  M87126160                 25
-## 18  M87191416                 25
-## 19  M87112366                 26
-## 20  M87172248                 26
-## 21  M87187120                 26
-## 22  M87128716                 27
-## 23  M87156663                 27
-## 24  M87165375                 27
-## 25  M87170474                 27
-## 26  M87188957                 27
-## 27  M87196696                 27
-## 28  M87104603                 28
-## 29  M87130982                 28
-## 30  M87164540                 28
-## 31  M87166910                 28
-## 32  M87105399                 29
-## 33  M87163757                 29
-## 34  M87171764                 29
-## 35  M87186962                 29
-## 36  M87154850                 30
-## 37  M87163946                 30
-## 38  M87128583                 31
-## 39  M87169021                 31
-## 40  M87184276                 31
-## 41  M87165797                 32
-## 42  M87166878                 32
-## 43  M87170476                 32
-## 44  M87119142                 33
-## 45  M87111002                 34
-## 46  M87125473                 35
-## 47  M87153728                 35
-## 48  M87164648                 35
-## 49  M87172852                 35
-## 50  M87183952                 35
-## 51  M87111321                 36
-## 52  M87148305                 36
-## 53  M87191322                 38
-## 54  M87196383                 38
-## 55  M87123081                 39
-## 56  M87195071                 39
-## 57  M87126249                 40
-## 58  M87126318                 40
-## 59  M87176680                 40
-## 60  M87179833                 40
-## 61  M87193407                 40
-## 62  M87108781                 41
-## 63  M87109594                 41
-## 64  M87166710                 41
-## 65  M87178986                 41
-## 66  M87155403                 42
-## 67  M87178061                 42
-## 68  M87185273                 42
-## 69  M87100136                 43
-## 70  M87163769                 43
-## 71  M87186373                 43
-## 72  M87179731                 44
-## 73  M87127480                 45
-## 74  M87192540                 45
-## 75  M87197246                 45
-## 76  M87134521                 46
-## 77  M87170908                 47
-## 78  M87184046                 47
-## 79  M87112581                 48
-## 80  M87146972                 48
-## 81  M87163191                 48
-## 82  M87177926                 48
-## 83  M87128651                 49
-## 84  M87150857                 49
-## 85  M87172333                 49
-## 86  M87187913                 49
-## 87  M87162902                 50
-## 88  M87173067                 51
-## 89  M87186922                 51
-## 90  M87198343                 51
-## 91  M87129178                 52
-## 92  M87173373                 52
-## 93  M87179102                 52
-## 94  M87184325                 52
-## 95  M87194943                 52
-## 96  M87172784                 53
-## 97  M87189848                 53
-## 98  M87172650                 54
-## 99  M87177701                 54
-## 100 M87190683                 54
-## 101 M87145795                 55
-## 102 M87195713                 55
-## 103 M87180769                 56
-## 104 M87165527                 58
-\end{verbatim}
+We used R (Version 4.3.2; R Core Team, 2023) and the R-packages \emph{diagram} (Version 1.6.5; Soetaert, 2020), \emph{dplyr} (Version 1.1.4; Wickham, François, Henry, Müller, \& Vaughan, 2023), \emph{forcats} (Version 1.0.0; Wickham, 2023a), \emph{ggformula} (Version 0.12.0; Kaplan \& Pruim, 2023), \emph{ggplot2} (Version 3.4.4; Wickham, 2016), \emph{ggsci} (Version 3.0.0; Xiao, 2023), \emph{kableExtra} (Version 1.4.0; Zhu, 2024), \emph{lattice} (Version 0.21.9; Sarkar, 2008), \emph{lubridate} (Version 1.9.3; Grolemund \& Wickham, 2011), \emph{MASS} (Version 7.3.60; Venables \& Ripley, 2002), \emph{Matrix} (Version 1.6.1.1; Bates, Maechler, \& Jagan, 2023), \emph{mediation} (Imai, Keele, \& Tingley, 2010; Imai, Keele, Tingley, \& Yamamoto, 2011; Imai, Keele, \& Yamamoto, 2010; Imai \& Yamamoto, 2013; Version 4.5.0; Tingley, Yamamoto, Hirose, Keele, \& Imai, 2014), \emph{mosaic} (Version 1.9.0; Pruim, Kaplan, \& Horton, 2017; Pruim, Kaplan, \& Horton, 2023), \emph{mosaicData} (Version 0.20.4; Pruim et al., 2023), \emph{mvtnorm} (Version 1.2.4; Genz \& Bretz, 2009), \emph{papaja} (Version 0.1.2; Aust \& Barth, 2023), \emph{plot.matrix} (Version 1.6.2; Klinke, 2022), \emph{purrr} (Version 1.0.2; Wickham \& Henry, 2023), \emph{readr} (Version 2.1.4; Wickham, Hester, \& Bryan, 2023), \emph{readxl} (Version 1.4.3; Wickham \& Bryan, 2023), \emph{sandwich} (Zeileis, 2004, 2006; Version 3.1.0; Zeileis, Köll, \& Graham, 2020), \emph{shape} (Version 1.4.6; Soetaert, 2021), \emph{stargazer} (Version 5.2.3; Hlavac, 2022), \emph{stringr} (Version 1.5.1; Wickham, 2023b), \emph{tibble} (Version 3.2.1; Müller \& Wickham, 2023), \emph{tidyr} (Version 1.3.0; Wickham, Vaughan, \& Girlich, 2023), \emph{tidyverse} (Version 2.0.0; Wickham et al., 2019), and \emph{tinylabels} (Version 0.2.4; Barth, 2023) for all our analyses. Due to the nature of the project, it was determined most ethical to simply remove participants who were missing data for any of the required assessments. A total of 104 participants remained.
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
 
-\begin{figure}
-\includegraphics[width=1\linewidth]{images/IMG_0418} \caption{ }(\#fig:simple plot of mediation relationship)
-\end{figure}
+Descriptive statistics for the assessments of interest can be seen in Table~\ref{tab:summary-table}.
+
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} \\ 
+\hline \\[-1.8ex] 
+PAIBOR\_Total\_Score & 104 & 36.750 & 11.738 & 11 & 58 \\ 
+PCLR\_Total\_Score\_Prorated & 104 & 23.476 & 8.070 & 4.400 & 37.000 \\ 
+TAS\_Total\_Score & 104 & 49.702 & 13.852 & 20 & 82 \\ 
+STAI\_Trait\_Anxiety & 104 & 45.558 & 11.213 & 23 & 72 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+As seen in Figure~\ref{fig:PCLR-descriptives}, our distribution of PCL--R scores is left-skewed, with more participants falling on the higher end of the spectrum.
+
+
+
+\begin{verbatim}
+## Warning: Removed 2 rows containing missing values (`geom_bar()`).
+\end{verbatim}
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{images/IMG_0419} \caption{ }(\#fig:scatterplot of c path)
+\centering
+\includegraphics{d2m-Psychopathy_files/figure-latex/PCLR-descriptives-1.pdf}
+\caption{\label{fig:PCLR-descriptives}Histogram of score distribution on the PCL--R.}
 \end{figure}
 
-\begin{figure}
-\includegraphics[width=1\linewidth]{images/IMG_0420} \caption{ }(\#fig:scatterplot of a path)
-\end{figure}
+\begin{verbatim}
+## Warning: Removed 2 rows containing missing values (`geom_bar()`).
+\end{verbatim}
+
+\includegraphics{d2m-Psychopathy_files/figure-latex/STAI-descriptives-1.pdf}
+
+\begin{verbatim}
+## Warning: Removed 1 rows containing missing values (`geom_bar()`).
+\end{verbatim}
+
+\includegraphics{d2m-Psychopathy_files/figure-latex/PAI-descriptives-1.pdf}
+
+\begin{verbatim}
+## Warning: Removed 1 rows containing non-finite values (`stat_bin()`).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 2 rows containing missing values (`geom_bar()`).
+\end{verbatim}
+
+\includegraphics{d2m-Psychopathy_files/figure-latex/TAS-descriptives-1.pdf}
+
+Figure~\ref{fig:c-path-scatterplot} shows a moderate correlation between PsychopathyXAnxiety and Alexithymia.
+
+
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{images/IMG_0421} \caption{ }(\#fig:mediation plot)
+\includegraphics[width=1\linewidth]{d2m-Psychopathy_files/figure-latex/c-path-scatterplot-1} \caption{Scatterplot demonstrating relationship between the interactive term of psychopathy and trait anxiety with alexithymia in our sample of incarcerated women.}\label{fig:c-path-scatterplot}
 \end{figure}
+
+Figure~\ref{fig:a-path-scatterplot} shows a moderate to strong correlation between PsychopathyXAnxiety and BPD.
+
+
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{d2m-Psychopathy_files/figure-latex/a-path-scatterplot-1} \caption{Scatterplot demonstrating relationship between the interactive term of psychopathy and trait anxiety with borderline personality disorder in our sample of incarcerated women.}\label{fig:a-path-scatterplot}
+\end{figure}
+
+All assessment scores (including the interactive term) were standardized. Mediation analyses with bootstrapping were conducted to test the primary hypothesis. Unlike other methods, bootstrapping is not limited by the assumption of normality. The interaction term of PCL--R Total Score and STAI Trait Anxiety was entered as the predictor, and PAI-BOR Total Score was entered as the mediating term. Total Score on the TAS was our outcome variable. A significant Average Causal Mediation Effect (ACME) would demonstrate support of our hypothesis. Summary tables (figure out how to include this info) show that the ACME is significant and the Average Direct Effect (ADE) disappears. This implies full causal mediation by BPD on the relationship between PsychopathyXAnxiety and Alexithymia.
+
+In order to run a mediation analysis, one must ensure significant relationships exist between predictor and outcome, predictor and mediator, and mediator and outcome. Results for these preliminary analyses can be seen in some table somewhere.
+
+\begin{table}[!htbp] \centering 
+  \caption{Preliminary Regression Results} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{1pt}}lccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{3}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-4} 
+\\[-1.8ex] & P-O Path & P-M Path & M-O Path \\ 
+\\[-1.8ex] & (1) & (2) & (3)\\ 
+\hline \\[-1.8ex] 
+ PsychopathyXAnxiety & 0.373$^{***}$ & 0.660$^{***}$ &  \\ 
+  & (0.092) & (0.074) &  \\ 
+  & & & \\ 
+ BPD &  &  & 0.471$^{***}$ \\ 
+  &  &  & (0.087) \\ 
+  & & & \\ 
+ Constant & $-$0.000 & $-$0.000 & $-$0.000 \\ 
+  & (0.091) & (0.074) & (0.087) \\ 
+  & & & \\ 
+\hline \\[-1.8ex] 
+Observations & 104 & 104 & 104 \\ 
+R$^{2}$ & 0.139 & 0.436 & 0.222 \\ 
+Adjusted R$^{2}$ & 0.131 & 0.431 & 0.214 \\ 
+Residual Std. Error (df = 102) & 0.932 & 0.755 & 0.887 \\ 
+F Statistic (df = 1; 102) & 16.501$^{***}$ & 78.905$^{***}$ & 29.024$^{***}$ \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{3}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table}
+
+\begin{table}[!htbp] \centering 
+  \caption{Simple Linear Regression Results} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{1pt}}lcccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{4}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-5} 
+\\[-1.8ex] & TAS Total & Factor 1 & Factor 2 & Factor 3 \\ 
+\\[-1.8ex] & (1) & (2) & (3) & (4)\\ 
+\hline \\[-1.8ex] 
+ PsychopathyXAnxiety & 0.373$^{***}$ & 0.418$^{***}$ & 0.291$^{***}$ & 0.197$^{**}$ \\ 
+  & (0.092) & (0.090) & (0.095) & (0.097) \\ 
+  & & & & \\ 
+ Constant & $-$0.000 & $-$0.000 & $-$0.000 & 0.000 \\ 
+  & (0.091) & (0.090) & (0.094) & (0.097) \\ 
+  & & & & \\ 
+\hline \\[-1.8ex] 
+Observations & 104 & 104 & 104 & 104 \\ 
+R$^{2}$ & 0.139 & 0.174 & 0.085 & 0.039 \\ 
+Adjusted R$^{2}$ & 0.131 & 0.166 & 0.076 & 0.030 \\ 
+Residual Std. Error (df = 102) & 0.932 & 0.913 & 0.961 & 0.985 \\ 
+F Statistic (df = 1; 102) & 16.501$^{***}$ & 21.551$^{***}$ & 9.463$^{***}$ & 4.140$^{**}$ \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table}
+
+\begin{table}[!htbp] \centering 
+  \caption{Multiple Linear Regression Results} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{1pt}}lcccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{4}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-5} 
+\\[-1.8ex] & TAS Total & Factor 1 & Factor 2 & Factor 3 \\ 
+\\[-1.8ex] & (1) & (2) & (3) & (4)\\ 
+\hline \\[-1.8ex] 
+ PsychopathyXAnxiety & 0.111 & 0.096 & 0.036 & 0.154 \\ 
+  & (0.116) & (0.110) & (0.121) & (0.130) \\ 
+  & & & & \\ 
+ BPD & 0.398$^{***}$ & 0.487$^{***}$ & 0.386$^{***}$ & 0.066 \\ 
+  & (0.116) & (0.110) & (0.121) & (0.130) \\ 
+  & & & & \\ 
+ Constant & $-$0.000 & $-$0.000 & $-$0.000 & 0.000 \\ 
+  & (0.087) & (0.082) & (0.090) & (0.097) \\ 
+  & & & & \\ 
+\hline \\[-1.8ex] 
+Observations & 104 & 104 & 104 & 104 \\ 
+R$^{2}$ & 0.228 & 0.308 & 0.169 & 0.041 \\ 
+Adjusted R$^{2}$ & 0.213 & 0.294 & 0.153 & 0.022 \\ 
+Residual Std. Error (df = 101) & 0.887 & 0.840 & 0.921 & 0.989 \\ 
+F Statistic (df = 2; 101) & 14.949$^{***}$ & 22.477$^{***}$ & 10.273$^{***}$ & 2.182 \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table}
+
+There is a significant relationship between predictor (psychopathy and anxiety interaction) and outcome (alexithymia). However, this effect goes away when adding BPD as a mediator. This suggests that the presence of BPD acts as a mechanism through which the predictor influences the outcome. The significant, full mediation effect we observed suggests that a portion of the total effect of the predictor on the outcome is explained by the mediator.
+
+Three subfactors defined in the TAS are believed to compose alexithymia: difficulty identifying feelings (Factor 1), difficulty describing feelings (Factor 2), and externally-oriented thinking (Factor 3). As we collected subfactor scores for every participant, we decided to conduct an exploratory analysis to get a sense of what specific parts of emotional processing psychopathy and BPD may be impacting. We found that, replacing the total TAS score for Factor 1 and Factor 2, the significant mediation effect remained in tact. However, designating Factor 3 as an outcome left us with an insignificant model. The change in significant effect when replacing for specific factors of TAS suggests the mediation effect may depend on specific aspects or dimensions of alexithymia. I would like to suggest some possible interpretations for this below:
+
+It is possible that BPD symptoms uniquely impact certain dimensions of the outcome variable. When considering what each of the three factors represent, it may be plausible that BPD would affect factors 1 and 2 -- addressing emotional comprehension and recognition -- and not 3, as BPD may be more closely associated with internalizing features. More research that addresses the role of BPD on externally-oriented thinking is required here to draw firmer conclusions.
+
+It is without a doubt that the relationship between psychopathy, anxiety, BPD, and alexithymia is multifaceted and complex. Our results should be further interpreted with caution and a unique sample such as this one may lead to skewed distributions.
+
+Additional factors and moderators warrant further exploration. Other relevant comorbidities -- such as PTSD -- may influence the heterogeneous mediation pathway seen here in a way that could explain the nuanced relationships further. Further, it would certainly be worthwhile to break down BPD further to understand what specific mechanisms of this disorder might be at play in this relationship. We did not have sufficient data to conduct a factor analysis, but it may be useful as the personality disorder can be diagnosed in 256 unique ways, according to the DSM-V.
+
+The heterogeneity of this mediation effect is certainly cause for future research. This information can guide the development of targeted interventions or strategies based on specific factors that are most influenced by the mediation process. This changes in significance emphasize the need for careful and nuanced interpretation, taking into account the specific characteristics and dynamics at play for each factor within the composite variables.
 
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
-
-\hypertarget{header-a}{%
-\section{Header A}\label{header-a}}
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{bananas}
-\item
-  \emph{carrots}
-\item
-  eggs
-\end{itemize}
-
-\hypertarget{header-b}{%
-\subsection{Header B}\label{header-b}}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  France
-\item
-  Spain
-\item
-  \textbf{\emph{Australia}}
-\end{enumerate}
-
-\hypertarget{header-c}{%
-\subsubsection{Header C}\label{header-c}}
-
-\href{https://nrdowling.github.io/d2m/index.html}{R class website}
 
 \newpage
 
@@ -696,14 +440,62 @@ Aust, F., \& Barth, M. (2023). \emph{{papaja}: {Prepare} reproducible {APA} jour
 \leavevmode\vadjust pre{\hypertarget{ref-R-tinylabels}{}}%
 Barth, M. (2023). \emph{{tinylabels}: Lightweight variable labels}. Retrieved from \url{https://cran.r-project.org/package=tinylabels}
 
+\leavevmode\vadjust pre{\hypertarget{ref-R-Matrix}{}}%
+Bates, D., Maechler, M., \& Jagan, M. (2023). \emph{Matrix: Sparse and dense matrix classes and methods}. Retrieved from \url{https://CRAN.R-project.org/package=Matrix}
+
+\leavevmode\vadjust pre{\hypertarget{ref-R-mvtnorm}{}}%
+Genz, A., \& Bretz, F. (2009). \emph{Computation of multivariate normal and t probabilities}. Heidelberg: Springer-Verlag.
+
 \leavevmode\vadjust pre{\hypertarget{ref-R-lubridate}{}}%
 Grolemund, G., \& Wickham, H. (2011). Dates and times made easy with {lubridate}. \emph{Journal of Statistical Software}, \emph{40}(3), 1--25. Retrieved from \url{https://www.jstatsoft.org/v40/i03/}
+
+\leavevmode\vadjust pre{\hypertarget{ref-R-stargazer}{}}%
+Hlavac, M. (2022). \emph{Stargazer: Well-formatted regression and summary statistics tables}. Bratislava, Slovakia: Social Policy Institute. Retrieved from \url{https://CRAN.R-project.org/package=stargazer}
+
+\leavevmode\vadjust pre{\hypertarget{ref-R-mediation_c}{}}%
+Imai, K., Keele, L., \& Tingley, D. (2010). A general approach to causal mediation analysis. \emph{Psychological Methods}, \emph{15}(4), 309--334. Retrieved from \url{http://imai.princeton.edu/research/BaronKenny.html}
+
+\leavevmode\vadjust pre{\hypertarget{ref-R-mediation_d}{}}%
+Imai, K., Keele, L., Tingley, D., \& Yamamoto, T. (2011). Unpacking the black box of causality: Learning about causal mechanisms from experimental and observational studies. \emph{American Political Science Review}, \emph{105}(4), 765--789. Retrieved from \url{http://imai.princeton.edu/research/mediationP.html}
+
+\leavevmode\vadjust pre{\hypertarget{ref-R-mediation_b}{}}%
+Imai, K., Keele, L., \& Yamamoto, T. (2010). Identification, inference, and sensitivity analysis for causal mediation effects. \emph{Statistical Science}, \emph{25}(1), 51--71. Retrieved from \url{http://imai.princeton.edu/research/mediation.html}
+
+\leavevmode\vadjust pre{\hypertarget{ref-R-mediation_e}{}}%
+Imai, K., \& Yamamoto, T. (2013). Identification and sensitivity analysis for multiple causal mechanisms: Revisiting evidence from framing experiments. \emph{Political Analysis}, \emph{21}(2), 141--171. Retrieved from \url{http://imai.princeton.edu/research/medsens.html}
+
+\leavevmode\vadjust pre{\hypertarget{ref-R-ggformula}{}}%
+Kaplan, D., \& Pruim, R. (2023). \emph{Ggformula: Formula interface to the grammar of graphics}. Retrieved from \url{https://CRAN.R-project.org/package=ggformula}
+
+\leavevmode\vadjust pre{\hypertarget{ref-R-plot.matrix}{}}%
+Klinke, S. (2022). \emph{Plot.matrix: Visualizes a matrix as heatmap}. Retrieved from \url{https://CRAN.R-project.org/package=plot.matrix}
 
 \leavevmode\vadjust pre{\hypertarget{ref-R-tibble}{}}%
 Müller, K., \& Wickham, H. (2023). \emph{Tibble: Simple data frames}. Retrieved from \url{https://CRAN.R-project.org/package=tibble}
 
+\leavevmode\vadjust pre{\hypertarget{ref-R-mosaic}{}}%
+Pruim, R., Kaplan, D. T., \& Horton, N. J. (2017). The mosaic package: Helping students to 'think with data' using r. \emph{The R Journal}, \emph{9}(1), 77--102. Retrieved from \url{https://journal.r-project.org/archive/2017/RJ-2017-024/index.html}
+
+\leavevmode\vadjust pre{\hypertarget{ref-R-mosaicData}{}}%
+Pruim, R., Kaplan, D., \& Horton, N. (2023). \emph{mosaicData: Project MOSAIC data sets}. Retrieved from \url{https://CRAN.R-project.org/package=mosaicData}
+
 \leavevmode\vadjust pre{\hypertarget{ref-R-base}{}}%
 R Core Team. (2023). \emph{R: A language and environment for statistical computing}. Vienna, Austria: R Foundation for Statistical Computing. Retrieved from \url{https://www.R-project.org/}
+
+\leavevmode\vadjust pre{\hypertarget{ref-R-lattice}{}}%
+Sarkar, D. (2008). \emph{Lattice: Multivariate data visualization with r}. New York: Springer. Retrieved from \url{http://lmdvr.r-forge.r-project.org}
+
+\leavevmode\vadjust pre{\hypertarget{ref-R-diagram}{}}%
+Soetaert, K. (2020). \emph{Diagram: Functions for visualising simple graphs (networks), plotting flow diagrams}. Retrieved from \url{https://CRAN.R-project.org/package=diagram}
+
+\leavevmode\vadjust pre{\hypertarget{ref-R-shape}{}}%
+Soetaert, K. (2021). \emph{Shape: Functions for plotting graphical shapes, colors}. Retrieved from \url{https://CRAN.R-project.org/package=shape}
+
+\leavevmode\vadjust pre{\hypertarget{ref-R-mediation_a}{}}%
+Tingley, D., Yamamoto, T., Hirose, K., Keele, L., \& Imai, K. (2014). {mediation}: {R} package for causal mediation analysis. \emph{Journal of Statistical Software}, \emph{59}(5), 1--38. Retrieved from \url{http://www.jstatsoft.org/v59/i05/}
+
+\leavevmode\vadjust pre{\hypertarget{ref-R-MASS}{}}%
+Venables, W. N., \& Ripley, B. D. (2002). \emph{Modern applied statistics with s} (Fourth). New York: Springer. Retrieved from \url{https://www.stats.ox.ac.uk/pub/MASS4/}
 
 \leavevmode\vadjust pre{\hypertarget{ref-R-ggplot2}{}}%
 Wickham, H. (2016). \emph{ggplot2: Elegant graphics for data analysis}. Springer-Verlag New York. Retrieved from \url{https://ggplot2.tidyverse.org}
@@ -731,6 +523,21 @@ Wickham, H., Hester, J., \& Bryan, J. (2023). \emph{Readr: Read rectangular text
 
 \leavevmode\vadjust pre{\hypertarget{ref-R-tidyr}{}}%
 Wickham, H., Vaughan, D., \& Girlich, M. (2023). \emph{Tidyr: Tidy messy data}. Retrieved from \url{https://CRAN.R-project.org/package=tidyr}
+
+\leavevmode\vadjust pre{\hypertarget{ref-R-ggsci}{}}%
+Xiao, N. (2023). \emph{Ggsci: Scientific journal and sci-fi themed color palettes for 'ggplot2'}. Retrieved from \url{https://CRAN.R-project.org/package=ggsci}
+
+\leavevmode\vadjust pre{\hypertarget{ref-R-sandwich_b}{}}%
+Zeileis, A. (2004). Econometric computing with {HC} and {HAC} covariance matrix estimators. \emph{Journal of Statistical Software}, \emph{11}(10), 1--17. \url{https://doi.org/10.18637/jss.v011.i10}
+
+\leavevmode\vadjust pre{\hypertarget{ref-R-sandwich_c}{}}%
+Zeileis, A. (2006). Object-oriented computation of sandwich estimators. \emph{Journal of Statistical Software}, \emph{16}(9), 1--16. \url{https://doi.org/10.18637/jss.v016.i09}
+
+\leavevmode\vadjust pre{\hypertarget{ref-R-sandwich_a}{}}%
+Zeileis, A., Köll, S., \& Graham, N. (2020). Various versatile variances: An object-oriented implementation of clustered covariances in {R}. \emph{Journal of Statistical Software}, \emph{95}(1), 1--36. \url{https://doi.org/10.18637/jss.v095.i01}
+
+\leavevmode\vadjust pre{\hypertarget{ref-R-kableExtra}{}}%
+Zhu, H. (2024). \emph{kableExtra: Construct complex table with 'kable' and pipe syntax}. Retrieved from \url{https://CRAN.R-project.org/package=kableExtra}
 
 \end{CSLReferences}
 
