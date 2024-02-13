@@ -61,6 +61,8 @@ output            : papaja::apa6_pdf
 ```{r setup, include = FALSE}
 library("papaja")
 library(tidyverse)
+library(psych)
+library(stats)
 library(diagram)
 library(ggsci)
 library(mediation)
@@ -201,6 +203,10 @@ Figure\ \@ref(fig:c-path-scatterplot) shows a moderate correlation between Psych
 
 (ref:c-path-caption) Scatterplot demonstrating relationship between the interactive term of psychopathy and trait anxiety with alexithymia in our sample of incarcerated women.
 
+<!--
+two descriptive analyses i am doing are correlation tests to determine the relationship of (1) predictor and outcome, and (2) predictor and mediator prior to running a regression. this is necessary in order to proceed with a mediation analysis.
+-->
+
 ```{r c-path-scatterplot, fig.cap="(ref:c-path-caption)", echo=FALSE, out.width='100%'}
 
 ggplot(filtered_wide_data, aes(x = PCLR_Total_Score_Prorated, y = TAS_Total_Score, color = STAI_Trait_Anxiety)) +
@@ -209,8 +215,8 @@ ggplot(filtered_wide_data, aes(x = PCLR_Total_Score_Prorated, y = TAS_Total_Scor
   scale_color_gradient(low = "blue", high = "red") +
   labs(x = "Psychopathy X Anxiety", y = "Alexithymia", title = "Relationship between Psychopathy X Anxiety, Alexithymia")
 
-#psytascorrelation <- cor(filtered_wide_data$PCLR_STAI_Trait, filtered_wide_data$TAS_Total_Score)
-#print(psytascorrelation)
+psytascorrelation <- corr.test(x = filtered_wide_data$PCLR_STAI_Trait,y = filtered_wide_data$TAS_Total_Score)
+print(psytascorrelation)
 
 ```
 
@@ -226,8 +232,8 @@ ggplot(filtered_wide_data, aes(x = PCLR_Total_Score_Prorated, y = PAIBOR_Total_S
   scale_color_gradient(low = "blue", high = "red") +
   labs(x = "Psychopathy X Anxiety", y = "BPD", title = "Relationship between Psychopathy X Anxiety, BPD")
 
-#psybpdcorrelation <- cor(filtered_wide_data$PCLR_STAI_Trait, filtered_wide_data$PAIBOR_Total_Score)
-#print(psybpdcorrelation)
+psybpdcorrelation <- corr.test(x = filtered_wide_data$PCLR_STAI_Trait,y = filtered_wide_data$PAIBOR_Total_Score)
+print(psybpdcorrelation)
 
 ```
 
@@ -252,6 +258,10 @@ filtered_wide_data$TAS_Factor3_Externally_Oriented_Thinking_z <-
 
 In order to run a mediation analysis, one must ensure significant relationships exist between predictor and outcome, predictor and mediator, and mediator and outcome. Results for these preliminary analyses can be seen in some table somewhere.
 
+<!--
+is below redundant with the scatterplots? maybe.
+-->
+
 ``` {r prelim-regression-input, echo=FALSE, out.width='100%'}
 
 po_path <- lm(TAS_Total_Score_z ~ PCLR_STAI_Trait_z, data = filtered_wide_data)
@@ -267,7 +277,7 @@ stargazer(po_path, pm_path, mo_path, title = "Preliminary Regression Results", h
 ```
 
 <!--
-one analysis i will do is a simple linear regression where i use the interaction of psychopathy and anxiety to predict alexithymia (and it's 3 subfactors). i predict/require a significant relationship in order to proceed with a mediation analysis
+one hypothesis testing analysis i will do is a simple linear regression where i use the interaction of psychopathy and anxiety to predict alexithymia (and it's 3 subfactors). i predict/require a significant relationship in order to proceed with a mediation analysis
 -->
 
 ``` {r, simple-regression-input, echo=FALSE, out.width='100%'}
@@ -286,7 +296,7 @@ stargazer(direct_model, direct_model1, direct_model2, direct_model3, title = "Si
 ```
 
 <!--
-a second analysis i will do is a multiple regression/mediation pathway. here, we are determining whether the presence of BPD symptoms may act as a mediator to the relationship between psychopathyXanxiety and alexithymia. a significant mediation effect + remaining significant direct effect means partial mediation, and a significant mediation effect + lacking significant direct effect means full mediation. no significant mediation effect means BPD would not act as a mediator in this relationship.
+a second hypothesis testing analysis i will do is a multiple regression/mediation pathway. here, we are determining whether the presence of BPD symptoms may act as a mediator to the relationship between psychopathyXanxiety and alexithymia. a significant mediation effect + remaining significant direct effect means partial mediation, and a significant mediation effect + lacking significant direct effect means full mediation. no significant mediation effect means BPD would not act as a mediator in this relationship.
 -->
 
 ```{r, mult-regression-input, echo=FALSE, out.width='100%'}
