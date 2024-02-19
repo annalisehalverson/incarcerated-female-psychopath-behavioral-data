@@ -6,7 +6,7 @@ author:
   - name          : "Annalise S Halverson"
     affiliation   : "1"
     corresponding : yes    # Define only one corresponding author
-    address       : "Postal address"
+    address       : "5848 S University Ave, Chicago, IL, 60637"
     email         : "asdh@uchicago.edu"
     role: # Contributorship roles (e.g., CRediT, https://credit.niso.org/)
       - "Conceptualization"
@@ -87,7 +87,7 @@ filtered_wide_data <- read.csv("filtered_wide_data.csv")
 
 ``` {r simple plot of mediation relationship, echo=FALSE, out.width='100%'}
 
-# this visual is to generically demonstrate the relationship i will be looking at
+# this fun lil visual is to generically demonstrate the relationship i will be looking at
 
 data <- c(0, "", 0,
           0, 0, 0, 
@@ -107,27 +107,24 @@ We report how we determined our sample size, all data exclusions (if any), all m
 ## Measures
 
 ## Procedure
+Of the 156 total participants, 52 participants failed to complete one or more of the four assessments. Due to the nature of the variables, it was determined most ethical to simply remove participants who were missing data for any of the required assessments. A total of 104 participants remained for further analysis.
 
 ## Data analysis
-We used `r cite_r("r-references.bib")` for all our analyses. Due to the nature of the project, it was determined most ethical to simply remove participants who were missing data for any of the required assessments. A total of 104 participants remained.
+We used `r cite_r("r-references.bib")` for all our analyses. 
 
 # Results
-
-Descriptive statistics for the assessments of interest can be seen in Table\ \@ref(tab:summary-table). <!-- it's not working idk why -->
-
 
 ``` {r summary-table, results = 'asis'}
 
 minimal_descriptives <- filtered_wide_data[,c("PAIBOR_Total_Score", "PCLR_Total_Score_Prorated", "TAS_Total_Score", "STAI_Trait_Anxiety")]
 view(minimal_descriptives)
-stargazer(minimal_descriptives, header = FALSE, type = 'latex')
+stargazer(minimal_descriptives, title = "Summary Table", header = FALSE, type = 'latex', label = "tab:summary-table")
 
 ```
 
-As seen in Figure\ \@ref(fig:PCLR-descriptives), our distribution of PCL--R scores is left-skewed, with more participants falling on the higher end of the spectrum.
+Descriptive statistics for the assessments of interest can be seen in Table\ \@ref(tab:summary-table).
 
 (ref:PCLR-descriptives) Histogram of score distribution on the PCL--R.
-
 ``` {r, PCLR-descriptives, fig.cap="(ref:PCLR-descriptives)"}
 
 #ggplot(data = filtered_wide_data, aes(x = PCLR_Total_Score_Prorated)) +
@@ -144,6 +141,8 @@ ggplot(data = filtered_wide_data, aes(x = PCLR_Total_Score_Prorated)) +
   xlim(0,40)
 
 ```
+
+As seen in Figure\ \@ref(fig:PCLR-descriptives), our distribution of PCL--R scores is left-skewed, with more participants falling on the higher end of the spectrum. This is ?consistent? with past studies conducted with incarcerated populations (probably Decety). Other score assessment distributions can be found in the appendix.
 
 ```{r, STAI-descriptives}
 
@@ -199,14 +198,13 @@ ggplot(data = filtered_wide_data, aes(x = TAS_Total_Score)) +
 
 ```
 
-Figure\ \@ref(fig:c-path-scatterplot) shows a moderate correlation between PsychopathyXAnxiety and Alexithymia.
+The mean PCL--R score is `r round(mean(filtered_wide_data$PCLR_Total_Score_Prorated), 3)`.
+
+The mean PAI--BOR score is `r round(mean(filtered_wide_data$PAIBOR_Total_Score), 3)`.
+
+The mean TAS score is `r round(mean(filtered_wide_data$TAS_Total_Score), 3)`.
 
 (ref:c-path-caption) Scatterplot demonstrating relationship between the interactive term of psychopathy and trait anxiety with alexithymia in our sample of incarcerated women.
-
-<!--
-two descriptive analyses i am doing are correlation tests to determine the relationship of (1) predictor and outcome, and (2) predictor and mediator prior to running a regression. this is necessary in order to proceed with a mediation analysis.
--->
-
 ```{r c-path-scatterplot, fig.cap="(ref:c-path-caption)", echo=FALSE, out.width='100%'}
 
 ggplot(filtered_wide_data, aes(x = PCLR_Total_Score_Prorated, y = TAS_Total_Score, color = STAI_Trait_Anxiety)) +
@@ -216,14 +214,12 @@ ggplot(filtered_wide_data, aes(x = PCLR_Total_Score_Prorated, y = TAS_Total_Scor
   labs(x = "Psychopathy X Anxiety", y = "Alexithymia", title = "Relationship between Psychopathy X Anxiety, Alexithymia")
 
 psytascorrelation <- corr.test(x = filtered_wide_data$PCLR_STAI_Trait,y = filtered_wide_data$TAS_Total_Score)
-print(psytascorrelation)
 
 ```
 
-Figure\ \@ref(fig:a-path-scatterplot) shows a moderate to strong correlation between PsychopathyXAnxiety and BPD.
+Figure\ \@ref(fig:c-path-scatterplot) shows a moderate correlation of `r psytascorrelation$r` between PsychopathyXAnxiety and Alexithymia. ...
 
 (ref:a-path-caption) Scatterplot demonstrating relationship between the interactive term of psychopathy and trait anxiety with borderline personality disorder in our sample of incarcerated women.
-
 ``` {r a-path-scatterplot, fig.cap="(ref:a-path-caption)", echo=FALSE, out.width='100%'}
 
 ggplot(filtered_wide_data, aes(x = PCLR_Total_Score_Prorated, y = PAIBOR_Total_Score, color = STAI_Trait_Anxiety)) +
@@ -233,11 +229,10 @@ ggplot(filtered_wide_data, aes(x = PCLR_Total_Score_Prorated, y = PAIBOR_Total_S
   labs(x = "Psychopathy X Anxiety", y = "BPD", title = "Relationship between Psychopathy X Anxiety, BPD")
 
 psybpdcorrelation <- corr.test(x = filtered_wide_data$PCLR_STAI_Trait,y = filtered_wide_data$PAIBOR_Total_Score)
-print(psybpdcorrelation)
 
 ```
 
-All assessment scores (including the interactive term) were standardized. Mediation analyses with bootstrapping were conducted to test the primary hypothesis. Unlike other methods, bootstrapping is not limited by the assumption of normality. The interaction term of PCL--R Total Score and STAI Trait Anxiety was entered as the predictor, and PAI-BOR Total Score was entered as the mediating term. Total Score on the TAS was our outcome variable. A significant Average Causal Mediation Effect (ACME) would demonstrate support of our hypothesis. Summary tables (figure out how to include this info) show that the ACME is significant and the Average Direct Effect (ADE) disappears. This implies full causal mediation by BPD on the relationship between PsychopathyXAnxiety and Alexithymia.
+Figure\ \@ref(fig:a-path-scatterplot) shows a moderate to strong correlation of `r psybpdcorrelation$r` between PsychopathyXAnxiety and BPD. ...
 
 ```{r, standardizing-variables}
 ###should this be in dataprep?###
@@ -256,7 +251,7 @@ filtered_wide_data$TAS_Factor3_Externally_Oriented_Thinking_z <-
 
 ```
 
-In order to run a mediation analysis, one must ensure significant relationships exist between predictor and outcome, predictor and mediator, and mediator and outcome. Results for these preliminary analyses can be seen in some table somewhere.
+All assessment scores (including the interactive term) were standardized. Mediation analyses with bootstrapping were conducted to test the primary hypothesis. Unlike other methods, bootstrapping is not limited by the assumption of normality. The interaction term of PCL--R Total Score and STAI Trait Anxiety was entered as the predictor, and PAI-BOR Total Score was entered as the mediating term. Total Score on the TAS was our outcome variable. A significant Average Causal Mediation Effect (ACME) would demonstrate support of our hypothesis. Summary tables (figure out how to include this info) show that the ACME is significant and the Average Direct Effect (ADE) disappears. This implies full causal mediation by BPD on the relationship between PsychopathyXAnxiety and Alexithymia.
 
 <!--
 is below redundant with the scatterplots? maybe.
@@ -272,9 +267,11 @@ mo_path <- lm(TAS_Total_Score_z ~ PAIBOR_Total_Score_z, data = filtered_wide_dat
 
 ``` {r prelim-regression-output, results = 'asis'}
 
-stargazer(po_path, pm_path, mo_path, title = "Preliminary Regression Results", header = FALSE, type = 'latex', dep.var.labels = c("P-O Path", "P-M Path", "M-O Path"), covariate.labels = c("PsychopathyXAnxiety", "BPD"), column.sep.width = "1pt")
+stargazer(po_path, pm_path, mo_path, title = "Preliminary Regression Results", header = FALSE, type = 'latex', dep.var.labels = c("P-O Path", "P-M Path", "M-O Path"), covariate.labels = c("PsychopathyXAnxiety", "BPD"), column.sep.width = "1pt", label = "tab:prelim-regression-output")
 
 ```
+
+In order to run a mediation analysis, one must ensure significant relationships exist between predictor and outcome, predictor and mediator, and mediator and outcome. Results for these preliminary analyses can be seen in Table\ \@ref(tab:prelim-regression-output).
 
 <!--
 one hypothesis testing analysis i will do is a simple linear regression where i use the interaction of psychopathy and anxiety to predict alexithymia (and it's 3 subfactors). i predict/require a significant relationship in order to proceed with a mediation analysis
@@ -291,13 +288,9 @@ direct_model3 <- lm(TAS_Factor3_Externally_Oriented_Thinking_z ~ PCLR_STAI_Trait
 
 ```{r, simple-regression-output, results = 'asis'}
 
-stargazer(direct_model, direct_model1, direct_model2, direct_model3, title = "Simple Linear Regression Results", header = FALSE, type = 'latex', dep.var.labels = c("TAS Total", "Factor 1", "Factor 2", "Factor 3"), covariate.labels = c("PsychopathyXAnxiety"), column.sep.width = "1pt")
+stargazer(direct_model, direct_model1, direct_model2, direct_model3, title = "Simple Linear Regression Results", header = FALSE, type = 'latex', dep.var.labels = c("TAS Total", "Factor 1", "Factor 2", "Factor 3"), covariate.labels = c("PsychopathyXAnxiety"), column.sep.width = "1pt", label = "tab:simple-regression-output")
 
 ```
-
-<!--
-a second hypothesis testing analysis i will do is a multiple regression/mediation pathway. here, we are determining whether the presence of BPD symptoms may act as a mediator to the relationship between psychopathyXanxiety and alexithymia. a significant mediation effect + remaining significant direct effect means partial mediation, and a significant mediation effect + lacking significant direct effect means full mediation. no significant mediation effect means BPD would not act as a mediator in this relationship.
--->
 
 ```{r, mult-regression-input, echo=FALSE, out.width='100%'}
 ###should i keep the ugly plots??###
@@ -329,13 +322,15 @@ mediation_result_tasf3 <- mediate(mediator_model_tasf3, model_tasf3, treat = "PC
 
 ```{r mult-regression-output, results = 'asis'}
 ### I CAN'T FIGURE OUT HOW TO COMBINE NICELY INTO ONE TABLE :(( ###
-stargazer(model_total, model_tasf1, model_tasf2, model_tasf3, title = "Multiple Linear Regression Results", header = FALSE, type = 'latex', dep.var.labels = c("TAS Total", "Factor 1", "Factor 2", "Factor 3"), covariate.labels = c("PsychopathyXAnxiety", "BPD"), column.sep.width = "1pt")
+stargazer(model_total, model_tasf1, model_tasf2, model_tasf3, title = "Multiple Linear Regression Results", header = FALSE, type = 'latex', dep.var.labels = c("TAS Total", "Factor 1", "Factor 2", "Factor 3"), covariate.labels = c("PsychopathyXAnxiety", "BPD"), column.sep.width = "1pt", label = "tab:mult-regression-output")
 
 ```
 
-There is a significant relationship between predictor (psychopathy and anxiety interaction) and outcome (alexithymia). However, this effect goes away when adding BPD as a mediator. This suggests that the presence of BPD acts as a mechanism through which the predictor influences the outcome. The significant, full mediation effect we observed suggests that a portion of the total effect of the predictor on the outcome is explained by the mediator.
+There is a significant relationship between predictor and outcome (*p* = ). However, this effect goes away when adding BPD as a mediator (*p* = ). This suggests that the presence of BPD acts as a mechanism through which the predictor influences the outcome. The significant, full mediation effect we observed suggests that a portion of the total effect of the predictor on the outcome is explained by the mediator (*p* = ).
 
-Three subfactors defined in the TAS are believed to compose alexithymia: difficulty identifying feelings (Factor 1), difficulty describing feelings (Factor 2), and externally-oriented thinking (Factor 3). As we collected subfactor scores for every participant, we decided to conduct an exploratory analysis to get a sense of what specific parts of emotional processing psychopathy and BPD may be impacting. We found that, replacing the total TAS score for Factor 1 and Factor 2, the significant mediation effect remained in tact. However, designating Factor 3 as an outcome left us with an insignificant model. The change in significant effect when replacing for specific factors of TAS suggests the mediation effect may depend on specific aspects or dimensions of alexithymia. I would like to suggest some possible interpretations for this below:
+Three subfactors defined in the TAS are believed to compose alexithymia: difficulty identifying feelings (Factor 1), difficulty describing feelings (Factor 2), and externally-oriented thinking (Factor 3). As we collected subfactor scores for every participant, an exploratory analysis could be conducted to get a sense of what specific parts of emotional processing psychopathy and BPD may be impacting. We found that, replacing the total TAS score for Factor 1 and Factor 2, the significant mediation effect remained in tact. However, designating Factor 3 as an outcome left us with an insignificant model. The change in significant effect when replacing for specific factors of TAS suggests the mediation effect may depend on specific aspects or dimensions of alexithymia. It is critical these results are analyzed with caution as no hypotheses regarding TAS subfactors were determined a priori and the theoretical lineage is at present quite limited.
+
+# Discussion
 
 It is possible that BPD symptoms uniquely impact certain dimensions of the outcome variable. When considering what each of the three factors represent, it may be plausible that BPD would affect factors 1 and 2 -- addressing emotional comprehension and recognition -- and not 3, as BPD may be more closely associated with internalizing features. More research that addresses the role of BPD on externally-oriented thinking is required here to draw firmer conclusions.
 
@@ -344,8 +339,6 @@ It is without a doubt that the relationship between psychopathy, anxiety, BPD, a
 Additional factors and moderators warrant further exploration. Other relevant comorbidities -- such as PTSD -- may influence the heterogeneous mediation pathway seen here in a way that could explain the nuanced relationships further. Further, it would certainly be worthwhile to break down BPD further to understand what specific mechanisms of this disorder might be at play in this relationship. We did not have sufficient data to conduct a factor analysis, but it may be useful as the personality disorder can be diagnosed in 256 unique ways, according to the DSM-V.
 
 The heterogeneity of this mediation effect is certainly cause for future research. This information can guide the development of targeted interventions or strategies based on specific factors that are most influenced by the mediation process. This changes in significance emphasize the need for careful and nuanced interpretation, taking into account the specific characteristics and dynamics at play for each factor within the composite variables.
-
-# Discussion
 
 \newpage
 
