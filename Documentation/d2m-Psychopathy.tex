@@ -272,36 +272,10 @@ STAI\_Trait\_Anxiety & 104 & 45.558 & 11.213 & 23 & 72 \\
 \end{tabular} 
 \end{table}
 
-function (x, \ldots)
-\{
-the\_call \textless- match.call()
-the\_call{[}{[}1{]}{]} \textless- as.name(``mean\_'')
-if (inherits(x, c(``Matrix'', ``sparseMatrix'', ``sparseVector'')))
-return(Matrix::mean(x, \ldots))
-return(eval(the\_call, parent.frame()))
-\}
-\textless bytecode: 0x11c28c960\textgreater{}
-\textless environment: namespace:mosaic\textgreater{}
-function (x, \ldots, data = NULL, groups = NULL, na.rm = getOption(``na.rm'',
-FALSE))
-\{
-if (rlang::is\_formula(x)) \{
-if (is.null(data))
-data \textless- environment(x)
-formula \textless- mosaicCore::mosaic\_formula\_q(x, groups = !!rlang::enexpr(groups),
-max.slots = 3)
-return(maggregate(formula, data = data, FUN = stats::sd,
-\ldots, na.rm = na.rm, .multiple = FALSE))
-\}
-stats::sd(x, \ldots, na.rm = na.rm)
-\}
-\textless bytecode: 0x11c5737c0\textgreater{}
-\textless environment: namespace:mosaic\textgreater{}
-
 \hypertarget{participants}{%
 \subsection{Participants}\label{participants}}
 
-Collected over a four-year period, the present sample consists of 156 incarcerated females exhibiting varying levels of psychopathic and borderline tendencies. Participants range in age, from 20 to 53 (M = \emph{reference}, SD = \emph{reference}). Participants were randomly selected and subsequently informed of the nature of the study. Before screening, they were required to provide consent. Random selection was used to allow for a wide array of scores that could be systematically examined across the various facets of targeted measures.
+Collected over a four-year period, the present sample consists of 156 incarcerated females exhibiting varying levels of psychopathic and borderline tendencies. Participants range in age, from 20 to 53 (M = 34.60, SD = 8.78). Participants were randomly selected and subsequently informed of the nature of the study. Before screening, they were required to provide consent. Random selection was used to allow for a wide array of scores that could be systematically examined across the various facets of targeted measures.
 
 \hypertarget{measures}{%
 \subsection{Measures}\label{measures}}
@@ -314,7 +288,7 @@ The Psychopathy Checklist---Revised (PCL---R) is a 20-item instrument operationa
 \hypertarget{borderline-personality-disorder}{%
 \subsubsection{Borderline Personality Disorder}\label{borderline-personality-disorder}}
 
-Individual dimensions of BPD were assessed using the Personality Assessment Inventory-Borderline Features scale (PAI---BOR; Morey, 1991). The PAI---BOR is a 24-item self-report measure that yields a four-factor model of BPD including affective instability, identity problems, negative relationships, and self-harm. The PAI---BOR scale has demonstrated both reliability and validity {[}Morey, 1991; Trull (1995){]}, as well as high sensitivity and specificity for individuals matching BPD criteria (\textbf{southwardIdentifyingCoreDeficits2018?}). A score of \ldots{} is considered \ldots{}
+Individual dimensions of BPD were assessed using the Personality Assessment Inventory-Borderline Features scale (PAI---BOR; Morey, 1991). The PAI---BOR is a 24-item self-report measure that yields a four-factor model of BPD including affective instability, identity problems, negative relationships, and self-harm. The PAI---BOR scale has demonstrated both reliability and validity {[}Morey, 1991; Trull (1995){]}, as well as high sensitivity and specificity for individuals matching BPD criteria (Southward \& Cheavens, 2018). A score of \ldots{} is considered \ldots{}
 
 \hypertarget{alexithymia-and-emotion}{%
 \subsubsection{Alexithymia and Emotion}\label{alexithymia-and-emotion}}
@@ -334,7 +308,7 @@ All interviews were conducted by a clinical psychologist or trained research sta
 \hypertarget{data-analysis}{%
 \subsection{Data analysis}\label{data-analysis}}
 
-Of the 156 total participants, 52 participants failed to complete one or more of the four assessments. Due to the nature of the variables, it was determined most ethical to simply remove participants who were missing data for any of the required assessments. A total of 104 participants remained for further investigation. We used R (Version 4.3.2; R Core Team, 2023) and the R-packages \emph{diagram} (Version 1.6.5; Soetaert, 2020), \emph{dplyr} (Version 1.1.4; Wickham, François, et al., 2023), \emph{forcats} (Version 1.0.0; Wickham, 2023a), \emph{ggformula} (Version 0.12.0; Kaplan \& Pruim, 2023), \emph{ggplot2} (Version 3.4.4; Wickham, 2016), \emph{ggsci} (Version 3.0.0; Xiao, 2023), \emph{kableExtra} (Version 1.4.0; Zhu, 2024), \emph{lattice} (Version 0.21.9; Sarkar, 2008), \emph{lubridate} (Version 1.9.3; Grolemund \& Wickham, 2011), \emph{MASS} (Version 7.3.60; Venables \& Ripley, 2002), \emph{Matrix} (Version 1.6.1.1; Bates et al., 2023), \emph{mediation} (Imai, Keele, \& Yamamoto, 2010; Imai, Keele, \& Tingley, 2010; Imai et al., 2011; Imai \& Yamamoto, 2013; Version 4.5.0; Tingley et al., 2014), \emph{mosaic} (Version 1.9.0; Pruim et al., 2017, 2023), \emph{mosaicData} (Version 0.20.4; Pruim et al., 2023), \emph{mvtnorm} (Version 1.2.4; Genz \& Bretz, 2009), \emph{papaja} (Version 0.1.1.9001; Aust \& Barth, 2023), \emph{plot.matrix} (Version 1.6.2; Klinke, 2022), \emph{psych} (Version 2.4.1; William Revelle, 2024), \emph{purrr} (Version 1.0.2; Wickham \& Henry, 2023), \emph{readr} (Version 2.1.4; Wickham, Hester, et al., 2023), \emph{readxl} (Version 1.4.3; Wickham \& Bryan, 2023), \emph{sandwich} (Zeileis, 2004, 2006; Version 3.1.0; Zeileis et al., 2020), \emph{shape} (Version 1.4.6; Soetaert, 2021), \emph{stargazer} (Version 5.2.3; Hlavac, 2022), \emph{stringr} (Version 1.5.1; Wickham, 2023b), \emph{tibble} (Version 3.2.1; Müller \& Wickham, 2023), \emph{tidyr} (Version 1.3.1; Wickham, Vaughan, et al., 2023), \emph{tidyverse} (Version 2.0.0; Wickham et al., 2019), and \emph{tinylabels} (Version 0.2.4; Barth, 2023) for all our analyses.
+Of the 156 total participants, 52 participants failed to complete one or more of the four assessments. Due to the nature of the variables, it was determined most ethical to simply remove participants who were missing data for any of the required assessments. A total of 104 participants remained for further investigation. We used R (Version 4.3.2; R Core Team, 2023) and the R-packages \emph{diagram} (Version 1.6.5; Soetaert, 2020), \emph{dplyr} (Version 1.1.4; Wickham, François, et al., 2023), \emph{forcats} (Version 1.0.0; Wickham, 2023a), \emph{ggformula} (Version 0.12.0; Kaplan \& Pruim, 2023), \emph{ggplot2} (Version 3.4.4; Wickham, 2016), \emph{ggsci} (Version 3.0.0; Xiao, 2023), \emph{lattice} (Version 0.21.9; Sarkar, 2008), \emph{lubridate} (Version 1.9.3; Grolemund \& Wickham, 2011), \emph{MASS} (Version 7.3.60; Venables \& Ripley, 2002), \emph{Matrix} (Version 1.6.1.1; Bates et al., 2023), \emph{mediation} (Imai, Keele, \& Yamamoto, 2010; Imai, Keele, \& Tingley, 2010; Imai et al., 2011; Imai \& Yamamoto, 2013; Version 4.5.0; Tingley et al., 2014), \emph{mosaic} (Version 1.9.0; Pruim et al., 2017, 2023), \emph{mosaicData} (Version 0.20.4; Pruim et al., 2023), \emph{mvtnorm} (Version 1.2.4; Genz \& Bretz, 2009), \emph{papaja} (Version 0.1.1.9001; Aust \& Barth, 2022), \emph{psych} (Version 2.4.1; William Revelle, 2024), \emph{purrr} (Version 1.0.2; Wickham \& Henry, 2023), \emph{readr} (Version 2.1.4; Wickham, Hester, et al., 2023), \emph{sandwich} (Zeileis, 2004, 2006; Version 3.1.0; Zeileis et al., 2020), \emph{shape} (Version 1.4.6; Soetaert, 2021), \emph{stargazer} (Version 5.2.3; Hlavac, 2022), \emph{stringr} (Version 1.5.1; Wickham, 2023b), \emph{tibble} (Version 3.2.1; Müller \& Wickham, 2023), \emph{tidyr} (Version 1.3.1; Wickham et al., 2024), \emph{tidyverse} (Version 2.0.0; Wickham et al., 2019), and \emph{tinylabels} (Version 0.2.4; Barth, 2023) for all our analyses.
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
@@ -452,95 +426,9 @@ F Statistic (df = 2; 101) & 14.949$^{***}$ & 22.477$^{***}$ & 10.273$^{***}$ & 2
 \end{tabular} 
 \end{table}
 
-\includegraphics{d2m-Psychopathy_files/figure-latex/ugly-plots-1.pdf}
+\includegraphics{d2m-Psychopathy_files/figure-latex/ugly-plots-1.pdf} \includegraphics{d2m-Psychopathy_files/figure-latex/ugly-plots-2.pdf} \includegraphics{d2m-Psychopathy_files/figure-latex/ugly-plots-3.pdf} \includegraphics{d2m-Psychopathy_files/figure-latex/ugly-plots-4.pdf}
 
-\begin{verbatim}
-## 
-## Causal Mediation Analysis 
-## 
-## Nonparametric Bootstrap Confidence Intervals with the Percentile Method
-## 
-##                Estimate 95% CI Lower 95% CI Upper p-value    
-## ACME              0.263        0.102         0.45   0.004 ** 
-## ADE               0.111       -0.155         0.35   0.368    
-## Total Effect      0.373        0.200         0.52  <2e-16 ***
-## Prop. Mediated    0.704        0.256         1.61   0.004 ** 
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Sample Size Used: 104 
-## 
-## 
-## Simulations: 500
-\end{verbatim}
-
-\includegraphics{d2m-Psychopathy_files/figure-latex/ugly-plots-2.pdf}
-
-\begin{verbatim}
-## 
-## Causal Mediation Analysis 
-## 
-## Nonparametric Bootstrap Confidence Intervals with the Percentile Method
-## 
-##                Estimate 95% CI Lower 95% CI Upper p-value    
-## ACME             0.3214       0.1335         0.49  <2e-16 ***
-## ADE              0.0962      -0.1435         0.34     0.4    
-## Total Effect     0.4176       0.2278         0.59  <2e-16 ***
-## Prop. Mediated   0.7696       0.3131         1.54  <2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Sample Size Used: 104 
-## 
-## 
-## Simulations: 500
-\end{verbatim}
-
-\includegraphics{d2m-Psychopathy_files/figure-latex/ugly-plots-3.pdf}
-
-\begin{verbatim}
-## 
-## Causal Mediation Analysis 
-## 
-## Nonparametric Bootstrap Confidence Intervals with the Percentile Method
-## 
-##                Estimate 95% CI Lower 95% CI Upper p-value   
-## ACME             0.2551       0.1073         0.44   0.004 **
-## ADE              0.0362      -0.2151         0.26   0.756   
-## Total Effect     0.2914       0.1130         0.48   0.004 **
-## Prop. Mediated   0.8756       0.2984         2.55   0.008 **
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Sample Size Used: 104 
-## 
-## 
-## Simulations: 500
-\end{verbatim}
-
-\includegraphics{d2m-Psychopathy_files/figure-latex/ugly-plots-4.pdf}
-
-\begin{verbatim}
-## 
-## Causal Mediation Analysis 
-## 
-## Nonparametric Bootstrap Confidence Intervals with the Percentile Method
-## 
-##                Estimate 95% CI Lower 95% CI Upper p-value  
-## ACME             0.0433      -0.1072         0.20    0.60  
-## ADE              0.1542      -0.0878         0.38    0.19  
-## Total Effect     0.1975       0.0302         0.36    0.02 *
-## Prop. Mediated   0.2192      -0.7403         1.96    0.61  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Sample Size Used: 104 
-## 
-## 
-## Simulations: 500
-\end{verbatim}
-
-There is a significant relationship between predictor and outcome (\emph{p} = 0.00). However, this effect goes away when adding BPD as a mediator (\emph{p} = ). This suggests that the presence of BPD acts as a mechanism through which the predictor influences the outcome. The significant, full mediation effect we observed suggests that a portion of the total effect of the predictor on the outcome is explained by the mediator (\emph{p} = ).
+There is a significant relationship between predictor and outcome (\emph{p} \textless{} 0.001 ). However, this effect goes away when adding BPD as a mediator (\emph{p} = ). This suggests that the presence of BPD acts as a mechanism through which the predictor influences the outcome. The significant, full mediation effect we observed suggests that a portion of the total effect of the predictor on the outcome is explained by the mediator (\emph{p} = ).
 
 Three subfactors defined in the TAS are believed to compose alexithymia: difficulty identifying feelings (Factor 1), difficulty describing feelings (Factor 2), and externally-oriented thinking (Factor 3). As we collected subfactor scores for every participant, an exploratory analysis could be conducted to get a sense of what specific parts of emotional processing psychopathy and BPD may be impacting. We found that, replacing the total TAS score for Factor 1 and Factor 2, the significant mediation effect remained in tact. However, designating Factor 3 as an outcome left us with an insignificant model. The change in significant effect when replacing for specific factors of TAS suggests the mediation effect may depend on specific aspects or dimensions of alexithymia. It is critical these results are analyzed with caution as no hypotheses regarding TAS subfactors were determined \emph{a priori} and the theoretical lineage is at present quite limited.
 
@@ -573,10 +461,10 @@ Presenting findings on a unique population such as this one requires cautious in
 \hypertarget{refs}{}
 \begin{CSLReferences}{1}{0}
 \leavevmode\vadjust pre{\hypertarget{ref-R-papaja}{}}%
-Aust, F., \& Barth, M. (2023). \emph{{papaja}: {Prepare} reproducible {APA} journal articles with {R Markdown}}. \url{https://github.com/crsh/papaja}
+Aust, F., \& Barth, M. (2022). \emph{{papaja}: {Prepare} reproducible {APA} journal articles with {R Markdown}}. \url{https://github.com/crsh/papaja}
 
 \leavevmode\vadjust pre{\hypertarget{ref-bagbyTwentyitemTorontoAlexithymia1994}{}}%
-Bagby, R. M., Taylor, G. J., \& Parker, J. D. A. (1994). The twenty-item {Toronto Alexithymia} scale{\textemdash}{II}. {Convergent}, discriminant, and concurrent validity. \emph{Journal of Psychosomatic Research}, \emph{38}(1), 33--40. \url{https://doi.org/10.1016/0022-3999(94)90006-X}
+Bagby, R. M., Taylor, G. J., \& Parker, J. D. A. (1994). The twenty-item {Toronto Alexithymia} scale---{II}. {Convergent}, discriminant, and concurrent validity. \emph{Journal of Psychosomatic Research}, \emph{38}(1), 33--40. \url{https://doi.org/10.1016/0022-3999(94)90006-X}
 
 \leavevmode\vadjust pre{\hypertarget{ref-barbaraburtonPsychopathyInsightsGeneral2020}{}}%
 Barbara Burton, M. D., \& Fabian M. Saleh, M. D. (2020). \emph{Psychopathy: {Insights} for {General Practice}}. \emph{37}.
@@ -621,7 +509,7 @@ Efferson, L. M., \& Glenn, A. L. (2018). Examining gender differences in the cor
 Genz, A., \& Bretz, F. (2009). \emph{Computation of multivariate normal and t probabilities}. Springer-Verlag.
 
 \leavevmode\vadjust pre{\hypertarget{ref-goerlichMultifacetedNatureAlexithymia2018}{}}%
-Goerlich, K. S. (2018). The {Multifaceted Nature} of {Alexithymia} {\textendash} {A Neuroscientific Perspective}. \emph{Frontiers in Psychology}, \emph{9}, 1614. \url{https://doi.org/10.3389/fpsyg.2018.01614}
+Goerlich, K. S. (2018). The {Multifaceted Nature} of {Alexithymia} -- {A Neuroscientific Perspective}. \emph{Frontiers in Psychology}, \emph{9}, 1614. \url{https://doi.org/10.3389/fpsyg.2018.01614}
 
 \leavevmode\vadjust pre{\hypertarget{ref-R-lubridate}{}}%
 Grolemund, G., \& Wickham, H. (2011). Dates and times made easy with {lubridate}. \emph{Journal of Statistical Software}, \emph{40}(3), 1--25. \url{https://www.jstatsoft.org/v40/i03/}
@@ -661,9 +549,6 @@ Karpman, B. (1941). On the need of separating psychopathy into two distinct clin
 
 \leavevmode\vadjust pre{\hypertarget{ref-karukiviDevelopmentAlexithymicPersonality2014}{}}%
 Karukivi, M., \& Saarijärvi, S. (2014). Development of alexithymic personality features. \emph{World Journal of Psychiatry}, \emph{4}(4), 91. \url{https://doi.org/10.5498/wjp.v4.i4.91}
-
-\leavevmode\vadjust pre{\hypertarget{ref-R-plot.matrix}{}}%
-Klinke, S. (2022). \emph{Plot.matrix: Visualizes a matrix as heatmap}. \url{https://CRAN.R-project.org/package=plot.matrix}
 
 \leavevmode\vadjust pre{\hypertarget{ref-landerDifferentialAssociationAlexithymia2012}{}}%
 Lander, G. C., Lutz-Zois, C. J., Rye, M. S., \& Goodnight, J. A. (2012). The differential association between alexithymia and primary versus secondary psychopathy. \emph{Personality and Individual Differences}, \emph{52}(1), 45--50. \url{https://doi.org/10.1016/j.paid.2011.08.027}
@@ -710,6 +595,9 @@ Soetaert, K. (2020). \emph{Diagram: Functions for visualising simple graphs (net
 \leavevmode\vadjust pre{\hypertarget{ref-R-shape}{}}%
 Soetaert, K. (2021). \emph{Shape: Functions for plotting graphical shapes, colors}. \url{https://CRAN.R-project.org/package=shape}
 
+\leavevmode\vadjust pre{\hypertarget{ref-southwardIdentifyingCoreDeficits2018}{}}%
+Southward, M. W., \& Cheavens, J. S. (2018). Identifying {Core Deficits} in a {Dimensional Model} of {Borderline Personality Disorder Features}: {A Network Analysis}. \emph{Clinical Psychological Science}, \emph{6}(5), 685--703. \url{https://doi.org/10.1177/2167702618769560}
+
 \leavevmode\vadjust pre{\hypertarget{ref-spormannStructuralDifferencesPsychopathy2023}{}}%
 Spormann, S. S., Mokros, A., \& Schneider, S. (2023). Structural differences in psychopathy between women and men: A latent modeling perspective. \emph{Forensische Psychiatrie, Psychologie, Kriminologie}, \emph{17}(2), 174--188. \url{https://doi.org/10.1007/s11757-023-00765-9}
 
@@ -738,7 +626,7 @@ Venables, W. N., \& Ripley, B. D. (2002). \emph{Modern applied statistics with s
 Verona, E., Sprague, J., \& Javdani, S. (2012). Gender and factor-level interactions in psychopathy: {Implications} for self-directed violence risk and borderline personality disorder symptoms. \emph{Personality Disorders: Theory, Research, and Treatment}, \emph{3}(3), 247--262. \url{https://doi.org/10.1037/a0025945}
 
 \leavevmode\vadjust pre{\hypertarget{ref-vitaleUsingPsychopathyChecklist2001}{}}%
-Vitale, J. E., \& Newman, J. P. (2001). Using the {Psychopathy Checklist}{\textemdash}{Revised} with female samples: {Reliability}, validity, and implications for clinical utility. \emph{Clinical Psychology: Science and Practice}, \emph{8}(1), 117--132. \url{https://doi.org/10.1093/clipsy.8.1.117}
+Vitale, J. E., \& Newman, J. P. (2001). Using the {Psychopathy Checklist}---{Revised} with female samples: {Reliability}, validity, and implications for clinical utility. \emph{Clinical Psychology: Science and Practice}, \emph{8}(1), 117--132. \url{https://doi.org/10.1093/clipsy.8.1.117}
 
 \leavevmode\vadjust pre{\hypertarget{ref-R-ggplot2}{}}%
 Wickham, H. (2016). \emph{ggplot2: Elegant graphics for data analysis}. Springer-Verlag New York. \url{https://ggplot2.tidyverse.org}
@@ -752,9 +640,6 @@ Wickham, H. (2023b). \emph{Stringr: Simple, consistent wrappers for common strin
 \leavevmode\vadjust pre{\hypertarget{ref-R-tidyverse}{}}%
 Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L. D., François, R., Grolemund, G., Hayes, A., Henry, L., Hester, J., Kuhn, M., Pedersen, T. L., Miller, E., Bache, S. M., Müller, K., Ooms, J., Robinson, D., Seidel, D. P., Spinu, V., \ldots{} Yutani, H. (2019). Welcome to the {tidyverse}. \emph{Journal of Open Source Software}, \emph{4}(43), 1686. \url{https://doi.org/10.21105/joss.01686}
 
-\leavevmode\vadjust pre{\hypertarget{ref-R-readxl}{}}%
-Wickham, H., \& Bryan, J. (2023). \emph{Readxl: Read excel files}. \url{https://CRAN.R-project.org/package=readxl}
-
 \leavevmode\vadjust pre{\hypertarget{ref-R-dplyr}{}}%
 Wickham, H., François, R., Henry, L., Müller, K., \& Vaughan, D. (2023). \emph{Dplyr: A grammar of data manipulation}. \url{https://CRAN.R-project.org/package=dplyr}
 
@@ -765,7 +650,7 @@ Wickham, H., \& Henry, L. (2023). \emph{Purrr: Functional programming tools}. \u
 Wickham, H., Hester, J., \& Bryan, J. (2023). \emph{Readr: Read rectangular text data}. \url{https://CRAN.R-project.org/package=readr}
 
 \leavevmode\vadjust pre{\hypertarget{ref-R-tidyr}{}}%
-Wickham, H., Vaughan, D., \& Girlich, M. (2023). \emph{Tidyr: Tidy messy data}. \url{https://CRAN.R-project.org/package=tidyr}
+Wickham, H., Vaughan, D., \& Girlich, M. (2024). \emph{Tidyr: Tidy messy data}. \url{https://CRAN.R-project.org/package=tidyr}
 
 \leavevmode\vadjust pre{\hypertarget{ref-R-psych}{}}%
 William Revelle. (2024). \emph{Psych: Procedures for psychological, psychometric, and personality research}. Northwestern University. \url{https://CRAN.R-project.org/package=psych}
@@ -781,9 +666,6 @@ Zeileis, A. (2006). Object-oriented computation of sandwich estimators. \emph{Jo
 
 \leavevmode\vadjust pre{\hypertarget{ref-R-sandwich_a}{}}%
 Zeileis, A., Köll, S., \& Graham, N. (2020). Various versatile variances: An object-oriented implementation of clustered covariances in {R}. \emph{Journal of Statistical Software}, \emph{95}(1), 1--36. \url{https://doi.org/10.18637/jss.v095.i01}
-
-\leavevmode\vadjust pre{\hypertarget{ref-R-kableExtra}{}}%
-Zhu, H. (2024). \emph{kableExtra: Construct complex table with 'kable' and pipe syntax}. \url{https://CRAN.R-project.org/package=kableExtra}
 
 \leavevmode\vadjust pre{\hypertarget{ref-zlotnickRoleGenderClinical2002a}{}}%
 Zlotnick, C., Rothschild, L., \& Zimmerman, M. (2002). The {Role} of {Gender} in the {Clinical Presentation} of {Patients} with {Borderline Personality Disorder}. \emph{Journal of Personality Disorders}, \emph{16}(3), 277--282. \url{https://doi.org/10.1521/pedi.16.3.277.22540}

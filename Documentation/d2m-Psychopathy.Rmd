@@ -143,12 +143,13 @@ stargazer(minimal_descriptives,
           header = FALSE, 
           type = 'latex', 
           label = "tab:summary-table")
-mean
-sd
+filtered_age_values <- filtered_wide_data$Age[filtered_wide_data$Age != -1001]
+mean_excluded <- mean(filtered_age_values)
+sd_excluded <- sd(filtered_age_values)
 ```
 
 ## Participants
-Collected over a four-year period, the present sample consists of 156 incarcerated females exhibiting varying levels of psychopathic and borderline tendencies. Participants range in age, from 20 to 53 (M = *reference*, SD = *reference*). Participants were randomly selected and subsequently informed of the nature of the study. Before screening, they were required to provide consent. Random selection was used to allow for a wide array of scores that could be systematically examined across the various facets of targeted measures.
+Collected over a four-year period, the present sample consists of 156 incarcerated females exhibiting varying levels of psychopathic and borderline tendencies. Participants range in age, from 20 to 53 (*M* = `r mean_excluded`, *SD* = `r sd_excluded`). Participants were randomly selected and subsequently informed of the nature of the study. Before screening, they were required to provide consent. Random selection was used to allow for a wide array of scores that could be systematically examined across the various facets of targeted measures.
 
 ## Measures
 
@@ -176,32 +177,27 @@ Descriptive statistics for the assessments of interest can be seen in Table\ \@r
 
 (ref:PCLR-descriptives) Histogram of score distribution on the PCL--R.
 ``` {r, PCLR-descriptives, fig.cap="(ref:PCLR-descriptives)"}
-
 #ggplot(data = filtered_wide_data, aes(x = PCLR_Total_Score_Prorated)) +
   #geom_density(color = "saddlebrown") +
   #ggtitle("Density Plot of Psychopathy") +
   #labs(x = "PCL-R", y = "Density") +
   #xlim(0,40)
-
 ggplot(data = filtered_wide_data, aes(x = PCLR_Total_Score_Prorated)) +
   geom_histogram(fill = "magenta", color = "black", binwidth = 2) +
   scale_y_continuous(limits = c(0,12), breaks = seq(0, 12, 2)) +
   ggtitle("Histogram of Psychopathy") +
   labs(x = "PCL-R", y = "Count") +
   xlim(0,40)
-
 ```
 
 As seen in Figure\ \@ref(fig:PCLR-descriptives), our distribution of PCL--R scores is left-skewed, with more participants falling on the higher end of the spectrum. This is ?consistent? with past studies conducted with incarcerated populations (probably Decety). Other score assessment distributions can be found in the appendix.
 
 ```{r, STAI-descriptives, fig.show='hide'}
-
 #ggplot(data = filtered_wide_data, aes(x = STAI_Trait_Anxiety)) +
   #geom_density(color = "saddlebrown") +
   #ggtitle("Density Plot of Trait Anxiety") +
   #labs(x = "STAI_Trait", y = "Density") +
   #xlim(0,80)
-
 ### APPENDIX
 ggplot(data = filtered_wide_data, aes(x = STAI_Trait_Anxiety)) +
   geom_histogram(fill = "magenta", color = "black", binwidth = 2) +
@@ -209,17 +205,14 @@ ggplot(data = filtered_wide_data, aes(x = STAI_Trait_Anxiety)) +
   ggtitle("Histogram of Trait Anxiety") +
   labs(x = "STAI_Trait", y = "Count") +
   xlim(20,80)
-
 ```
 
 ```{r, PAI-descriptives, fig.show='hide'}
-
 #ggplot(data = filtered_wide_data, aes(x = PAIBOR_Total_Score)) +
   #geom_density(color = "saddlebrown") +
   #ggtitle("Density Plot of BPD") +
   #labs(x = "PAI-BOR", y = "Density") +
   #xlim(0,65)
-
 ### APPENDIX
 ggplot(data = filtered_wide_data, aes(x = PAIBOR_Total_Score)) +
   geom_histogram(fill = "magenta", color = "black", binwidth = 2) +
@@ -227,17 +220,14 @@ ggplot(data = filtered_wide_data, aes(x = PAIBOR_Total_Score)) +
   ggtitle("Histogram of BPD") +
   labs(x = "PAI-BOR", y = "Count") +
   xlim(0,65)
-
 ```
 
 ```{r, TAS-descriptives, fig.show='hide'}
-
 #ggplot(data = filtered_wide_data, aes(x = TAS_Total_Score)) +
   #geom_density(color = "saddlebrown") +
   #ggtitle("Density Plot of Alexithymia") +
   #labs(x = "TAS", y = "Density") +
   #xlim(0,80)
-
 ### APPENDIX
 ggplot(data = filtered_wide_data, aes(x = TAS_Total_Score)) +
   geom_histogram(fill = "magenta", color = "black", binwidth = 2) +
@@ -245,7 +235,6 @@ ggplot(data = filtered_wide_data, aes(x = TAS_Total_Score)) +
   ggtitle("Histogram of Alexithymia") +
   labs(x = "TAS", y = "Count") +
   xlim(20,80)
-
 ```
 
 (ref:c-path-caption) Scatterplot demonstrating relationship between the interactive term of psychopathy and trait anxiety with alexithymia in our sample of incarcerated women.
