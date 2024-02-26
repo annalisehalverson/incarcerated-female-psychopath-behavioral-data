@@ -115,12 +115,10 @@ It is unclear how thoroughly these findings might translate onto clinical or spe
 
 Stimulating research continues to emerge regarding the relationship between psychopathy and BPD, as well as emotional dysregulation and BPD. However, the impact BPD and psychopathy may have on women with respect to their ability to experience, identify, or express emotions is at present underexplored. Further, special populations are often underrepresented in research and thus critical to mapping out the spectrum of impact. A primary aim of the present study is to delineate the clinical presentation of psychopathy in incarcerated women as it intersects with borderline personality disorder and alexithymia. Poor empathy and emotional dysregulation render psychopathy a prevalent risk factor for severe and chronic violence. While criminality is not a certainty, understanding how the condition hardens along this lineage could have meaningful benefits in the clinical sphere and thus guide necessary treatment to lower both violent onset and recidivism rates. Treatment is especially pertinent for those in vulnerable populations who may be limited in access.
 
-Contrary to male psychopathy, female psychopathy has been shown to possess a much stronger association with tendencies of borderline personality disorder [@spragueBorderlinePersonalityDisorder2012]. It is hypothesized that borderline personality disorder will mediate the relationship between psychopathy and alexithymia (see below graphic, no clue how to reference right now). The literature has made abundantly clear the manifold expressions of psychopathy; as such, it is important this diversity is accounted for in our research. Results are likely to have implications for both forensic practice and neuroscientific theory.
+Contrary to male psychopathy, female psychopathy has been shown to possess a much stronger association with tendencies of borderline personality disorder [@spragueBorderlinePersonalityDisorder2012]. It is hypothesized that borderline personality disorder will mediate the relationship between psychopathy and alexithymia (see Figure\ \@ref(fig:mediation-graphic)). The literature has made abundantly clear the manifold expressions of psychopathy; as such, it is important this diversity is accounted for in our research. Results are likely to have implications for both forensic practice and neuroscientific theory.
 
-``` {r simple plot of mediation relationship, echo=FALSE, out.width='100%'}
-
+``` {r mediation-graphic, echo=FALSE, out.width='100%', fig.cap='Mediation Graphic', label='mediation-graphic'}
 # this fun lil visual is to generically demonstrate the relationship i will be looking at
-
 data <- c(0, "", 0,
           0, 0, 0, 
           "", "", 0)
@@ -128,33 +126,51 @@ M <- matrix (nrow=3, ncol=3, byrow = TRUE, data=data)
 plot <- plotmat (M, pos=c(1,2), 
             name= c( "BPD","Psychopathy \n X \n Anxiety", "Alexithymia"), 
             box.type = "rect", box.size = 0.14, box.prop = 0.5,  curve = 0, arr.lwd = 1)
-
 ```
 
 # Methods
-We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
+Data was collected via structured interviews and self-report measures. The presently used assessment battery is well-validated and has been strategically refined over the past decade in forensic research [@hervePsychopathTheoryResearch2007]. We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
+
+``` {r summary-table, results = 'asis'}
+minimal_descriptives <- filtered_wide_data[,c(
+  "PAIBOR_Total_Score", 
+  "PCLR_Total_Score_Prorated", 
+  "TAS_Total_Score", 
+  "STAI_Trait_Anxiety")]
+view(minimal_descriptives)
+stargazer(minimal_descriptives, 
+          title = "Summary Table", 
+          header = FALSE, 
+          type = 'latex', 
+          label = "tab:summary-table")
+mean
+sd
+```
 
 ## Participants
+Collected over a four-year period, the present sample consists of 156 incarcerated females exhibiting varying levels of psychopathic and borderline tendencies. Participants range in age, from 20 to 53 (M = *reference*, SD = *reference*). Participants were randomly selected and subsequently informed of the nature of the study. Before screening, they were required to provide consent. Random selection was used to allow for a wide array of scores that could be systematically examined across the various facets of targeted measures.
 
 ## Measures
 
-* make sure to note here why interaction
+### Two-Factor Psychopathy
+The Psychopathy Checklist—Revised (PCL—R) is a 20-item instrument operationalizing Hervey Cleckley’s seminal description of sixteen characteristics that exemplify psychopathy [@cleckleyMaskSanityAttempt1976; @hareManualHarePsychopathy]. This clinical conceptualization is considered the gold standard for assessing psychopathic features in forensic samples. Both a semi-structured interview and review of institutional records comprise the assessment. Total scores may range from 0 to 40. A score of 10-19 is akin with mild psychopathy, while a score of 20-29 is illustrative of moderate psychopathy. Scores above 30 are associated with severe psychopathic symptoms.
+
+### Borderline Personality Disorder
+Individual dimensions of BPD were assessed using the Personality Assessment Inventory-Borderline Features scale (PAI—BOR; Morey, 1991). The PAI—BOR is a 24-item self-report measure that yields a four-factor model of BPD including affective instability, identity problems, negative relationships, and self-harm. The PAI—BOR scale has demonstrated both reliability and validity [Morey, 1991; @trullBorderlinePersonalityDisorder1995], as well as high sensitivity and specificity for individuals matching BPD criteria [@southwardIdentifyingCoreDeficits2018]. A score of … is considered … 
+
+### Alexithymia and Emotion
+The Toronto Alexithymia Scale [TAS; @taylorRevisedTorontoAlexithymia1992] is a 20-item self-report measure designed to assess facets of alexithymia across three subscales: difficulty in identifying and distinguishing feelings within oneself, difficulty in describing feelings to others, and externally oriented thinking [@karukiviDevelopmentAlexithymicPersonality2014]. The scale has demonstrated high internal consistency [@henryCognitivePsychosocialCorrelates2006] and strong convergent and discriminant validity [@bagbyTwentyitemTorontoAlexithymia1994]. Total scores can range from 20 to 100. A score above 50 demonstrates the possibility of alexithymia, while a score above 60 illustrates strong alexithymic symptoms.
+
+### Exploring Dimensions of Psychopathy
+Primary and secondary psychopathy have been shown to diverge in levels of anxiety [@vaillancourtLongitudinalAssociationsPrimary2019]. Relative to primary psychopaths, secondary psychopaths possess higher levels of trait anxiety, exhibit more borderline symptoms, and have poorer interpersonal functioning [@burnsEvaluatingEmotionProcessing2015; @skeemTwoSubtypesPsychopathic2007]. It is likely alexithymia diverges across the dimensions of psychopathy. In line with prior research, it is predicted that secondary psychopathy, specifically, will exhibit a relationship with alexithymia in which BPD functions as a mediator. Precedence has been established in using the interaction between psychopathy scores and STAI-Trait scores as an index of secondary psychopathy [see @landerDifferentialAssociationAlexithymia2012; @vassilevaPsychopathyPsychopathiesClassifying2005]. As such, the interactive term – psychopathyXanxiety – will be utilized in the present study. STAI-Trait scores range from … to … In the literature, the assessment has shown excellent … and … (cite).
 
 ## Procedure
-Of the 156 total participants, 52 participants failed to complete one or more of the four assessments. Due to the nature of the variables, it was determined most ethical to simply remove participants who were missing data for any of the required assessments. A total of 104 participants remained for further analysis.
+All interviews were conducted by a clinical psychologist or trained research staff member. While incarcerated subjects are often reported as being highly reliable and compliant in psychological research [@decetyNeuralProcessingDynamic2014], special ethical concerns remain for incarcerated populations as various restrictions exist on autonomy, privacy, and healthcare services.
 
 ## Data analysis
-We used `r cite_r("r-references.bib")` for all our analyses. 
+Of the 156 total participants, 52 participants failed to complete one or more of the four assessments. Due to the nature of the variables, it was determined most ethical to simply remove participants who were missing data for any of the required assessments. A total of 104 participants remained for further investigation. We used `r cite_r("r-references.bib")` for all our analyses. 
 
 # Results
-
-``` {r summary-table, results = 'asis'}
-
-minimal_descriptives <- filtered_wide_data[,c("PAIBOR_Total_Score", "PCLR_Total_Score_Prorated", "TAS_Total_Score", "STAI_Trait_Anxiety")]
-view(minimal_descriptives)
-stargazer(minimal_descriptives, title = "Summary Table", header = FALSE, type = 'latex', label = "tab:summary-table")
-
-```
 
 Descriptive statistics for the assessments of interest can be seen in Table\ \@ref(tab:summary-table).
 
@@ -178,7 +194,7 @@ ggplot(data = filtered_wide_data, aes(x = PCLR_Total_Score_Prorated)) +
 
 As seen in Figure\ \@ref(fig:PCLR-descriptives), our distribution of PCL--R scores is left-skewed, with more participants falling on the higher end of the spectrum. This is ?consistent? with past studies conducted with incarcerated populations (probably Decety). Other score assessment distributions can be found in the appendix.
 
-```{r, STAI-descriptives}
+```{r, STAI-descriptives, fig.show='hide'}
 
 #ggplot(data = filtered_wide_data, aes(x = STAI_Trait_Anxiety)) +
   #geom_density(color = "saddlebrown") +
@@ -196,7 +212,7 @@ ggplot(data = filtered_wide_data, aes(x = STAI_Trait_Anxiety)) +
 
 ```
 
-```{r, PAI-descriptives}
+```{r, PAI-descriptives, fig.show='hide'}
 
 #ggplot(data = filtered_wide_data, aes(x = PAIBOR_Total_Score)) +
   #geom_density(color = "saddlebrown") +
@@ -214,7 +230,7 @@ ggplot(data = filtered_wide_data, aes(x = PAIBOR_Total_Score)) +
 
 ```
 
-```{r, TAS-descriptives}
+```{r, TAS-descriptives, fig.show='hide'}
 
 #ggplot(data = filtered_wide_data, aes(x = TAS_Total_Score)) +
   #geom_density(color = "saddlebrown") +
@@ -232,44 +248,35 @@ ggplot(data = filtered_wide_data, aes(x = TAS_Total_Score)) +
 
 ```
 
-The mean PCL--R score is `r round(mean(filtered_wide_data$PCLR_Total_Score_Prorated), 3)`.
-
-The mean PAI--BOR score is `r round(mean(filtered_wide_data$PAIBOR_Total_Score), 3)`.
-
-The mean TAS score is `r round(mean(filtered_wide_data$TAS_Total_Score), 3)`.
-
 (ref:c-path-caption) Scatterplot demonstrating relationship between the interactive term of psychopathy and trait anxiety with alexithymia in our sample of incarcerated women.
 ```{r c-path-scatterplot, fig.cap="(ref:c-path-caption)", echo=FALSE, out.width='100%'}
-
 ggplot(filtered_wide_data, aes(x = PCLR_Total_Score_Prorated, y = TAS_Total_Score, color = STAI_Trait_Anxiety)) +
   geom_smooth(method = "lm", color = "black") +
   geom_point() +
   scale_color_gradient(low = "blue", high = "red") +
   labs(x = "Psychopathy X Anxiety", y = "Alexithymia", title = "Relationship between Psychopathy X Anxiety, Alexithymia")
-
-psytascorrelation <- corr.test(x = filtered_wide_data$PCLR_STAI_Trait,y = filtered_wide_data$TAS_Total_Score)
-
+psytascorrelation <- corr.test(
+  x = filtered_wide_data$PCLR_STAI_Trait,
+  y = filtered_wide_data$TAS_Total_Score)
 ```
 
 Figure\ \@ref(fig:c-path-scatterplot) shows a moderate correlation of `r psytascorrelation$r` between PsychopathyXAnxiety and Alexithymia. ...
 
 (ref:a-path-caption) Scatterplot demonstrating relationship between the interactive term of psychopathy and trait anxiety with borderline personality disorder in our sample of incarcerated women.
 ``` {r a-path-scatterplot, fig.cap="(ref:a-path-caption)", echo=FALSE, out.width='100%'}
-
 ggplot(filtered_wide_data, aes(x = PCLR_Total_Score_Prorated, y = PAIBOR_Total_Score, color = STAI_Trait_Anxiety)) +
   geom_smooth(method = "lm", color = "black") +
   geom_point() + 
   scale_color_gradient(low = "blue", high = "red") +
   labs(x = "Psychopathy X Anxiety", y = "BPD", title = "Relationship between Psychopathy X Anxiety, BPD")
-
-psybpdcorrelation <- corr.test(x = filtered_wide_data$PCLR_STAI_Trait,y = filtered_wide_data$PAIBOR_Total_Score)
-
+psybpdcorrelation <- corr.test(
+  x = filtered_wide_data$PCLR_STAI_Trait,
+  y = filtered_wide_data$PAIBOR_Total_Score)
 ```
 
 Figure\ \@ref(fig:a-path-scatterplot) shows a moderate to strong correlation of `r psybpdcorrelation$r` between PsychopathyXAnxiety and BPD. ...
 
 ```{r, standardizing-variables}
-###should this be in dataprep?###
 filtered_wide_data$PAIBOR_Total_Score_z <-
   zscore(filtered_wide_data$PAIBOR_Total_Score)
 filtered_wide_data$PCLR_STAI_Trait_z <-
@@ -282,7 +289,6 @@ filtered_wide_data$TAS_Factor2_Difficulty_Describing_Feelings_z <-
   zscore(filtered_wide_data$TAS_Factor2_Difficulty_Describing_Feelings)
 filtered_wide_data$TAS_Factor3_Externally_Oriented_Thinking_z <-
   zscore(filtered_wide_data$TAS_Factor3_Externally_Oriented_Thinking)
-
 ```
 
 All assessment scores (including the interactive term) were standardized. Mediation analyses with bootstrapping were conducted to test the primary hypothesis. Unlike other methods, bootstrapping is not limited by the assumption of normality. The interaction term of PCL--R Total Score and STAI Trait Anxiety was entered as the predictor, and PAI-BOR Total Score was entered as the mediating term. Total Score on the TAS was our outcome variable. A significant Average Causal Mediation Effect (ACME) would demonstrate support of our hypothesis. Summary tables (figure out how to include this info) show that the ACME is significant and the Average Direct Effect (ADE) disappears. This implies full causal mediation by BPD on the relationship between PsychopathyXAnxiety and Alexithymia.
@@ -292,87 +298,152 @@ is below redundant with the scatterplots? maybe.
 -->
 
 ``` {r prelim-regression-input, echo=FALSE, out.width='100%'}
-
-po_path <- lm(TAS_Total_Score_z ~ PCLR_STAI_Trait_z, data = filtered_wide_data)
-pm_path <- lm(PAIBOR_Total_Score_z ~ PCLR_STAI_Trait_z, data = filtered_wide_data)
-mo_path <- lm(TAS_Total_Score_z ~ PAIBOR_Total_Score_z, data = filtered_wide_data)
-
+po_path <- lm(TAS_Total_Score_z ~ PCLR_STAI_Trait_z, 
+              data = filtered_wide_data)
+pm_path <- lm(PAIBOR_Total_Score_z ~ PCLR_STAI_Trait_z, 
+              data = filtered_wide_data)
+mo_path <- lm(TAS_Total_Score_z ~ PAIBOR_Total_Score_z, 
+              data = filtered_wide_data)
 ```
 
-``` {r prelim-regression-output, results = 'asis'}
-
-stargazer(po_path, pm_path, mo_path, title = "Preliminary Regression Results", header = FALSE, type = 'latex', dep.var.labels = c("P-O Path", "P-M Path", "M-O Path"), covariate.labels = c("PsychopathyXAnxiety", "BPD"), column.sep.width = "1pt", label = "tab:prelim-regression-output")
-
+``` {r prelim-regression-output, results = 'hide'}
+stargazer(po_path, pm_path, mo_path, title = "Preliminary Regression Results", header = FALSE, type = 'latex', dep.var.labels = c("P-O Path", "P-M Path", "M-O Path"), covariate.labels = c("PsychopathyXAnxiety", "BPD"), column.sep.width = "1pt", label = "tab:prelim-regression-output", out="prelim-regression-output.png")
 ```
 
-In order to run a mediation analysis, one must ensure significant relationships exist between predictor and outcome, predictor and mediator, and mediator and outcome. Results for these preliminary analyses can be seen in Table\ \@ref(tab:prelim-regression-output).
+In order to run a mediation analysis, one must ensure significant relationships exist between predictor and outcome, predictor and mediator, and mediator and outcome. Results for these preliminary analyses can be seen in Table\ \@ref(tab:prelim-regression-output) / Appendix??.
 
 <!--
 one hypothesis testing analysis i will do is a simple linear regression where i use the interaction of psychopathy and anxiety to predict alexithymia (and it's 3 subfactors). i predict/require a significant relationship in order to proceed with a mediation analysis
 -->
 
 ``` {r, simple-regression-input, echo=FALSE, out.width='100%'}
-
-direct_model <- lm(TAS_Total_Score_z ~ PCLR_STAI_Trait_z, data = filtered_wide_data)
-direct_model1 <- lm(TAS_Factor1_Difficulty_Identifying_Feeling_z ~ PCLR_STAI_Trait_z, data = filtered_wide_data)
-direct_model2 <- lm(TAS_Factor2_Difficulty_Describing_Feelings_z ~ PCLR_STAI_Trait_z, data = filtered_wide_data)
-direct_model3 <- lm(TAS_Factor3_Externally_Oriented_Thinking_z ~ PCLR_STAI_Trait_z, data = filtered_wide_data)
-
+direct_model <- lm(TAS_Total_Score_z ~ PCLR_STAI_Trait_z, 
+                   data = filtered_wide_data)
+direct_model1 <- lm(TAS_Factor1_Difficulty_Identifying_Feeling_z ~ 
+                      PCLR_STAI_Trait_z, 
+                    data = filtered_wide_data)
+direct_model2 <- lm(TAS_Factor2_Difficulty_Describing_Feelings_z ~ 
+                      PCLR_STAI_Trait_z, 
+                    data = filtered_wide_data)
+direct_model3 <- lm(TAS_Factor3_Externally_Oriented_Thinking_z ~ 
+                      PCLR_STAI_Trait_z, 
+                    data = filtered_wide_data)
 ```
 
 ```{r, simple-regression-output, results = 'asis'}
-
-stargazer(direct_model, direct_model1, direct_model2, direct_model3, title = "Simple Linear Regression Results", header = FALSE, type = 'latex', dep.var.labels = c("TAS Total", "Factor 1", "Factor 2", "Factor 3"), covariate.labels = c("PsychopathyXAnxiety"), column.sep.width = "1pt", label = "tab:simple-regression-output")
-
+stargazer(direct_model, 
+          direct_model1, 
+          direct_model2, 
+          direct_model3, 
+        title = "Simple Linear Regression Results", 
+        header = FALSE, 
+        type = 'latex', 
+        dep.var.labels = c(
+          "TAS Total", 
+          "Factor 1", 
+          "Factor 2", 
+          "Factor 3"), 
+        covariate.labels = c(
+          "PsychopathyXAnxiety"), 
+        column.sep.width = "1pt", 
+        label = "tab:simple-regression-output")
 ```
 
 ```{r, mult-regression-input, echo=FALSE, out.width='100%'}
 ###should i keep the ugly plots??###
-mediator_model_total <- lm(PAIBOR_Total_Score_z ~ PCLR_STAI_Trait_z, data = filtered_wide_data)
-model_total <- lm(TAS_Total_Score_z ~ PCLR_STAI_Trait_z + PAIBOR_Total_Score_z, data = filtered_wide_data)
-mediation_result_total <- mediate(mediator_model_total, model_total, treat = "PCLR_STAI_Trait_z", mediator = "PAIBOR_Total_Score_z", boot=TRUE, sims=500)
-#plot(mediation_result_total)
-#summary(mediation_result_total) # full mediation?!
-
-mediator_model_tasf1 <- lm(PAIBOR_Total_Score_z ~ PCLR_STAI_Trait_z, data = filtered_wide_data)
-model_tasf1 <- lm(TAS_Factor1_Difficulty_Identifying_Feeling_z ~ PCLR_STAI_Trait_z + PAIBOR_Total_Score_z, data = filtered_wide_data)
-mediation_result_tasf1 <- mediate(mediator_model_tasf1, model_tasf1, treat = "PCLR_STAI_Trait_z", mediator = "PAIBOR_Total_Score_z", boot=TRUE, sims=500)
-#plot(mediation_result_tasf1)
-#summary(mediation_result_tasf1) # full mediation?!
-
-mediator_model_tasf2 <- lm(PAIBOR_Total_Score_z ~ PCLR_STAI_Trait_z, data = filtered_wide_data)
-model_tasf2 <- lm(TAS_Factor2_Difficulty_Describing_Feelings_z ~ PCLR_STAI_Trait_z + PAIBOR_Total_Score_z, data = filtered_wide_data)
-mediation_result_tasf2 <- mediate(mediator_model_tasf2, model_tasf2, treat = "PCLR_STAI_Trait_z", mediator = "PAIBOR_Total_Score_z", boot=TRUE, sims=500)
-#plot(mediation_result_tasf2)
-#summary(mediation_result_tasf2) # full mediation?!
-
-mediator_model_tasf3 <- lm(PAIBOR_Total_Score_z ~ PCLR_STAI_Trait_z, data = filtered_wide_data)
-model_tasf3 <- lm(TAS_Factor3_Externally_Oriented_Thinking_z ~ PCLR_STAI_Trait_z + PAIBOR_Total_Score_z, data = filtered_wide_data)
-mediation_result_tasf3 <- mediate(mediator_model_tasf3, model_tasf3, treat = "PCLR_STAI_Trait_z", mediator = "PAIBOR_Total_Score_z", boot=TRUE, sims=500)
-#plot(mediation_result_tasf3)
-#summary(mediation_result_tasf3) # effect goes away... so interesting!!!!
-
+mediator_model_total <- lm(PAIBOR_Total_Score_z ~ PCLR_STAI_Trait_z, 
+                           data = filtered_wide_data)
+model_total <- lm(TAS_Total_Score_z ~ 
+                    PCLR_STAI_Trait_z + PAIBOR_Total_Score_z, 
+                  data = filtered_wide_data)
+mediation_result_total <- mediate(mediator_model_total, model_total, 
+                                  treat = "PCLR_STAI_Trait_z", 
+                                  mediator = "PAIBOR_Total_Score_z", 
+                                  boot=TRUE, sims=500)
+mediator_model_tasf1 <- lm(PAIBOR_Total_Score_z ~ PCLR_STAI_Trait_z, 
+                           data = filtered_wide_data)
+model_tasf1 <- lm(TAS_Factor1_Difficulty_Identifying_Feeling_z ~ 
+                    PCLR_STAI_Trait_z + PAIBOR_Total_Score_z, 
+                  data = filtered_wide_data)
+mediation_result_tasf1 <- mediate(mediator_model_tasf1, model_tasf1, 
+                                  treat = "PCLR_STAI_Trait_z", 
+                                  mediator = "PAIBOR_Total_Score_z", 
+                                  boot=TRUE, sims=500)
+mediator_model_tasf2 <- lm(PAIBOR_Total_Score_z ~ PCLR_STAI_Trait_z, 
+                           data = filtered_wide_data)
+model_tasf2 <- lm(TAS_Factor2_Difficulty_Describing_Feelings_z ~ 
+                    PCLR_STAI_Trait_z + PAIBOR_Total_Score_z, 
+                  data = filtered_wide_data)
+mediation_result_tasf2 <- mediate(mediator_model_tasf2, model_tasf2, 
+                                  treat = "PCLR_STAI_Trait_z", 
+                                  mediator = "PAIBOR_Total_Score_z", 
+                                  boot=TRUE, sims=500)
+mediator_model_tasf3 <- lm(PAIBOR_Total_Score_z ~ PCLR_STAI_Trait_z, 
+                           data = filtered_wide_data)
+model_tasf3 <- lm(TAS_Factor3_Externally_Oriented_Thinking_z ~ 
+                    PCLR_STAI_Trait_z + PAIBOR_Total_Score_z, 
+                  data = filtered_wide_data)
+mediation_result_tasf3 <- mediate(mediator_model_tasf3, model_tasf3, 
+                                  treat = "PCLR_STAI_Trait_z", 
+                                  mediator = "PAIBOR_Total_Score_z", 
+                                  boot=TRUE, sims=500)
 ```
 
 ```{r mult-regression-output, results = 'asis'}
 ### I CAN'T FIGURE OUT HOW TO COMBINE NICELY INTO ONE TABLE :(( ###
-stargazer(model_total, model_tasf1, model_tasf2, model_tasf3, title = "Multiple Linear Regression Results", header = FALSE, type = 'latex', dep.var.labels = c("TAS Total", "Factor 1", "Factor 2", "Factor 3"), covariate.labels = c("PsychopathyXAnxiety", "BPD"), column.sep.width = "1pt", label = "tab:mult-regression-output")
-
+stargazer(model_total, 
+          model_tasf1, 
+          model_tasf2, 
+          model_tasf3, 
+        title = "Multiple Linear Regression Results", 
+        header = FALSE, 
+        type = 'latex', 
+        dep.var.labels = c(
+          "TAS Total", 
+          "Factor 1", 
+          "Factor 2", 
+          "Factor 3"), 
+        covariate.labels = c(
+          "PsychopathyXAnxiety", 
+          "BPD"), 
+        column.sep.width = "1pt", 
+        label = "tab:mult-regression-output")
 ```
 
-There is a significant relationship between predictor and outcome (*p* = ). However, this effect goes away when adding BPD as a mediator (*p* = ). This suggests that the presence of BPD acts as a mechanism through which the predictor influences the outcome. The significant, full mediation effect we observed suggests that a portion of the total effect of the predictor on the outcome is explained by the mediator (*p* = ).
+```{r ugly-plots, results='hide'}
+plot(mediation_result_total)
+summary(mediation_result_total) # full mediation?!
+plot(mediation_result_tasf1)
+summary(mediation_result_tasf1) # full mediation?!
+plot(mediation_result_tasf2)
+summary(mediation_result_tasf2) # full mediation?!
+plot(mediation_result_tasf3)
+summary(mediation_result_tasf3) # effect goes away... so interesting!!!!
+```
 
-Three subfactors defined in the TAS are believed to compose alexithymia: difficulty identifying feelings (Factor 1), difficulty describing feelings (Factor 2), and externally-oriented thinking (Factor 3). As we collected subfactor scores for every participant, an exploratory analysis could be conducted to get a sense of what specific parts of emotional processing psychopathy and BPD may be impacting. We found that, replacing the total TAS score for Factor 1 and Factor 2, the significant mediation effect remained in tact. However, designating Factor 3 as an outcome left us with an insignificant model. The change in significant effect when replacing for specific factors of TAS suggests the mediation effect may depend on specific aspects or dimensions of alexithymia. It is critical these results are analyzed with caution as no hypotheses regarding TAS subfactors were determined a priori and the theoretical lineage is at present quite limited.
+There is a significant relationship between predictor and outcome (*p* < 0.001 <!-- = `r summary(direct_model)$coefficients["PCLR_STAI_Trait_z", "Pr(>|t|)"]` -->). However, this effect goes away when adding BPD as a mediator (*p* = ). This suggests that the presence of BPD acts as a mechanism through which the predictor influences the outcome. The significant, full mediation effect we observed suggests that a portion of the total effect of the predictor on the outcome is explained by the mediator (*p* = ).
+
+Three subfactors defined in the TAS are believed to compose alexithymia: difficulty identifying feelings (Factor 1), difficulty describing feelings (Factor 2), and externally-oriented thinking (Factor 3). As we collected subfactor scores for every participant, an exploratory analysis could be conducted to get a sense of what specific parts of emotional processing psychopathy and BPD may be impacting. We found that, replacing the total TAS score for Factor 1 and Factor 2, the significant mediation effect remained in tact. However, designating Factor 3 as an outcome left us with an insignificant model. The change in significant effect when replacing for specific factors of TAS suggests the mediation effect may depend on specific aspects or dimensions of alexithymia. It is critical these results are analyzed with caution as no hypotheses regarding TAS subfactors were determined _a priori_ and the theoretical lineage is at present quite limited.
 
 # Discussion
 
-It is possible that BPD symptoms uniquely impact certain dimensions of the outcome variable. When considering what each of the three factors represent, it may be plausible that BPD would affect factors 1 and 2 -- addressing emotional comprehension and recognition -- and not 3, as BPD may be more closely associated with internalizing features. More research that addresses the role of BPD on externally-oriented thinking is required here to draw firmer conclusions.
+The results of the current study further advocate a promising role for borderline personality disorder in the relationship between psychopathy and alexithymia among women. Consistent with prior research, BPD was found to have a significant mediation effect on the association between an index of secondary psychopathy and alexithymia. However, contrary to previous findings, the inclusion of BPD fully accounted for this relationship. This is evidenced by the lack of a significant direct relationship between psychopathy and alexithymia after the inclusion of BPD.
 
-It is without a doubt that the relationship between psychopathy, anxiety, BPD, and alexithymia is multifaceted and complex. Our results should be further interpreted with caution and a unique sample such as this one may lead to skewed distributions.
+There are a few possible explanations for this finding. No study, to our knowledge, has utilized the exact same assessment battery when addressing these specific questions. While popular assessments are likely well-validated and replicable, it is possible subtly distinct indicators are being captured in each set of evaluations.
 
-Additional factors and moderators warrant further exploration. Other relevant comorbidities -- such as PTSD -- may influence the heterogeneous mediation pathway seen here in a way that could explain the nuanced relationships further. Further, it would certainly be worthwhile to break down BPD further to understand what specific mechanisms of this disorder might be at play in this relationship. We did not have sufficient data to conduct a factor analysis, but it may be useful as the personality disorder can be diagnosed in 256 unique ways, according to the DSM-V.
+Prior research inspiring this study was conducted primarily on low-psychopathy, community-based samples [@landerDifferentialAssociationAlexithymia2012; @ridingsEmotionalDysregulationBorderline2014]. It is certainly possible divergences exist between the presentation of psychopathy and BPD in incarcerated versus non-incarcerated populations. We already know that both psychopathy and BPD are much more prevalent within the prison system [@barbaraburtonPsychopathyInsightsGeneral2020; @connBorderlinePersonalityDisorder2010]. However, little is known with regards to the relationship between psychopathy and BPD in women as it’s compared across unique settings. Future research may wish to flesh out these nuances explicitly.
 
-The heterogeneity of this mediation effect is certainly cause for future research. This information can guide the development of targeted interventions or strategies based on specific factors that are most influenced by the mediation process. This changes in significance emphasize the need for careful and nuanced interpretation, taking into account the specific characteristics and dynamics at play for each factor within the composite variables..
+Regarding the findings from our exploratory analyses, it is possible that BPD symptoms uniquely impact certain dimensions of alexithymia as operationalized by the TAS-20. When considering what each of the three factors represent, it may be plausible that BPD would affect factors 1 and 2 – addressing emotional comprehension and recognition – and not 3 – externally-oriented thinking – as BPD may be more closely associated with internalizing features [@beauchaineMultifinalityDevelopmentPersonality2009]. More research that addresses the role of both psychopathy and BPD on externally-oriented thinking is required here to draw firmer conclusions. Additionally, as these hypotheses were not established _a priori_, studies replicating discoveries here are warranted.
+
+Additional factors and moderators merit further exploration. Other relevant comorbidities – such as PTSD – may influence the mediation pathway seen here in a way that could further explicate these nuanced relationships. Beyond this, we would like to strongly advocate for future research to conduct factor analyses that break down BPD further in order to understand what specific mechanisms of the disorder might be at play in this relationship. According to the DSM-*V*, BPD can be diagnosed through 256 unique combinations (cite dsm?). This statistic alone highlights the severe phenomenological heterogeneity at play with regards to this personality disorder. It is critical studies continue to amplify attention here – possibly with regards to dimensionalities, unique etiologies, or other unconsidered clinical factors at play – to avoid BPD acting as a diagnostic ‘catch-all’ for emotion dysregulation or maladaptive social behavior.
+
+BPD, as with all personality disorders, have “cultural histories” [@bjorklundNOMANLAND2006, p. 3]). Sociocultural factors will inevitably play a role in disease and diagnostic conditions, yet this hardly explains why a BPD diagnosis is considerably more common in women than in men. More research should more deeply and centrally seek to elucidate what many actually be contributing to diagnostic disparity when it comes to gender and what may simply be a product of bias. It continues to remain possible that ASPD and BPD are simply gender-based constructions of arriving at the same end point [@beauchaineMultifinalityDevelopmentPersonality2009]. On a grander scale, gender is not the only means for demonstrating diversity in psychopathological manifestation. Future research should consider other means of distinguishing psychopathy as well. 
+
+The curious diversity of this mediation effect is certainly cause for future research. Emotion expression and regulation play crucial roles in daily interactions and interpersonal relationships. It is evident that abnormal emotional processing is central to both psychopathy and BPD. As such, research into this area will help to tailor essential treatment that elucidates earlier intervention points for how and when this concoction of maladaptive processes may contribute to an endgame of incarceration. This information can guide the development of targeted interventions or strategies based on specific factors that are most influenced by the mediation process. Dialectical Behavioral Therapy (DBT; Linehan et al., 1993) and DBT-inspired treatments have demonstrated preliminary yet promising results for incarcerated female populations [@perEvaluatingEffectivenessMindfulnessBased2020]. Regardless, these changes in significance emphasize the need for careful and nuanced interpretation, taking into account the specific characteristics and dynamics at play for each factor within the composite variables.
+
+We do not doubt that the relationship between psychopathy, anxiety, BPD, and alexithymia is multifaceted and complex. Nevertheless, the presence of distress and emotional dysregulation is exceptionally embodied for the people inflicted; it remains critical to continue research to help not only understand these mechanisms, but also to inform tailored treatment that is less costly, more effective, and deterrent of negative psychopathic behavior.
+
+Presenting findings on a unique population such as this one requires cautious interpretation. While we are intrigued by the prospects suggested here, we are limited in our ability to generalize conclusions drawn. That being said, we are hopeful that this study brings us one step closer to obtaining a clearer, more concise picture of psychopathy as it manifests in women.
 
 \newpage
 
@@ -380,3 +451,26 @@ The heterogeneity of this mediation effect is certainly cause for future researc
 
 ::: {#refs custom-style="Bibliography"}
 :::
+
+\newpage
+
+# Appendix
+
+```{r STAI-descriptives-appendix, echo=FALSE, out.width="100%", fig.cap="Distribution of STAI-Trait scores in sample"}
+knitr::include_graphics("d2m-Psychopathy_files/figure-latex/STAI-descriptives-1.png")
+```
+
+```{r PAIBOR-descriptives-appendix, echo=FALSE, out.width="100%", fig.cap="Distribution of PAI-BOR scores in sample"}
+knitr::include_graphics("d2m-Psychopathy_files/figure-latex/PAI-descriptives-1.png")
+```
+
+```{r TAS-descriptives-appendix, echo=FALSE, out.width="100%", fig.cap="Distribution of TAS scores in sample"}
+knitr::include_graphics("d2m-Psychopathy_files/figure-latex/TAS-descriptives-1.png")
+```
+
+```{r, echo=FALSE, results='asis'}
+cat(readLines("prelim-regression-output.png"), sep = "\n")
+```
+
+
+
