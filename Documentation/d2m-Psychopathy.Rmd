@@ -372,7 +372,7 @@ It is without a doubt that the relationship between psychopathy, anxiety, BPD, a
 
 Additional factors and moderators warrant further exploration. Other relevant comorbidities -- such as PTSD -- may influence the heterogeneous mediation pathway seen here in a way that could explain the nuanced relationships further. Further, it would certainly be worthwhile to break down BPD further to understand what specific mechanisms of this disorder might be at play in this relationship. We did not have sufficient data to conduct a factor analysis, but it may be useful as the personality disorder can be diagnosed in 256 unique ways, according to the DSM-V.
 
-The heterogeneity of this mediation effect is certainly cause for future research. This information can guide the development of targeted interventions or strategies based on specific factors that are most influenced by the mediation process. This changes in significance emphasize the need for careful and nuanced interpretation, taking into account the specific characteristics and dynamics at play for each factor within the composite variables.
+The heterogeneity of this mediation effect is certainly cause for future research. This information can guide the development of targeted interventions or strategies based on specific factors that are most influenced by the mediation process. This changes in significance emphasize the need for careful and nuanced interpretation, taking into account the specific characteristics and dynamics at play for each factor within the composite variables..
 
 \newpage
 
