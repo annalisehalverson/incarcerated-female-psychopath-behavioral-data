@@ -1,11 +1,16 @@
 # Locating the crossroads of psychopathy, borderline personality disorder, and emotion as it applies to incarcerated women
-## Repository for Annalise Halverson's UChicago MAPSS Thesis
+## _Repository for Annalise Halverson's UChicago MAPSS Thesis_
 
 (structured abstract here)
+
 Background:
+
 Methods:
+
 Results:
+
 Conclusion:
+
 
 ### REPO DIRECTORY STRUCTURE
     |--README.md
