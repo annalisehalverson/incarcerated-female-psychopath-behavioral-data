@@ -6,7 +6,7 @@
 thesis-wordvomit-copy.docx
 
 # Ignore Tests folder
-Tests/
+/Tests/
 
 # History files
 .Rhistory
