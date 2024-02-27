@@ -5,6 +5,9 @@
 # Ignore specific file brainstorming about thesis
 thesis-wordvomit-copy.docx
 
+# Ignore Tests folder
+Tests/
+
 # History files
 .Rhistory
 .Rapp.history

@@ -75,6 +75,8 @@ output            : papaja::apa6_pdf
 ---
 
 ```{r setup, include = FALSE}
+### library(Require)
+### require all except ok to library (9.1)
 library("papaja")
 library(tidyverse)
 library(psych)
@@ -84,6 +86,7 @@ library(ggsci)
 library(mediation)
 library(stargazer)
 library(mosaic)
+library(citr)
 r_refs("r-references.bib")
 getwd()
 setwd("../Documentation/")
@@ -154,29 +157,31 @@ Collected over a four-year period, the present sample consists of 156 incarcerat
 ## Measures
 
 ### Two-Factor Psychopathy
-The Psychopathy Checklist—Revised (PCL—R) is a 20-item instrument operationalizing Hervey Cleckley’s seminal description of sixteen characteristics that exemplify psychopathy [@cleckleyMaskSanityAttempt1976; @hareManualHarePsychopathy]. This clinical conceptualization is considered the gold standard for assessing psychopathic features in forensic samples. Both a semi-structured interview and review of institutional records comprise the assessment. Total scores may range from 0 to 40. A score of 10-19 is akin with mild psychopathy, while a score of 20-29 is illustrative of moderate psychopathy. Scores above 30 are associated with severe psychopathic symptoms.
+The Psychopathy Checklist—Revised (PCL—R) is a 20-item instrument operationalizing Hervey Cleckley’s seminal description of sixteen characteristics that exemplify psychopathy [@cleckleyMaskSanityAttempt1976; @hareManualHarePsychopathy]. This clinical conceptualization is considered the gold standard for assessing psychopathic features in forensic samples. Both a semi-structured interview and review of institutional records comprise the assessment. Total scores may range from 0 to 40. A score of 10-19 is akin with mild psychopathy, while a score of 20-29 is illustrative of moderate psychopathy. Scores above 30 are commonly associated with severe psychopathic symptoms.
 
 ### Borderline Personality Disorder
 Individual dimensions of BPD were assessed using the Personality Assessment Inventory-Borderline Features scale [PAI—BOR\; @morey1991personality]. The PAI—BOR is a 24-item self-report measure that yields a four-factor model of BPD including affective instability, identity problems, negative relationships, and self-harm. The PAI—BOR scale has demonstrated both reliability and validity [@morey1991personality; @trullBorderlinePersonalityDisorder1995], as well as high sensitivity and specificity for individuals matching BPD criteria [@southwardIdentifyingCoreDeficits2018]. A score of … is considered … 
 
 ### Alexithymia and Emotion
-The Toronto Alexithymia Scale [TAS\; @taylorRevisedTorontoAlexithymia1992] is a 20-item self-report measure designed to assess facets of alexithymia across three subscales: difficulty in identifying and distinguishing feelings within oneself, difficulty in describing feelings to others, and externally oriented thinking [@karukiviDevelopmentAlexithymicPersonality2014]. The scale has demonstrated high internal consistency [@henryCognitivePsychosocialCorrelates2006] and strong convergent and discriminant validity [@bagbyTwentyitemTorontoAlexithymia1994]. Total scores can range from 20 to 100. A score above 50 demonstrates the possibility of alexithymia, while a score above 60 illustrates strong alexithymic symptoms.
+The Toronto Alexithymia Scale [TAS-20\; @taylorRevisedTorontoAlexithymia1992] is a 20-item self-report measure designed to assess facets of alexithymia across three subscales: difficulty in identifying and distinguishing feelings within oneself, difficulty in describing feelings to others, and externally oriented thinking [@karukiviDevelopmentAlexithymicPersonality2014]. The scale has demonstrated high internal consistency [@henryCognitivePsychosocialCorrelates2006] and strong convergent and discriminant validity [@bagbyTwentyitemTorontoAlexithymia1994]. Total scores can range from 20 to 100. A score above 50 demonstrates the possibility of alexithymia, while a score above 60 illustrates strong alexithymic symptoms.
 
 ### Exploring Dimensions of Psychopathy
 Primary and secondary psychopathy have been shown to diverge in levels of anxiety [@vaillancourtLongitudinalAssociationsPrimary2019]. Relative to primary psychopaths, secondary psychopaths possess higher levels of trait anxiety, exhibit more borderline symptoms, and have poorer interpersonal functioning [@burnsEvaluatingEmotionProcessing2015; @skeemTwoSubtypesPsychopathic2007]. It is likely alexithymia diverges across the dimensions of psychopathy. In line with prior research, it is predicted that secondary psychopathy, specifically, will exhibit a relationship with alexithymia in which BPD functions as a mediator. Precedence has been established in using the interaction between psychopathy scores and STAI-Trait scores as an index of secondary psychopathy [see @landerDifferentialAssociationAlexithymia2012; @vassilevaPsychopathyPsychopathiesClassifying2005]. As such, the interactive term – psychopathyXanxiety – will be utilized in the present study. STAI-Trait scores range from 20 to 80, with higher scores being indicative of higher trait anxiety [@spielberger1970stai]. In the literature, the assessment has shown to be a strong measure of general negative affect, as well as incorporating aspects of cognitive anxiety [@balsamoStateTraitAnxietyInventory2013].
 
 ## Procedure
-All interviews were conducted by a clinical psychologist or trained research staff member. While incarcerated subjects are often reported as being highly reliable and compliant in psychological research [@decetyNeuralProcessingDynamic2014], special ethical concerns remain for incarcerated populations as various restrictions exist on autonomy, privacy, and healthcare services.
+All interviews were conducted by a clinical psychologist or trained research staff member. While incarcerated subjects are often reported as being highly reliable and compliant in psychological research [@decetyNeuralProcessingDynamic2014], special ethical concerns remain for incarcerated populations as various restrictions exist on autonomy, privacy, and healthcare services. ...
 
 ## Data analysis
-Of the 156 total participants, 52 participants failed to complete one or more of the four assessments. Due to the nature of the variables, it was determined most ethical to simply remove participants who were missing data for any of the required assessments. A total of 104 participants remained for further investigation. We used `r cite_r("r-references.bib")` for all our analyses. 
+Of the 156 total participants, 52 participants failed to complete one or more of the four assessments. Due to the heterogeneous nature of the variables, it was determined most ethical to simply remove participants who were missing data for any of the required assessments. A total of 104 participants remained for further investigation. We used various `R` packages[^1] for all our analyses. <!-- put refs in footnote -->
+
+[^1]: `r cite_r("r-references.bib")`
 
 # Results
 
 Descriptive statistics for the assessments of interest can be seen in Table\ \@ref(tab:summary-table).
 
 (ref:PCLR-descriptives) Histogram of score distribution on the PCL--R.
-``` {r, PCLR-descriptives, fig.cap="(ref:PCLR-descriptives)"}
+``` {r, PCLR-descriptives, echo=FALSE, fig.cap="(ref:PCLR-descriptives)"}
 #ggplot(data = filtered_wide_data, aes(x = PCLR_Total_Score_Prorated)) +
   #geom_density(color = "saddlebrown") +
   #ggtitle("Density Plot of Psychopathy") +
@@ -192,7 +197,7 @@ ggplot(data = filtered_wide_data, aes(x = PCLR_Total_Score_Prorated)) +
 
 As seen in Figure\ \@ref(fig:PCLR-descriptives), our distribution of PCL--R scores is left-skewed, with more participants falling on the higher end of the spectrum. This is ?consistent? with past studies conducted with incarcerated populations (probably Decety). Other score assessment distributions can be found in the appendix.
 
-```{r, STAI-descriptives, fig.show='hide'}
+```{r, STAI-descriptives, echo=FALSE, fig.show='hide'}
 #ggplot(data = filtered_wide_data, aes(x = STAI_Trait_Anxiety)) +
   #geom_density(color = "saddlebrown") +
   #ggtitle("Density Plot of Trait Anxiety") +
@@ -207,7 +212,7 @@ ggplot(data = filtered_wide_data, aes(x = STAI_Trait_Anxiety)) +
   xlim(20,80)
 ```
 
-```{r, PAI-descriptives, fig.show='hide'}
+```{r, PAI-descriptives, echo=FALSE, fig.show='hide'}
 #ggplot(data = filtered_wide_data, aes(x = PAIBOR_Total_Score)) +
   #geom_density(color = "saddlebrown") +
   #ggtitle("Density Plot of BPD") +
@@ -222,7 +227,7 @@ ggplot(data = filtered_wide_data, aes(x = PAIBOR_Total_Score)) +
   xlim(0,65)
 ```
 
-```{r, TAS-descriptives, fig.show='hide'}
+```{r, TAS-descriptives, echo=FALSE, fig.show='hide'}
 #ggplot(data = filtered_wide_data, aes(x = TAS_Total_Score)) +
   #geom_density(color = "saddlebrown") +
   #ggtitle("Density Plot of Alexithymia") +
@@ -283,7 +288,7 @@ filtered_wide_data$TAS_Factor3_Externally_Oriented_Thinking_z <-
 All assessment scores (including the interactive term) were standardized. Mediation analyses with bootstrapping were conducted to test the primary hypothesis. Unlike other methods, bootstrapping is not limited by the assumption of normality. The interaction term of PCL--R Total Score and STAI Trait Anxiety was entered as the predictor, and PAI-BOR Total Score was entered as the mediating term. Total Score on the TAS was our outcome variable. A significant Average Causal Mediation Effect (ACME) would demonstrate support of our hypothesis.
 
 <!--
-is below redundant with the scatterplots? maybe.
+is below redundant with the scatterplots? maybe. there's a lot happening down here.
 -->
 
 ``` {r prelim-regression-input, echo=FALSE, out.width='100%'}
@@ -406,7 +411,7 @@ plot(mediation_result_tasf3)
 summary(mediation_result_tasf3) # effect goes away... so interesting!!!!
 ```
 
-*reference tables 2 and 3* There is a significant relationship between predictor and outcome (*p* < 0.001 <!-- = `r summary(direct_model)$coefficients["PCLR_STAI_Trait_z", "Pr(>|t|)"]` -->). However, this effect goes away when adding BPD as a mediator (*p* = ). This suggests that the presence of BPD acts as a mechanism through which the predictor influences the outcome. The significant, full mediation effect we observed suggests that a portion of the total effect of the predictor on the outcome is explained by the mediator (*p* = ).
+*reference tables 2 and 3* There is a significant relationship between predictor and outcome (*p* `r apa_p(summary(direct_model)$coefficients["PCLR_STAI_Trait_z", "Pr(>|t|)"], add_equals=T)`). However, this effect goes away when adding BPD as a mediator (*p* = ). This suggests that the presence of BPD acts as a mechanism through which the predictor influences the outcome. The significant, full mediation effect we observed suggests that a portion of the total effect of the predictor on the outcome is explained by the mediator (*p* = ).
 
 Three subfactors defined in the TAS are believed to compose alexithymia: difficulty identifying feelings (Factor 1), difficulty describing feelings (Factor 2), and externally-oriented thinking (Factor 3). As we collected subfactor scores for every participant, an exploratory analysis could be conducted to get a sense of what specific parts of emotional processing psychopathy and BPD may be impacting. We found that, replacing the total TAS score for Factor 1 and Factor 2, the significant mediation effect remained in tact. However, designating Factor 3 as an outcome left us with an insignificant model. The change in significant effect when replacing for specific factors of TAS suggests the mediation effect may depend on specific aspects or dimensions of alexithymia. It is critical these results are analyzed with caution as no hypotheses regarding TAS subfactors were determined _a priori_ and the theoretical lineage is at present quite limited.
 
@@ -441,19 +446,19 @@ Presenting findings on a unique population such as this one requires cautious in
 
 # Appendix
 
-```{r STAI-descriptives-appendix, echo=FALSE, out.width="100%", fig.cap="Distribution of STAI-Trait scores in sample"}
+```{r STAI-descriptives-appendix, echo=FALSE, out.width="100%", fig.cap="Distribution of STAI-Trait scores in sample", fig.pos="H"}
 knitr::include_graphics("d2m-Psychopathy_files/figure-latex/STAI-descriptives-1.png")
 ```
 
-```{r PAIBOR-descriptives-appendix, echo=FALSE, out.width="100%", fig.cap="Distribution of PAI-BOR scores in sample"}
+```{r PAIBOR-descriptives-appendix, echo=FALSE, out.width="100%", fig.cap="Distribution of PAI-BOR scores in sample", fig.pos="H"}
 knitr::include_graphics("d2m-Psychopathy_files/figure-latex/PAI-descriptives-1.png")
 ```
 
-```{r TAS-descriptives-appendix, echo=FALSE, out.width="100%", fig.cap="Distribution of TAS scores in sample"}
+```{r TAS-descriptives-appendix, echo=FALSE, out.width="100%", fig.cap="Distribution of TAS scores in sample", fig.pos="H"}
 knitr::include_graphics("d2m-Psychopathy_files/figure-latex/TAS-descriptives-1.png")
 ```
 
-```{r, echo=FALSE, results='asis'}
+```{r, echo=FALSE, results='asis', fig.pos="H"}
 cat(readLines("prelim-regression-output.png"), sep = "\n")
 ```
 
