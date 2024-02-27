@@ -88,8 +88,7 @@ library(stargazer)
 library(mosaic)
 library(citr)
 r_refs("r-references.bib")
-getwd()
-setwd("../Documentation/")
+#setwd()
 theme_set(theme_classic(base_family = "serif"))
 ```
 
@@ -97,7 +96,7 @@ theme_set(theme_classic(base_family = "serif"))
 # Seed for random number generation
 set.seed(42)
 knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
-filtered_wide_data <- read.csv("filtered_wide_data.csv")
+filtered_wide_data <- read.csv("Data/filtered_wide_data.csv")
 ```
 
 # Introduction
@@ -459,7 +458,7 @@ knitr::include_graphics("d2m-Psychopathy_files/figure-latex/TAS-descriptives-1.p
 ```
 
 ```{r, echo=FALSE, results='asis', fig.pos="H"}
-cat(readLines("prelim-regression-output.png"), sep = "\n")
+cat(readLines("Images/prelim-regression-output.png"), sep = "\n")
 ```
 
 

@@ -1,1 +1,0 @@
-# example documentation folder file: used for extensive documentation

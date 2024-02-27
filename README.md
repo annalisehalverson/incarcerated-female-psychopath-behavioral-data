@@ -9,15 +9,17 @@ Conclusion:
 
 ### REPO DIRECTORY STRUCTURE
     |--README.md
+    |--.gitignore
     |--RProj
-     |--Documentation
-         |--RMD 
-         |--everything created by papaja when knitting
+     |--RMD 
+     |--everything created by papaja when knitting
+     |--r-references.bib
      |--Data
-         |--
+        |--data mock-up
+        |--csv
      |--Source
-         |--R script(s) for data prep
+        |--R script(s) for data prep
      |--Images
-         |--etc
+        |--etc
 
 ###### the end.
