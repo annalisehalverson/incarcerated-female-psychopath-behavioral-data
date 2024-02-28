@@ -159,9 +159,6 @@
   }
 {}{\PatchFailed}
 \keywords{psychopathy, borderline personality disorder, alexithymia, incarcerated populations, women, psychopathology\newline\indent Word count: X}
-\usepackage{lineno}
-
-\linenumbers
 \usepackage{csquotes}
 \makeatletter
 \renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
@@ -313,37 +310,13 @@ Of the 156 total participants, 52 participants failed to complete one or more of
 \hypertarget{results}{%
 \section{Results}\label{results}}
 
-Descriptive statistics for the assessments of interest can be seen in Table~\ref{tab:summary-table}.
 
-
-
-\begin{verbatim}
-## Warning: Removed 2 rows containing missing values (`geom_bar()`).
-\end{verbatim}
 
 \begin{figure}
-\centering
-\includegraphics{d2m-Psychopathy_files/figure-latex/PCLR-descriptives-1.pdf}
-\caption{\label{fig:PCLR-descriptives}Histogram of score distribution on the PCL--R.}
+\includegraphics[width=1\linewidth]{d2m-Psychopathy_files/figure-latex/PCLR-descriptives-1} \caption{Histogram of score distribution on the PCL--R.}\label{fig:PCLR-descriptives}
 \end{figure}
 
-As seen in Figure~\ref{fig:PCLR-descriptives}, our distribution of PCL--R scores is left-skewed, with more participants falling on the higher end of the spectrum. This is ?consistent? with past studies conducted with incarcerated populations (probably Decety). Other score assessment distributions can be found in the appendix.
-
-\begin{verbatim}
-## Warning: Removed 2 rows containing missing values (`geom_bar()`).
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: Removed 1 rows containing missing values (`geom_bar()`).
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: Removed 1 rows containing non-finite values (`stat_bin()`).
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: Removed 2 rows containing missing values (`geom_bar()`).
-\end{verbatim}
+Descriptive statistics for the assessments of interest can be seen in Table~\ref{tab:summary-table}. As seen in Figure~\ref{fig:PCLR-descriptives}, our distribution of PCL--R scores is left-skewed, with more participants falling on the higher end of the spectrum. This is consistent with past studies conducted with incarcerated populations (Decety et al., 2013; Decety et al., 2014). Other score assessment distributions can be found in the \protect\hyperlink{Supplemental-Materials}{Supplemental Materials} section.
 
 
 
@@ -351,7 +324,7 @@ As seen in Figure~\ref{fig:PCLR-descriptives}, our distribution of PCL--R scores
 \includegraphics[width=1\linewidth]{d2m-Psychopathy_files/figure-latex/c-path-scatterplot-1} \caption{Scatterplot demonstrating relationship between the interactive term of psychopathy and trait anxiety with alexithymia in our sample of incarcerated women.}\label{fig:c-path-scatterplot}
 \end{figure}
 
-Figure~\ref{fig:c-path-scatterplot} shows a moderate correlation of 0.37 between PsychopathyXAnxiety and Alexithymia. \ldots talk about colors
+Figure~\ref{fig:c-path-scatterplot} shows a moderate correlation between psychopathy and alexithymia (\emph{r} = 0.37). Participant scores on the STAI-Trait are illustrated by the color of each point. It appears that those lower in trait anxiety seem to fall on the lower on the spectrum of alexithymia. However, distinctions are hardly discernable across the PCL--R dimension. While not statistically calculated, these suppositions fall in line with prior research suggesting alexithymia may result from increased stress to the environment (Karukivi \& Saarijärvi, 2014).
 
 
 
@@ -359,11 +332,45 @@ Figure~\ref{fig:c-path-scatterplot} shows a moderate correlation of 0.37 between
 \includegraphics[width=1\linewidth]{d2m-Psychopathy_files/figure-latex/a-path-scatterplot-1} \caption{Scatterplot demonstrating relationship between the interactive term of psychopathy and trait anxiety with borderline personality disorder in our sample of incarcerated women.}\label{fig:a-path-scatterplot}
 \end{figure}
 
-Figure~\ref{fig:a-path-scatterplot} shows a moderate to strong correlation of 0.66 between PsychopathyXAnxiety and BPD. \ldots talk about colors
+Figure~\ref{fig:a-path-scatterplot} shows a moderate to strong correlation between psychopathy and BPD (\emph{r} = 0.66). Participant scores on the STAI-Trait are illustrated similarly here. The distribution of STAI-Trait scores appears to be more mixed here, which once again aligns with prior research regarding the presence of internalizing features such as anxiety across presentations of BPD (Beauchaine et al., 2009).
 
-All assessment scores (including the interactive term) were standardized. Mediation analyses with bootstrapping were conducted to test the primary hypothesis. Unlike other methods, bootstrapping is not limited by the assumption of normality. The interaction term of PCL--R Total Score and STAI Trait Anxiety was entered as the predictor, and PAI-BOR Total Score was entered as the mediating term. Total Score on the TAS was our outcome variable. A significant Average Causal Mediation Effect (ACME) would demonstrate support of our hypothesis.
+\begin{table}[!htbp] \centering 
+  \caption{Preliminary Regression Results} 
+  \label{tab:prelim-regression-output} 
+\begin{tabular}{@{\extracolsep{1pt}}lccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{3}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-4} 
+\\[-1.8ex] & P-O Path & P-M Path & M-O Path \\ 
+\\[-1.8ex] & (1) & (2) & (3)\\ 
+\hline \\[-1.8ex] 
+ PsychopathyXAnxiety & 0.373$^{***}$ & 0.660$^{***}$ &  \\ 
+  & (0.092) & (0.074) &  \\ 
+  & & & \\ 
+ BPD &  &  & 0.471$^{***}$ \\ 
+  &  &  & (0.087) \\ 
+  & & & \\ 
+ Constant & $-$0.000 & $-$0.000 & $-$0.000 \\ 
+  & (0.091) & (0.074) & (0.087) \\ 
+  & & & \\ 
+\hline \\[-1.8ex] 
+Observations & 104 & 104 & 104 \\ 
+R$^{2}$ & 0.139 & 0.436 & 0.222 \\ 
+Adjusted R$^{2}$ & 0.131 & 0.431 & 0.214 \\ 
+Residual Std. Error (df = 102) & 0.932 & 0.755 & 0.887 \\ 
+F Statistic (df = 1; 102) & 16.501$^{***}$ & 78.905$^{***}$ & 29.024$^{***}$ \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{3}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table}
 
-In order to run a mediation analysis, one must ensure significant relationships exist between predictor and outcome, predictor and mediator, and mediator and outcome. The present data support these requirements, thus we were able to proceed with our mediation analysis. Results for these preliminary analyses can be seen in Table~\ref{tab:prelim-regression-output} of the Appendix.
+All assessment scores, including the interactive term of psychopathy and trait anxiety, were standardized. In order to run a mediation analysis, one must ensure significant relationships exist between predictor and outcome, predictor and mediator, and mediator and outcome. The present data support these requirements, thus we were able to proceed with our mediation analysis. Results for these preliminary analyses can be seen in Table~\ref{tab:prelim-regression-output}.
+
+Mediation analyses with bootstrapping were conducted to test the primary hypothesis. Unlike other methods, bootstrapping is a non-parametric analysis not limited by a number of parametric assumptions, including normality. Further, when seeking to interpret conditional indirect effects, bootstrapping is often recommended to allow for the estimation of confidence intervals.
+
+The interaction term of PCL--R Total Score and STAI Trait Anxiety was entered as the predictor, and PAI-BOR Total Score was entered as the mediating term. Total Score on the TAS was our outcome variable. A significant Average Causal Mediation Effect (ACME) would demonstrate support of our hypothesis.
 
 \begin{table}[!htbp] \centering 
   \caption{Simple Linear Regression Results} 
@@ -426,11 +433,17 @@ F Statistic (df = 2; 101) & 14.949$^{***}$ & 22.477$^{***}$ & 10.273$^{***}$ & 2
 \end{tabular} 
 \end{table}
 
-\includegraphics{d2m-Psychopathy_files/figure-latex/ugly-plots-1.pdf} \includegraphics{d2m-Psychopathy_files/figure-latex/ugly-plots-2.pdf} \includegraphics{d2m-Psychopathy_files/figure-latex/ugly-plots-3.pdf} \includegraphics{d2m-Psychopathy_files/figure-latex/ugly-plots-4.pdf}
+\begin{figure}
+\includegraphics[width=1\linewidth]{d2m-Psychopathy_files/figure-latex/mediation-plot-1} \caption{Plot of Total Mediation Relationship}\label{fig:mediation-plot}
+\end{figure}
 
-\emph{reference tables 2 and 3} There is a significant relationship between predictor and outcome (\emph{p} \textless{} .001). However, this effect goes away when adding BPD as a mediator (\emph{p} = ). This suggests that the presence of BPD acts as a mechanism through which the predictor influences the outcome. The significant, full mediation effect we observed suggests that a portion of the total effect of the predictor on the outcome is explained by the mediator (\emph{p} = ).
+The total effect present in our model reached significance (\emph{p} \textless{} .001). There is a significant relationship between predictor and outcome (\emph{p} \textless{} .001). However, this effect goes away when adding BPD as a mediator (CI {[}-0.16, 0.35{]}, \emph{p} = .368). This suggests that the presence of BPD acts as a mechanism through which the predictor influences the outcome. The significant, full mediation effect we observed suggests that a portion of the total effect of the predictor on the outcome is explained by the mediator (CI {[}0.26, 1.61{]}, \emph{p} = .004). Detailed results, including coefficients and standard errors, for our simple linear regression and multiple linear regression can be seen in Tables~\ref{tab:simple-regression-output} \& \ref{tab:mult-regression-output}, respectively.
 
-Three subfactors defined in the TAS are believed to compose alexithymia: difficulty identifying feelings (Factor 1), difficulty describing feelings (Factor 2), and externally-oriented thinking (Factor 3). As we collected subfactor scores for every participant, an exploratory analysis could be conducted to get a sense of what specific parts of emotional processing psychopathy and BPD may be impacting. We found that, replacing the total TAS score for Factor 1 and Factor 2, the significant mediation effect remained in tact. However, designating Factor 3 as an outcome left us with an insignificant model. The change in significant effect when replacing for specific factors of TAS suggests the mediation effect may depend on specific aspects or dimensions of alexithymia. It is critical these results are analyzed with caution as no hypotheses regarding TAS subfactors were determined \emph{a priori} and the theoretical lineage is at present quite limited.
+Figure~\ref{fig:mediation-plot} visualizes how this relationship changes with the inclusion of BPD as mediator. Here, we can see the Average Direct Effect (ADE) of our interaction term on alexithymia becomes ambiguous. Both the ACME and Total Effect evidently illustrate a significant positive impact on our outcome term.
+
+Three subfactors defined in the TAS are believed to compose alexithymia: difficulty identifying feelings (Factor 1), difficulty describing feelings (Factor 2), and externally-oriented thinking (Factor 3). As we collected subfactor scores for every participant, an exploratory analysis could be conducted to get a sense of what specific parts of emotional processing psychopathy and BPD may be impacting. The right three columns of Table~\ref{tab:simple-regression-output} highlight a significant, positive impact of our predictive interaction term on all three subfactors of alexithymia. In other words, the interaction of psychopathy and trait anxiety can anticipate the presence of difficulty identifying feelings, difficulty describing feelings, and externally-oriented thinking.
+
+Regarding our mediation relationship, the right three columns of Table~\ref{tab:mult-regression-output} show that, replacing the total TAS score for Factor 1 and Factor 2, the significant mediation effect remained in tact. However, designating Factor 3 as an outcome left us with an insignificant model. The change in significant effect when replacing for specific factors of TAS suggests the mediation effect may depend on specific aspects or dimensions of alexithymia. It is critical these results are analyzed with caution as no hypotheses regarding TAS subfactors were determined \emph{a priori} and the theoretical lineage is at present quite limited.
 
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
@@ -504,6 +517,9 @@ De Brito, S. A., Forth, A. E., Baskin-Sommers, A. R., Brazil, I. A., Kimonis, E.
 
 \leavevmode\vadjust pre{\hypertarget{ref-devogelGenderDifferencesAssessment2016}{}}%
 De Vogel, V., \& Lancel, M. (2016). Gender {Differences} in the {Assessment} and {Manifestation} of {Psychopathy}: {Results From} a {Multicenter Study} in {Forensic Psychiatric Patients}. \emph{International Journal of Forensic Mental Health}, \emph{15}(1), 97--110. \url{https://doi.org/10.1080/14999013.2016.1138173}
+
+\leavevmode\vadjust pre{\hypertarget{ref-decetyFMRIStudyAffective2013}{}}%
+Decety, J., Chen, C., Harenski, C., \& Kiehl, K. A. (2013). An {fMRI} study of affective perspective taking in individuals with psychopathy: Imagining another in pain does not evoke empathy. \emph{Frontiers in Human Neuroscience}, \emph{7}. \url{https://doi.org/10.3389/fnhum.2013.00489}
 
 \leavevmode\vadjust pre{\hypertarget{ref-decetyNeuralProcessingDynamic2014}{}}%
 Decety, J., Skelly, L., Yoder, K. J., \& Kiehl, K. A. (2014). Neural processing of dynamic emotional facial expressions in psychopaths. \emph{Social Neuroscience}, \emph{9}(1), 36--49. \url{https://doi.org/10.1080/17470919.2013.866905}
@@ -692,52 +708,20 @@ Zlotnick, C., Rothschild, L., \& Zimmerman, M. (2002). The {Role} of {Gender} in
 
 \newpage
 
-\hypertarget{appendix}{%
-\section{Appendix}\label{appendix}}
+\hypertarget{Supplemental-Materials}{%
+\section{Supplemental Materials}\label{Supplemental-Materials}}
 
 \begin{figure}[H]
-\includegraphics[width=1\linewidth]{d2m-Psychopathy_files/figure-latex/STAI-descriptives-1} \caption{Distribution of STAI-Trait scores in sample}\label{fig:STAI-descriptives-appendix}
+\includegraphics[width=0.7\linewidth]{d2m-Psychopathy_files/figure-latex/STAI-descriptives-1} \caption{Distribution of STAI-Trait scores in sample}\label{fig:STAI-descriptives-appendix}
 \end{figure}
 
 \begin{figure}[H]
-\includegraphics[width=1\linewidth]{d2m-Psychopathy_files/figure-latex/PAI-descriptives-1} \caption{Distribution of PAI-BOR scores in sample}\label{fig:PAIBOR-descriptives-appendix}
+\includegraphics[width=0.7\linewidth]{d2m-Psychopathy_files/figure-latex/PAI-descriptives-1} \caption{Distribution of PAI-BOR scores in sample}\label{fig:PAIBOR-descriptives-appendix}
 \end{figure}
 
 \begin{figure}[H]
-\includegraphics[width=1\linewidth]{d2m-Psychopathy_files/figure-latex/TAS-descriptives-1} \caption{Distribution of TAS scores in sample}\label{fig:TAS-descriptives-appendix}
+\includegraphics[width=0.7\linewidth]{d2m-Psychopathy_files/figure-latex/TAS-descriptives-1} \caption{Distribution of TAS scores in sample}\label{fig:TAS-descriptives-appendix}
 \end{figure}
-
-\begin{table}[!htbp] \centering 
-  \caption{Preliminary Regression Results} 
-  \label{tab:prelim-regression-output} 
-\begin{tabular}{@{\extracolsep{1pt}}lccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & \multicolumn{3}{c}{\textit{Dependent variable:}} \\ 
-\cline{2-4} 
-\\[-1.8ex] & P-O Path & P-M Path & M-O Path \\ 
-\\[-1.8ex] & (1) & (2) & (3)\\ 
-\hline \\[-1.8ex] 
- PsychopathyXAnxiety & 0.373$^{***}$ & 0.660$^{***}$ &  \\ 
-  & (0.092) & (0.074) &  \\ 
-  & & & \\ 
- BPD &  &  & 0.471$^{***}$ \\ 
-  &  &  & (0.087) \\ 
-  & & & \\ 
- Constant & $-$0.000 & $-$0.000 & $-$0.000 \\ 
-  & (0.091) & (0.074) & (0.087) \\ 
-  & & & \\ 
-\hline \\[-1.8ex] 
-Observations & 104 & 104 & 104 \\ 
-R$^{2}$ & 0.139 & 0.436 & 0.222 \\ 
-Adjusted R$^{2}$ & 0.131 & 0.431 & 0.214 \\ 
-Residual Std. Error (df = 102) & 0.932 & 0.755 & 0.887 \\ 
-F Statistic (df = 1; 102) & 16.501$^{***}$ & 78.905$^{***}$ & 29.024$^{***}$ \\ 
-\hline 
-\hline \\[-1.8ex] 
-\textit{Note:}  & \multicolumn{3}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
-\end{tabular} 
-\end{table}
 
 
 \end{document}
