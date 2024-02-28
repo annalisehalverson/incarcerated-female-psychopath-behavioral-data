@@ -180,7 +180,7 @@ Of the 156 total participants, 52 participants failed to complete one or more of
 Descriptive statistics for the assessments of interest can be seen in Table\ \@ref(tab:summary-table).
 
 (ref:PCLR-descriptives) Histogram of score distribution on the PCL--R.
-``` {r, PCLR-descriptives, echo=FALSE, fig.cap="(ref:PCLR-descriptives)"}
+``` {r, PCLR-descriptives, echo=FALSE, warning=FALSE, fig.cap="(ref:PCLR-descriptives)"}
 #ggplot(data = filtered_wide_data, aes(x = PCLR_Total_Score_Prorated)) +
   #geom_density(color = "saddlebrown") +
   #ggtitle("Density Plot of Psychopathy") +
@@ -196,7 +196,7 @@ ggplot(data = filtered_wide_data, aes(x = PCLR_Total_Score_Prorated)) +
 
 As seen in Figure\ \@ref(fig:PCLR-descriptives), our distribution of PCL--R scores is left-skewed, with more participants falling on the higher end of the spectrum. This is ?consistent? with past studies conducted with incarcerated populations (probably Decety). Other score assessment distributions can be found in the appendix.
 
-```{r, STAI-descriptives, echo=FALSE, fig.show='hide'}
+```{r, STAI-descriptives, echo=FALSE, warning=FALSE, fig.show='hide'}
 #ggplot(data = filtered_wide_data, aes(x = STAI_Trait_Anxiety)) +
   #geom_density(color = "saddlebrown") +
   #ggtitle("Density Plot of Trait Anxiety") +
@@ -211,7 +211,7 @@ ggplot(data = filtered_wide_data, aes(x = STAI_Trait_Anxiety)) +
   xlim(20,80)
 ```
 
-```{r, PAI-descriptives, echo=FALSE, fig.show='hide'}
+```{r, PAI-descriptives, echo=FALSE, warning=FALSE, fig.show='hide'}
 #ggplot(data = filtered_wide_data, aes(x = PAIBOR_Total_Score)) +
   #geom_density(color = "saddlebrown") +
   #ggtitle("Density Plot of BPD") +
@@ -226,7 +226,7 @@ ggplot(data = filtered_wide_data, aes(x = PAIBOR_Total_Score)) +
   xlim(0,65)
 ```
 
-```{r, TAS-descriptives, echo=FALSE, fig.show='hide'}
+```{r, TAS-descriptives, echo=FALSE, warning=FALSE, fig.show='hide'}
 #ggplot(data = filtered_wide_data, aes(x = TAS_Total_Score)) +
   #geom_density(color = "saddlebrown") +
   #ggtitle("Density Plot of Alexithymia") +
@@ -410,7 +410,7 @@ plot(mediation_result_tasf3)
 summary(mediation_result_tasf3) # effect goes away... so interesting!!!!
 ```
 
-*reference tables 2 and 3* There is a significant relationship between predictor and outcome (*p* `r apa_p(summary(direct_model)$coefficients["PCLR_STAI_Trait_z", "Pr(>|t|)"], add_equals=T)`). However, this effect goes away when adding BPD as a mediator (*p* = ). This suggests that the presence of BPD acts as a mechanism through which the predictor influences the outcome. The significant, full mediation effect we observed suggests that a portion of the total effect of the predictor on the outcome is explained by the mediator (*p* = ).
+*reference tables 2 and 3* There is a significant relationship between predictor and outcome (*p* `r apa_p(summary(direct_model)$coefficients["PCLR_STAI_Trait_z", "Pr(>|t|)"], add_equals=T)`). However, this effect goes away when adding BPD as a mediator (*p* `r apa_p(mediation_result_total$z.avg.p, add_equals=T)`). This suggests that the presence of BPD acts as a mechanism through which the predictor influences the outcome. The significant, full mediation effect we observed suggests that a portion of the total effect of the predictor on the outcome is explained by the mediator (*p* ).
 
 Three subfactors defined in the TAS are believed to compose alexithymia: difficulty identifying feelings (Factor 1), difficulty describing feelings (Factor 2), and externally-oriented thinking (Factor 3). As we collected subfactor scores for every participant, an exploratory analysis could be conducted to get a sense of what specific parts of emotional processing psychopathy and BPD may be impacting. We found that, replacing the total TAS score for Factor 1 and Factor 2, the significant mediation effect remained in tact. However, designating Factor 3 as an outcome left us with an insignificant model. The change in significant effect when replacing for specific factors of TAS suggests the mediation effect may depend on specific aspects or dimensions of alexithymia. It is critical these results are analyzed with caution as no hypotheses regarding TAS subfactors were determined _a priori_ and the theoretical lineage is at present quite limited.
 
