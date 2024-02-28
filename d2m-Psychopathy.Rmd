@@ -77,7 +77,7 @@ output            : papaja::apa6_pdf
 ```{r setup, include = FALSE}
 ### library(Require)
 ### require all except ok to library (9.1)
-library("papaja")
+library(papaja)
 library(tidyverse)
 library(psych)
 library(stats)
