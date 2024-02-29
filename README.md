@@ -1,15 +1,13 @@
 # Locating the crossroads of psychopathy, borderline personality disorder, and emotion as it applies to incarcerated women
 ## _Repository for Annalise Halverson's UChicago MAPSS Thesis_
 
-(structured abstract here)
+Background & Aim: Due to its deviant nature, psychopathy has attracted copious attention in research. Initial theories were developed primarily on case studies of men (Cleckley, 1976). When research on female psychopaths began to garner attention, the construct was transposed (Hare, 2003; Verona et al., 2013; Vitale & Newman, 2001). Yet, due to lower scores and misrepresentative correlates, there is reason to believe psychopathy does not paint an identical picture across the genders. Data have shown a BPD diagnosis may act as a female-specific indicator of antisocial tendencies (Blonigen et al., 2012). However, what we have come to understand about these two constructs in terms of their emotional comprehension underscores a unique contradiction: those with BPD have a hypersensitivity to negative emotion, while those with psychopathy possess a deficit to similarly connoted feelings. Exploring what happens when these two conditions co-occur would provide powerful insight as to how psychopathic tendencies collide with personality disorders. A primary aim of the present study is to delineate the clinical presentation of psychopathy in incarcerated women as it intersects with borderline personality disorder and alexithymia.
 
-Background: Psychopathy as it manifests in women is at present underexplored. The literature has uncovered an association between psychopathy and borderline personality disorder. It is anticipated that the presence of BPD will mediate the relationship between psychopathy and emotional processing (measured by alexithymia).
+Methods: Collected over a four-year period, the present sample consists of 156 incarcerated women. Psychopathy is operationalized via the gold-standard PCL--R. BPD is measured through the PAI-BOR, and alexithymia is measured by the TAS-20. As an index of secondary psychopathy, PCL--R interacted with STAI-Trait scores.
 
-Methods: Collected data from 156 incarcerated women. Assessments of interest: PCL--R, PAI--BOR, STAI-Trait, TAS-20. Used mediation analyses with bootstrapping to test hypotheses.
+Results: Mediation analyses with bootstrapping were conducted to test the primary hypothesis. BPD fully mediated the relationship between psychopathy and alexithymia in our sample ($p$ < 0.001). Further exploratory analyses delineate this relationship in terms of TAS subfactors. Interesting implications exist for how psychopathy and BPD diverge in terms of their emotional literacy.
 
-Results: BPD fully mediated the relationship between psychopathy and alexithymia in our sample.
-
-Conclusion: More research is needed to unpack these heterogeneous constructs.
+Conclusion: The relationship between psychopathy, anxiety, BPD, and alexithymia is multifaceted and complex. Nevertheless, the presence of distress and emotional dysregulation is exceptionally embodied for the people inflicted; it remains critical to continue research to help not only understand these mechanisms, but also to inform tailored treatment that is less costly, more effective, and deterrent of negative psychopathic behavior. This study represents an important step toward obtaining a more complete picture of psychopathy in women. Improving our understanding of the etiology of these conditions is vital for developing more effective treatments and ensuring accurate representation in research.
 
 
 ### REPO DIRECTORY STRUCTURE

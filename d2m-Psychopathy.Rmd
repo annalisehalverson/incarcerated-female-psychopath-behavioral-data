@@ -75,17 +75,15 @@ output            : papaja::apa6_pdf
 ---
 
 ```{r setup, include = FALSE}
-### library(Require)
-### require all except ok to library (9.1)
+library(Require)
 library(papaja)
 library(tidyverse)
 library(psych)
 library(stats)
-library(diagram)
-library(ggsci)
-library(mediation)
-library(stargazer)
-library(mosaic)
+Require("diagram")
+Require("mediation")
+Require("stargazer")
+Require("mosaic")
 library(citr)
 r_refs("r-references.bib")
 #setwd()
@@ -174,7 +172,7 @@ Primary and secondary psychopathy have been shown to diverge in levels of anxiet
 All interviews were conducted by a clinical psychologist or trained research staff member. While incarcerated subjects are often reported as being highly reliable and compliant in psychological research [@decetyNeuralProcessingDynamic2014], special ethical concerns remain for incarcerated populations as various restrictions exist on autonomy, privacy, and healthcare services. ...
 
 ## Data analysis
-Of the 156 total participants, 52 participants failed to complete one or more of the four assessments. Due to the heterogeneous nature of the variables, it was determined most ethical to simply remove participants who were missing data for any of the required assessments. A total of 104 participants remained for further investigation. We used various `R` packages[^1] for all our analyses. <!-- put refs in footnote -->
+Of the 156 total participants, 52 participants failed to complete one or more of the four assessments. Due to the heterogeneous nature of the variables, it was determined most ethical to simply remove participants who were missing data for any of the required assessments. A total of 104 participants remained for further investigation. We used various `R` packages[^1] for all our analyses.
 
 [^1]: `r cite_r("r-references.bib")`
 
@@ -231,7 +229,7 @@ psytascorrelation <- corr.test(
   y = filtered_wide_data$TAS_Total_Score)
 ```
 
-Figure\ \@ref(fig:c-path-scatterplot) shows a moderate correlation between psychopathy and alexithymia (*r* = `r psytascorrelation$r`). Participant scores on the STAI-Trait are illustrated by the color of each point. It appears that those lower in trait anxiety seem to fall on the lower on the spectrum of alexithymia. However, distinctions are hardly discernable across the PCL--R dimension. While not statistically calculated, these suppositions fall in line with prior research suggesting alexithymia may result from increased stress to the environment [@karukiviDevelopmentAlexithymicPersonality2014].
+Figure\ \@ref(fig:c-path-scatterplot) shows a moderate correlation between psychopathy and alexithymia ($r$ = `r psytascorrelation$r`). Participant scores on the STAI-Trait are illustrated by the color of each point. It appears that those lower in trait anxiety seem to fall on the lower on the spectrum of alexithymia. However, distinctions are hardly discernable across the PCL--R dimension. While not statistically calculated, these suppositions fall in line with prior research suggesting alexithymia may result from increased stress to the environment [@karukiviDevelopmentAlexithymicPersonality2014].
 
 (ref:a-path-caption) Scatterplot demonstrating relationship between the interactive term of psychopathy and trait anxiety with borderline personality disorder in our sample of incarcerated women.
 ``` {r a-path-scatterplot, fig.cap="(ref:a-path-caption)", echo=FALSE, out.width='100%'}
@@ -275,7 +273,7 @@ mo_path <- lm(TAS_Total_Score_z ~ PAIBOR_Total_Score_z,
               data = filtered_wide_data)
 ```
 
-``` {r prelim-regression-output, echo=FALSE, results='asis'}
+``` {r prelim-regression-output, echo=FALSE, results='asis', warning=FALSE}
 stargazer(po_path, pm_path, mo_path, title = "Preliminary Regression Results", header = FALSE, type = 'latex', dep.var.labels = c("P-O Path", "P-M Path", "M-O Path"), covariate.labels = c("PsychopathyXAnxiety", "BPD"), column.sep.width = "1pt", label = "tab:prelim-regression-output", out="prelim-regression-output.png")
 ```
 
@@ -299,7 +297,7 @@ direct_model3 <- lm(TAS_Factor3_Externally_Oriented_Thinking_z ~
                     data = filtered_wide_data)
 ```
 
-```{r simple-regression-output, results = 'asis'}
+```{r simple-regression-output, results = 'asis', warning=FALSE}
 stargazer(direct_model, 
           direct_model1, 
           direct_model2, 
@@ -358,7 +356,7 @@ mediation_result_tasf3 <- mediate(mediator_model_tasf3, model_tasf3,
                                   boot=TRUE, sims=500)
 ```
 
-```{r mult-regression-output, results = 'asis'}
+```{r mult-regression-output, results = 'asis', warning=FALSE}
 ### I CAN'T FIGURE OUT HOW TO COMBINE NICELY INTO ONE TABLE :(( ###
 stargazer(model_total, 
           model_tasf1, 
@@ -393,9 +391,9 @@ summary(mediation_result_total) # full mediation?!
 #summary(mediation_result_tasf3) # effect goes away... so interesting!!!!
 ```
 
-The total effect present in our model reached significance (*p* `r apa_p(mediation_result_total$tau.p, add_equals=T)`). There is a significant relationship between predictor and outcome (*p* `r apa_p(summary(direct_model)$coefficients["PCLR_STAI_Trait_z", "Pr(>|t|)"], add_equals=T)`). However, this effect goes away when adding BPD as a mediator (CI [`r mediation_result_total$z.avg.ci[1]`, `r mediation_result_total$z.avg.ci[2]`], *p* `r apa_p(mediation_result_total$z.avg.p, add_equals=T)`). This suggests that the presence of BPD acts as a mechanism through which the predictor influences the outcome. The significant, full mediation effect we observed suggests that a portion of the total effect of the predictor on the outcome is explained by the mediator (CI [`r mediation_result_total$n.avg.ci[1]`, `r mediation_result_total$n.avg.ci[2]`], *p* `r apa_p(mediation_result_total$n.avg.p, add_equals=T)`). Detailed results, including coefficients and standard errors, for our simple linear regression and multiple linear regression can be seen in Tables\ \@ref(tab:simple-regression-output) & \@ref(tab:mult-regression-output), respectively.
+The total effect present in our model reached significance ($p$ `r apa_p(mediation_result_total$tau.p, add_equals=T)`). There is a significant relationship between predictor and outcome ($p$ `r apa_p(summary(direct_model)$coefficients["PCLR_STAI_Trait_z", "Pr(>|t|)"], add_equals=T)`). However, this effect goes away when adding BPD as a mediator (CI [`r mediation_result_total$z.avg.ci[1]`, `r mediation_result_total$z.avg.ci[2]`], $p$ `r apa_p(mediation_result_total$z.avg.p, add_equals=T)`). This suggests that the presence of BPD acts as a mechanism through which the predictor influences the outcome. The significant, full mediation effect we observed suggests that a portion of the total effect of the predictor on the outcome is explained by the mediator (CI [`r mediation_result_total$n.avg.ci[1]`, `r mediation_result_total$n.avg.ci[2]`], $p$ `r apa_p(mediation_result_total$n.avg.p, add_equals=T)`). Detailed results, including coefficients and standard errors, for our simple linear regression and multiple linear regression can be seen in Tables\ \@ref(tab:simple-regression-output) & \@ref(tab:mult-regression-output), respectively.
 
-Figure\ \@ref(fig:mediation-plot) <!--not working--> visualizes how this relationship changes with the inclusion of BPD as mediator. Here, we can see the Average Direct Effect (ADE) of our interaction term on alexithymia becomes ambiguous. Both the ACME and Total Effect evidently illustrate a significant positive impact on our outcome term.
+Figure\ \@ref(fig:mediation-plot) visualizes how this relationship changes with the inclusion of BPD as mediator. Here, we can see the Average Direct Effect (ADE) of our interaction term on alexithymia becomes ambiguous. Both the ACME and Total Effect evidently illustrate a significant positive impact on our outcome term.
 
 Three subfactors defined in the TAS are believed to compose alexithymia: difficulty identifying feelings (Factor 1), difficulty describing feelings (Factor 2), and externally-oriented thinking (Factor 3). As we collected subfactor scores for every participant, an exploratory analysis could be conducted to get a sense of what specific parts of emotional processing psychopathy and BPD may be impacting. The right three columns of Table\ \@ref(tab:simple-regression-output) highlight a significant, positive impact of our predictive interaction term on all three subfactors of alexithymia. In other words, the interaction of psychopathy and trait anxiety can anticipate the presence of difficulty identifying feelings, difficulty describing feelings, and externally-oriented thinking.
 
