@@ -4,7 +4,7 @@ shorttitle        : "psychopathy and psychopathology correlates in women"
 
 author: 
   - name          : "Annalise S Halverson"
-    affiliation   : "1"
+    affiliation   : "1,2"
     corresponding : yes    # Define only one corresponding author
     address       : "5848 S University Ave, Chicago, IL, 60637"
     email         : "asdh@uchicago.edu"
@@ -25,23 +25,21 @@ affiliation:
     institution   : "Department of Psychology"
 
 authornote: |
-  Add complete departmental affiliations for each author here. Each new line herein must be indented, like this line.
+  This research was supported by a grant from the NIMH in affiliation with the University of Chicago. Special thanks to Dr. Decety for his help in preparation of this manuscript.
 
-  Enter author note here.
 
 abstract: |
-  One or two sentences providing a **basic introduction** to the field,  comprehensible to a scientist in any discipline.
-  Two to three sentences of **more detailed background**, comprehensible  to scientists in related disciplines.
-  One sentence clearly stating the **general problem** being addressed by  this particular study.
-  One sentence summarizing the main result (with the words "**here we show**" or their equivalent).
-  Two or three sentences explaining what the **main result** reveals in direct comparison to what was thought to be the case previously, or how the  main result adds to previous knowledge.
-  One or two sentences to put the results into a more **general context**.
-  Two or three sentences to provide a **broader perspective**, readily comprehensible to a scientist in any discipline.
+  Due to its deviant nature, psychopathy has attracted copious attention in research. Initial theories were developed primarily on case studies of men (Cleckley, 1976). Yet, due to lower scores and misrepresentative correlates, there is reason to believe psychopathy does not paint an identical picture across the genders.
+  Data have shown a BPD diagnosis may act as a female-specific indicator of antisocial tendencies (Blonigen et al., 2012). However, what we have come to understand about these two constructs in terms of their emotional comprehension underscores a unique contradiction: those with BPD have a hypersensitivity to negative emotion, while those with psychopathy possess a deficit to similarly connoted feelings.
+  A primary aim of the present study is to delineate the clinical presentation of psychopathy in incarcerated women as it intersects with borderline personality disorder and alexithymia.
+  Mediation analyses with bootstrapping were conducted to test the primary hypothesis. BPD fully mediated the relationship between psychopathy and alexithymia in our sample ($p$ < 0.001). Further exploratory analyses delineate this relationship in terms of TAS subfactors.
+  Interesting implications exist for how psychopathy and BPD diverge in terms of their emotional literacy.
+  It remains critical to continue research to help not only understand these mechanisms, but also to inform tailored treatment that is less costly, more effective, and deterrent of negative psychopathic behavior.
   
   <!-- https://tinyurl.com/ybremelq -->
   
 keywords          : "psychopathy, borderline personality disorder, alexithymia, incarcerated populations, women, psychopathology"
-wordcount         : "3,685"
+wordcount         : "3,709"
 
 bibliography      : "r-references.bib"
 
@@ -119,7 +117,6 @@ Stimulating research continues to emerge regarding the relationship between psyc
 Contrary to male psychopathy, female psychopathy has been shown to possess a much stronger association with tendencies of borderline personality disorder [@spragueBorderlinePersonalityDisorder2012]. It is hypothesized that borderline personality disorder will mediate the relationship between psychopathy and alexithymia (see Figure\ \@ref(fig:mediation-graphic)). The literature has made abundantly clear the manifold expressions of psychopathy; as such, it is important this diversity is accounted for in our research. Results are likely to have implications for both forensic practice and neuroscientific theory.
 
 ``` {r mediation-graphic, echo=FALSE, out.width='100%', fig.cap='Mediation Graphic', label='mediation-graphic'}
-# this fun lil visual is to generically demonstrate the relationship i will be looking at
 data <- c(0, "", 0,
           0, 0, 0, 
           "", "", 0)
@@ -138,12 +135,15 @@ minimal_descriptives <- filtered_wide_data[,c(
   "PCLR_Total_Score_Prorated", 
   "TAS_Total_Score", 
   "STAI_Trait_Anxiety")]
-view(minimal_descriptives)
+assessment_names <- c("PAI-BOR", "PCLR", "TAS", "STAI-Trait")
+names(minimal_descriptives) <- assessment_names
+
 stargazer(minimal_descriptives, 
           title = "Summary Table", 
           header = FALSE, 
           type = 'latex', 
-          label = "tab:summary-table")
+          label = "tab:summary-table",
+          digits = 1)
 ```
 
 ```{r age-stats}
@@ -191,7 +191,8 @@ ggplot(data = filtered_wide_data, aes(x = PCLR_Total_Score_Prorated)) +
 
 Descriptive statistics for the assessments of interest can be seen in Table\ \@ref(tab:summary-table). As seen in Figure\ \@ref(fig:PCLR-descriptives), our distribution of PCL--R scores is left-skewed, with more participants falling on the higher end of the spectrum. This is consistent with past studies conducted with incarcerated populations [@decetyFMRIStudyAffective2013; @decetyNeuralProcessingDynamic2014]. Other score assessment distributions can be found in the [Supplemental Materials](#Supplemental-Materials) section.
 
-```{r, STAI-descriptives, echo=FALSE, warning=FALSE, fig.show='hide'}
+(ref:STAI-descriptives) Histogram of score distribution on the STAI-Trait.
+```{r, STAI-descriptives, echo=FALSE, warning=FALSE, fig.cap="(ref:STAI-descriptives)", fig.show='hide'}
 ggplot(data = filtered_wide_data, aes(x = STAI_Trait_Anxiety)) +
   geom_histogram(fill = "magenta", color = "black", binwidth = 2) +
   scale_y_continuous(limits = c(0,10), breaks = seq(0, 10, 2)) +
@@ -200,7 +201,8 @@ ggplot(data = filtered_wide_data, aes(x = STAI_Trait_Anxiety)) +
   xlim(20,80)
 ```
 
-```{r, PAI-descriptives, echo=FALSE, warning=FALSE, fig.show='hide'}
+(ref:PAI-descriptives) Histogram of score distribution on the PAI-BOR.
+```{r, PAI-descriptives, echo=FALSE, warning=FALSE, fig.cap="(ref:PAI-descriptives)", fig.show='hide'}
 ggplot(data = filtered_wide_data, aes(x = PAIBOR_Total_Score)) +
   geom_histogram(fill = "magenta", color = "black", binwidth = 2) +
   scale_y_continuous(limits = c(0,10), breaks = seq(0, 10, 2)) +
@@ -209,7 +211,8 @@ ggplot(data = filtered_wide_data, aes(x = PAIBOR_Total_Score)) +
   xlim(0,65)
 ```
 
-```{r, TAS-descriptives, echo=FALSE, warning=FALSE, fig.show='hide'}
+(ref:TAS-descriptives) Histogram of score distribution on the TAS-20.
+```{r, TAS-descriptives, echo=FALSE, warning=FALSE, fig.cap="(ref:TAS-descriptives)", fig.show='hide'}
 ggplot(data = filtered_wide_data, aes(x = TAS_Total_Score)) +
   geom_histogram(fill = "magenta", color = "black", binwidth = 2) +
   scale_y_continuous(limits = c(0,10), breaks = seq(0, 10, 2)) +
@@ -260,10 +263,6 @@ filtered_wide_data$TAS_Factor2_Difficulty_Describing_Feelings_z <-
 filtered_wide_data$TAS_Factor3_Externally_Oriented_Thinking_z <-
   zscore(filtered_wide_data$TAS_Factor3_Externally_Oriented_Thinking)
 ```
-
-<!--
-is below redundant with the scatterplots? maybe. there's a lot happening down here.
--->
 
 ``` {r prelim-regression-input, echo=FALSE, out.width='100%'}
 po_path <- lm(TAS_Total_Score_z ~ PCLR_STAI_Trait_z, 
@@ -318,7 +317,6 @@ stargazer(direct_model,
 ```
 
 ```{r mult-regression-input, echo=FALSE, out.width='100%'}
-###should i keep the ugly plots??###
 mediator_model_total <- lm(PAIBOR_Total_Score_z ~ PCLR_STAI_Trait_z, 
                            data = filtered_wide_data)
 model_total <- lm(TAS_Total_Score_z ~ 
@@ -358,7 +356,6 @@ mediation_result_tasf3 <- mediate(mediator_model_tasf3, model_tasf3,
 ```
 
 ```{r mult-regression-output, results = 'asis', warning=FALSE}
-### I CAN'T FIGURE OUT HOW TO COMBINE NICELY INTO ONE TABLE :(( ###
 stargazer(model_total, 
           model_tasf1, 
           model_tasf2, 
