@@ -471,7 +471,7 @@ Presenting findings on a unique population such as this one requires cautious in
 \newpage
 
 # References
-
+<!--FIX SOME REFERENCES--> 
 ::: {#refs custom-style="Bibliography"}
 :::
 
