@@ -12,10 +12,9 @@ author:
       - "Conceptualization"
       - "Writing - Original Draft Preparation"
       - "Writing - Review & Editing"
-  - name          : "Jean Decety"
+  - name          : "Jean Decety" 
     affiliation   : "1,2"
     role:
-      - "Writing - Review & Editing"
       - "Supervision"
 
 affiliation:
@@ -25,7 +24,7 @@ affiliation:
     institution   : "Department of Psychology"
 
 authornote: |
-  This research was funded by the National Institute of Mental Health NIH Grant ... in affiliation with the University of Chicago. Special thanks to Dr. Natalie Dowling for her help in preparation of this manuscript.
+  This research was funded by the National Institute of Mental Health NIH Grant 2020-NP-267363 awarded to Dr. J. Decety at the University of Chicago. Special thanks to Dr. Jean Decety and Dr. Natalie Dowling for her help in preparation of this manuscript.
 
 
 abstract: |
@@ -103,7 +102,7 @@ filtered_wide_data <- read.csv("Data/filtered_wide_data.csv")
 
 # Background
 
-Psychopathy comprises a bevy of maladaptive traits. Due to its elusive etiology, the construct has undergone detailed iterations annotating its idiosyncrasies. Analyses of biological and behavioral patterns have received significant attention in this regard. While persistent antisocial conduct is commonly present, psychopathy is also uniquely characterized by absences – notably a deficiency in emotional reaction and a lack of empathy or remorse [@debritoPsychopathy2021; @sellbomClassificationPsychopathy2021]. It spans race, gender, socioeconomic status, and culture, and further possesses a kaleidoscope of consequences – from disturbed well-being to increased involvement in the criminal justice system. While it is believed to be present in around 1% of the general population, an estimated 15-25% of those incarcerated are likely to fall somewhere on the psychopathy spectrum [@barbaraburtonPsychopathyInsightsGeneral2020].
+Psychopathy comprises a bevy of maladaptive traits. Due to its elusive etiology, the construct has undergone detailed iterations annotating its idiosyncrasies. Analyses of biological and behavioral patterns have received significant attention in this regard. While persistent antisocial conduct is commonly present, psychopathy is also uniquely characterized by absences – notably a deficiency in distress and a lack of empathy or remorse [@debritoPsychopathy2021; @sellbomClassificationPsychopathy2021]. It spans race, gender, socioeconomic status, and culture, and further possesses a kaleidoscope of consequences – from disturbed well-being to increased involvement in the criminal justice system. While it is believed to be present in around 1% of the general population, an estimated 15-25% of those incarcerated are likely to fall somewhere on the psychopathy spectrum [@barbaraburtonPsychopathyInsightsGeneral2020].
 
 ## Defining Psychopathy and its Subtypes
 
@@ -143,7 +142,7 @@ It is unclear how thoroughly these findings might translate onto clinical or spe
 
 ## Neurological Implications and Relevant Theory
 
-Neurological data further support the notion that deficits are pervasive across emotion for psychopaths [@decetyNeuralProcessingDynamic2014]. Male psychopaths have shown deficient processing in both the vmPFC and OFC – areas involved in emotional processing and expression – in response to other people’s distress [@decetyBrainResponseEmpathyEliciting2013]. Theoretical explanations of psychopathy often implicate a dysfunctional amygdala [@blairCognitiveDevelopmentalApproach1995; @daddsImpairedAttentionEyes2011]. Further, the amygdala –involved in perception of emotional valence and expression – uniquely demonstrated lowered activation in women but not in men [@phelpsEmotionCognitionInsights2006]. As such, aforementioned conclusions point to a discourse surrounding recent amygdalar theories of social-relevance processing [@daddsImpairedAttentionEyes2011; @dawelNotJustFear2012], further denoting the amygdala’s involvement in a wider range of social and emotional processing than previously believed, especially for women. As the amygdala seems to be consistently impaired in psychopaths across studies [@fusar-poliFunctionalAtlasEmotional2009], emotional deficits in psychopathy can be assumed to be quite debilitating, spanning a wider range than what has been demonstrated in BPD alone.
+Neurological data further support the notion that deficits are pervasive across emotion for psychopaths [@decetyNeuralProcessingDynamic2014]. Male psychopaths have shown deficient processing in both the vmPFC and OFC – areas involved in emotional processing and expression – in response to other people’s distress [@decetyBrainResponseEmpathyEliciting2013]. These brain regions are directly associated with subjective value placement; it is speculated that those high in psychopathic traits simply do not appraise others as 'neurotypical' people do. Theoretical explanations of psychopathy often implicate a dysfunctional amygdala [@blairCognitiveDevelopmentalApproach1995; @daddsImpairedAttentionEyes2011]. Further, the amygdala –involved in perception of emotional valence and expression – uniquely demonstrated lowered activation in women but not in men [@phelpsEmotionCognitionInsights2006]. As such, aforementioned conclusions point to a discourse surrounding recent amygdalar theories of social-relevance processing [@daddsImpairedAttentionEyes2011; @dawelNotJustFear2012], further denoting the amygdala’s involvement in a wider range of social and emotional processing than previously believed, especially for women. As the amygdala seems to be consistently impaired in psychopaths across studies [@fusar-poliFunctionalAtlasEmotional2009], emotional deficits in psychopathy can be assumed to be quite debilitating, spanning a wider range than what has been demonstrated in BPD alone.
 
 Empathy plays an intimate role in the relationship between one’s ability to recognize emotion and one’s decision to act in a prosocial manner. Copious research has analyzed how empathy is impacted by the presence of psychopathy, and a growing body of research looks at empathy’s interaction with alexithymia. Observing affective perspective taking in male psychopaths compared with healthy controls, one study denoted an inverse correlation between the amygdala and insular response with PCL—R Factor 1 traits when imagining someone else in pain [@decetyFMRIStudyAffective2013]. On alexithymia, those impacted often struggle to empathize, and the presence of alexithymic symptoms is often related to a low ability to relate to others [@grynbergAlexithymiaInterpersonalDomain2010; @guttmanAlexithymiaEmpathyPsychological2002]. Via MRI data, symptoms have been linked to deficits in emotional empathy and reduced volume in the left amygdala [@goerlich-dobreLeftAmygdalaShared2015]. In their analysis, Burghart and Mier [-@burghartNoFeelingsMe2022] further imply the possibility of alexithymia and psychopathy together impacting empathic experiences. This illustrates a certain level of overlap psychopathy and alexithymia pose in terms of their emotional expressions.
 
@@ -156,8 +155,6 @@ Stimulating research continues to emerge regarding the relationship between psyc
 Due to its deviant nature, psychopathy has attracted copious attention in research. Initial theories were developed primarily on case studies of men [@cleckleyMaskSanityAttempt1976]. When research on female psychopaths began to garner attention, the construct was transposed [@hare2003psychopathy; @veronaRevisitingPsychopathyWomen2013; @vitaleUsingPsychopathyChecklist2001]. Yet, due to lower scores and misrepresentative correlates, there is reason to believe psychopathy does not paint an identical picture across the genders. 
 
 Contrary to male psychopathy, female psychopathy has been shown to possess a much stronger association with tendencies of borderline personality disorder [@spragueBorderlinePersonalityDisorder2012]. It is hypothesized that increased psychopathy will exacerbate alexithymia symptoms in those with borderline personality disorder. The literature has made abundantly clear the manifold expressions of psychopathy; as such, it is important this diversity is accounted for in our research. Stratification by factor will be exploratory, as limited studies have delineated intra-construct distinctions [see @huntGeneticEnvironmentalOverlap2015 for an exception]. Results are likely to have implications for both forensic practice and neuroscientific theory. 
-
-
 
 Contrary to male psychopathy, female psychopathy has been shown to possess a much stronger association with tendencies of borderline personality disorder [@spragueBorderlinePersonalityDisorder2012]. It is hypothesized that borderline personality disorder will mediate the relationship between psychopathy and alexithymia (see Figure\ \@ref(fig:mediation-graphic)). The literature has made abundantly clear the manifold expressions of psychopathy; as such, it is important this diversity is accounted for in our research. Results are likely to have implications for both forensic practice and neuroscientific theory.
 
@@ -446,7 +443,7 @@ Figure\ \@ref(fig:mediation-plot) visualizes how this relationship changes with 
 
 Three subfactors defined in the TAS are believed to compose alexithymia: difficulty identifying feelings (Factor 1), difficulty describing feelings (Factor 2), and externally-oriented thinking (Factor 3). As we collected subfactor scores for every participant, an exploratory analysis could be conducted to get a sense of what specific parts of emotional processing psychopathy and BPD may be impacting. The right three columns of Table\ \@ref(tab:simple-regression-output) highlight a significant, positive impact of our predictive interaction term on all three subfactors of alexithymia. In other words, the interaction of psychopathy and trait anxiety can anticipate the presence of difficulty identifying feelings, difficulty describing feelings, and externally-oriented thinking.
 
-Regarding our mediation relationship, the right three columns of Table\ \@ref(tab:mult-regression-output) show that, replacing the total TAS score for Factor 1 and Factor 2, the significant mediation effect remained intact. However, with Factor 3 as the outcome measure, neither BPD nor the psychopathy X anxiety interaction were significant predictors. The change in significant effect when replacing for specific factors of TAS suggests the mediation effect may depend on specific aspects or dimensions of alexithymia. It is critical these results are analyzed with caution as no hypotheses regarding TAS subfactors were determined _a priori_ and the theoretical lineage is at present quite limited. <!--TRY TO VISUALIZE THIS BETTER?-->
+Regarding our mediation relationship, the right three columns of Table\ \@ref(tab:mult-regression-output) show that, replacing the total TAS score for Factor 1 and Factor 2, the significant mediation effect remained intact. However, with Factor 3 as the outcome measure, neither BPD nor the psychopathy X anxiety interaction were significant predictors. The change in significant effect when replacing for specific factors of TAS suggests the mediation effect may depend on specific aspects or dimensions of alexithymia. It is critical these results are analyzed with caution as no hypotheses regarding TAS subfactors were determined _a priori_ and the theoretical lineage is at present quite limited.
 
 # Discussion
 
@@ -466,7 +463,16 @@ The curious diversity of this mediation effect is certainly cause for future res
 
 We do not doubt that the relationship between psychopathy, anxiety, BPD, and alexithymia is multifaceted and complex. Nevertheless, the presence of distress and emotional dysregulation is exceptionally embodied for the people inflicted; it remains critical to continue research to help not only understand these mechanisms, but also to inform tailored treatment that is less costly, more effective, and deterrent of negative psychopathic behavior.
 
-Presenting findings on a unique population such as this one requires cautious interpretation. While we are intrigued by the prospects suggested here, we are limited in our ability to generalize conclusions drawn. That being said, we are hopeful that this study brings us one step closer to obtaining a clearer, more concise picture of psychopathy as it manifests in women. 
+Presenting findings on a unique population such as this one requires cautious interpretation. While we are intrigued by the prospects suggested here, we are limited in our ability to generalize conclusions drawn.
+
+<!--WHAT DOES IT MEAN THAT WE ARE ALWAYS LOOKING AT INCARCERATED POPULATIONS? HOW DOES THAT SKEW OUR UNDERSTANDING OF PSYCHOPATHY?-->
+This limit, however, is a good thing, because we don't want to assume psychopathy is necessarily associated with crime. it is not.
+
+<!--IS IT MALADAPTIVE? WHAT ABOUT THE 'GOOD PSYCHOPATH'?-->
+Independently observing the most common traits associated with the profile of psychopathy, one might fail to recognize anything inherently dysfunctional. With many personality profiles, what becomes 'dysfunctional' is when these traits are employed rigidly across inappropriate settings.
+Recognize this as a call for researchers to loosen the grip of psychopathy on crime and expand our knowledge of how those with these characteristics may successfully adapt to our society ... There does not exist one true, best personality. And it certainly does not mandate a complete absence of these traits.
+
+That being said, we are hopeful that this study brings us one step closer to obtaining a clearer, more concise picture of psychopathy as it manifests in women. 
 
 \newpage
 
