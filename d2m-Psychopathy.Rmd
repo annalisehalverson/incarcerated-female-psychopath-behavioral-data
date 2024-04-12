@@ -12,10 +12,6 @@ author:
       - "Conceptualization"
       - "Writing - Original Draft Preparation"
       - "Writing - Review & Editing"
-  - name          : "Jean Decety" 
-    affiliation   : "1,2"
-    role:
-      - "Supervision"
 
 affiliation:
   - id            : "1"
@@ -24,7 +20,7 @@ affiliation:
     institution   : "Department of Psychology"
 
 authornote: |
-  This research was funded by the National Institute of Mental Health NIH Grant 2020-NP-267363 awarded to Dr. J. Decety at the University of Chicago. Special thanks to Dr. Jean Decety and Dr. Natalie Dowling for her help in preparation of this manuscript.
+  This research was funded by the National Institute of Mental Health NIH Grant 2020-NP-267363 awarded to Dr. J. Decety at the University of Chicago. Special thanks to Dr. Jean Decety and Dr. Natalie Dowling for their supervision and help in preparation of this manuscript.
 
 
 abstract: |
@@ -38,7 +34,7 @@ abstract: |
   <!-- https://tinyurl.com/ybremelq -->
   
 keywords          : "psychopathy, borderline personality disorder, alexithymia, incarcerated populations, women, psychopathology"
-wordcount         : "X"
+wordcount         : "6,496"
 
 bibliography      : "r-references.bib"
 
@@ -72,16 +68,15 @@ output            : papaja::apa6_pdf
 ---
 
 ```{r setup, include = FALSE}
-chooseCRANmirror(ind=65)
-library(Require)
-library(papaja)
+#chooseCRANmirror(ind=65)
+library(papaja) # creates apa style manuscripts
 library(tidyverse)
 library(psych)
 library(stats)
-Require("diagram")
-Require("mediation")
-Require("stargazer")
-Require("mosaic")
+library(diagram) # creates mediation diagram
+library(mediation) # runs mediation analyses
+library(stargazer) # creates regression tables
+library(mosaic)
 library(citr)
 r_refs("r-references.bib")
 #setwd()
@@ -159,39 +154,54 @@ Contrary to male psychopathy, female psychopathy has been shown to possess a muc
 Contrary to male psychopathy, female psychopathy has been shown to possess a much stronger association with tendencies of borderline personality disorder [@spragueBorderlinePersonalityDisorder2012]. It is hypothesized that borderline personality disorder will mediate the relationship between psychopathy and alexithymia (see Figure\ \@ref(fig:mediation-graphic)). The literature has made abundantly clear the manifold expressions of psychopathy; as such, it is important this diversity is accounted for in our research. Results are likely to have implications for both forensic practice and neuroscientific theory.
 
 ``` {r mediation-graphic, echo=FALSE, out.width='100%', fig.cap='Mediation Graphic', label='mediation-graphic'}
-data <- c(0, "", 0,
+
+data <- c( 0, "", 0,
           0, 0, 0, 
-          "", "", 0)
-M <- matrix (nrow=3, ncol=3, byrow = TRUE, data=data)
-plot <- plotmat (M, pos=c(1,2), 
-            name= c( "BPD","Psychopathy \n X \n Anxiety", "Alexithymia"), 
-            box.type = "rect", box.size = 0.14, box.prop = 0.5,  curve = 0, arr.lwd = 1)
+          "", "", 0 ) # vector outlining boxes in space
+
+M <- matrix ( nrow = 3 , ncol = 3 , byrow = TRUE , data = data ) # place into matrix
+plot <- plotmat ( M , pos = c( 1 , 2 ), 
+            name = c( "BPD","Psychopathy \n X \n Anxiety", "Alexithymia" ), 
+            box.type = "rect" ,
+            box.size = 0.14 ,
+            box.prop = 0.5 ,
+            curve = 0 ,
+            arr.lwd = 1 ) # label and design each box
+
 ```
 
 # Methods
 Data were collected via structured interviews and self-report measures. The presently used assessment battery is well-validated and has been strategically refined over the past decade in forensic research [@hervePsychopathTheoryResearch2007]. We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
 
 ``` {r summary-table, results = 'asis'}
-minimal_descriptives <- filtered_wide_data[,c(
-  "PAIBOR_Total_Score", 
-  "PCLR_Total_Score_Prorated", 
-  "TAS_Total_Score", 
-  "STAI_Trait_Anxiety")]
-assessment_names <- c("PAI-BOR", "PCLR", "TAS", "STAI-Trait")
-names(minimal_descriptives) <- assessment_names
 
-stargazer(minimal_descriptives, 
-          title = "Summary Table", 
-          header = FALSE, 
-          type = 'latex', 
-          label = "tab:summary-table",
-          digits = 1)
+minimal_descriptives <- filtered_wide_data [ , c(
+  "PAIBOR_Total_Score" , # bpd assessment scores
+  "PCLR_Total_Score_Prorated" , # psychopathy assessment scores
+  "TAS_Total_Score" , # alexithymia assessment scores
+  "STAI_Trait_Anxiety" ) ] # anxiety assessment scores
+assessment_names <- c(
+  "PAI-BOR" , 
+  "PCLR" , 
+  "TAS" , 
+  "STAI-Trait" ) # label
+names ( minimal_descriptives ) <- assessment_names
+
+stargazer ( minimal_descriptives , # generate n, mean, sd, min, max
+          title = "Summary Table" , 
+          header = FALSE , 
+          type = 'latex' ,
+          label = "tab:summary-table" ,
+          digits = 1 ) # round to tenths place
+
 ```
 
 ```{r age-stats}
-filtered_age_values <- filtered_wide_data$Age[filtered_wide_data$Age != -1001]
-mean_excluded <- mean(filtered_age_values)
-sd_excluded <- sd(filtered_age_values)
+
+filtered_age_values <- filtered_wide_data$Age [ filtered_wide_data$Age != -1001 ] # remove missing age data
+mean_excluded <- mean( filtered_age_values ) # calculate mean
+sd_excluded <- sd( filtered_age_values ) # calculate sd
+
 ```
 
 ## Participants
@@ -212,7 +222,7 @@ The Toronto Alexithymia Scale [TAS-20\; @taylorRevisedTorontoAlexithymia1992] is
 Primary and secondary psychopathy have been shown to diverge in levels of anxiety [@vaillancourtLongitudinalAssociationsPrimary2019]. Relative to primary psychopaths, secondary psychopaths possess higher levels of trait anxiety, exhibit more borderline symptoms, and have poorer interpersonal functioning [@burnsEvaluatingEmotionProcessing2015; @skeemTwoSubtypesPsychopathic2007]. It is likely alexithymia diverges across the dimensions of psychopathy. In line with prior research, it is predicted that secondary psychopathy, specifically, will exhibit a relationship with alexithymia in which BPD functions as a mediator. Precedence has been established in using the interaction between psychopathy scores and STAI-Trait scores as an index of secondary psychopathy [see @landerDifferentialAssociationAlexithymia2012; @vassilevaPsychopathyPsychopathiesClassifying2005]. As such, the interactive term – psychopathyXanxiety – will be utilized in the present study. STAI-Trait scores range from 20 to 80, with higher scores being indicative of higher trait anxiety [@spielberger1970stai]. In the literature, the assessment has shown to be a strong measure of general negative affect, as well as incorporating aspects of cognitive anxiety [@balsamoStateTraitAnxietyInventory2013].
 
 ## Procedure
-All interviews were conducted by a clinical psychologist or trained research staff member. While incarcerated subjects are often reported as being highly reliable and compliant in psychological research [@decetyNeuralProcessingDynamic2014], special ethical concerns remain for incarcerated populations as various restrictions exist on autonomy, privacy, and healthcare services. Participants were allowed to rescind their data at any time.
+IRB approval was obtained ... All interviews were conducted by a clinical psychologist or trained research staff member. While incarcerated subjects are often reported as being highly reliable and compliant in psychological research [@decetyNeuralProcessingDynamic2014], special ethical concerns remain for incarcerated populations as various restrictions exist on autonomy, privacy, and healthcare services. Participants were allowed to rescind their data at any time.
 
 ## Data analysis
 Of the 156 total participants, 52 participants failed to complete one or more of the four assessments. Due to the heterogeneous nature of the variables, the cleanest approach to analysis was to remove participants who were missing data for any of the required assessments. A total of 104 participants remained for further investigation. We used various `R` packages[^1] for all our analyses.
@@ -223,106 +233,185 @@ Of the 156 total participants, 52 participants failed to complete one or more of
 
 (ref:PCLR-descriptives) Histogram of score distribution on the PCL--R.
 ``` {r PCLR-descriptives, fig.cap="(ref:PCLR-descriptives)", echo=FALSE, warning=FALSE, out.width='100%'}
-ggplot(data = filtered_wide_data, aes(x = PCLR_Total_Score_Prorated)) +
-  geom_histogram(fill = "magenta", color = "black", binwidth = 2) +
-  scale_y_continuous(limits = c(0,12), breaks = seq(0, 12, 2)) +
-  ggtitle("Histogram of Psychopathy") +
-  labs(x = "PCL-R", y = "Count") +
-  xlim(0,40)
+
+ggplot( data = filtered_wide_data , 
+        aes( x = PCLR_Total_Score_Prorated ) ) +
+  geom_histogram( fill = "magenta" , 
+                  color = "black" , 
+                  binwidth = 2 ) + # experiment with binwidth to determine how data best distributes
+  scale_y_continuous( limits = c( 0 , 12 ) , # set appropriate y range given data
+                      breaks = seq( 0, 12, 2 ) ) + # set label breaks
+  ggtitle( "Histogram of Psychopathy" ) +
+  labs( x = "PCL-R" , 
+        y = "Count" ) +
+  xlim( 0 , 40 ) # set appropriate x range given data
+
 ```
 
 Descriptive statistics for the assessments of interest can be seen in Table\ \@ref(tab:summary-table). As seen in Figure\ \@ref(fig:PCLR-descriptives), our distribution of PCL--R scores is left-skewed, with more participants falling on the higher end of the spectrum. This is consistent with past studies conducted with incarcerated populations [@decetyFMRIStudyAffective2013; @decetyNeuralProcessingDynamic2014]. Other score assessment distributions can be found in the [Supplemental Materials](#Supplemental-Materials) section.
 
 (ref:STAI-descriptives) Histogram of score distribution on the STAI-Trait.
 ```{r STAI-descriptives, echo=FALSE, warning=FALSE, fig.cap="(ref:STAI-descriptives)", fig.show='hide'}
-ggplot(data = filtered_wide_data, aes(x = STAI_Trait_Anxiety)) +
-  geom_histogram(fill = "magenta", color = "black", binwidth = 2) +
-  scale_y_continuous(limits = c(0,10), breaks = seq(0, 10, 2)) +
-  ggtitle("Histogram of Trait Anxiety") +
-  labs(x = "STAI_Trait", y = "Count") +
-  xlim(20,80)
+
+ggplot( data = filtered_wide_data, 
+        aes( x = STAI_Trait_Anxiety ) ) +
+  geom_histogram( fill = "magenta" , 
+                  color = "black" , 
+                  binwidth = 2 ) + # experiment with binwidth to determine how data best distributes
+  scale_y_continuous( limits = c( 0 , 10 ) , # set appropriate y range given data
+                      breaks = seq( 0 , 10 , 2 ) ) + # set label breaks
+  ggtitle( "Histogram of Trait Anxiety" ) +
+  labs( x = "STAI_Trait" , 
+        y = "Count" ) +
+  xlim( 20 , 80 ) # set appropriate x range given data
+
 ```
 
 (ref:PAI-descriptives) Histogram of score distribution on the PAI-BOR.
 ```{r PAI-descriptives, echo=FALSE, warning=FALSE, fig.cap="(ref:PAI-descriptives)", fig.show='hide'}
-ggplot(data = filtered_wide_data, aes(x = PAIBOR_Total_Score)) +
-  geom_histogram(fill = "magenta", color = "black", binwidth = 2) +
-  scale_y_continuous(limits = c(0,10), breaks = seq(0, 10, 2)) +
-  ggtitle("Histogram of BPD") +
-  labs(x = "PAI-BOR", y = "Count") +
-  xlim(0,65)
+
+ggplot( data = filtered_wide_data , 
+        aes( x = PAIBOR_Total_Score ) ) +
+  geom_histogram( fill = "magenta" , 
+                  color = "black" , 
+                  binwidth = 2 ) + # experiment with binwidth to determine how data best distributes
+  scale_y_continuous( limits = c( 0 , 10 ) , # set appropriate y range given data
+                      breaks = seq( 0 , 10 , 2 ) ) + # set label breaks
+  ggtitle( "Histogram of BPD" ) +
+  labs( x = "PAI-BOR" , y = "Count" ) +
+  xlim( 0 , 65 ) # set appropriate x range given data
+
 ```
 
 (ref:TAS-descriptives) Histogram of score distribution on the TAS-20.
 ```{r TAS-descriptives, echo=FALSE, warning=FALSE, fig.cap="(ref:TAS-descriptives)", fig.show='hide'}
-ggplot(data = filtered_wide_data, aes(x = TAS_Total_Score)) +
-  geom_histogram(fill = "magenta", color = "black", binwidth = 2) +
-  scale_y_continuous(limits = c(0,10), breaks = seq(0, 10, 2)) +
-  ggtitle("Histogram of Alexithymia") +
-  labs(x = "TAS", y = "Count") +
-  xlim(20,80)
+
+ggplot( data = filtered_wide_data , 
+        aes( x = TAS_Total_Score ) ) +
+  geom_histogram( fill = "magenta" , 
+                  color = "black" , 
+                  binwidth = 2 ) + # experiment with binwidth to determine how data best distributes
+  scale_y_continuous( limits = c( 0 , 10 ) , # set appropriate y range given data
+                      breaks = seq( 0 , 10 , 2 ) ) + # set label breaks
+  ggtitle( "Histogram of Alexithymia" ) +
+  labs( x = "TAS" , 
+        y = "Count" ) +
+  xlim( 20 , 80 ) # set appropriate x range given data
+
 ```
 
 (ref:c-path-caption) Scatterplot demonstrating relationship between the interactive term of psychopathy and trait anxiety with alexithymia in our sample of incarcerated women.
 ```{r c-path-scatterplot, fig.cap="(ref:c-path-caption)", echo=FALSE, out.width='100%'}
-ggplot(filtered_wide_data, aes(x = PCLR_Total_Score_Prorated, y = TAS_Total_Score, color = STAI_Trait_Anxiety)) +
-  geom_smooth(method = "lm", color = "black") +
-  geom_point() +
-  scale_color_gradient(low = "blue", high = "red") +
-  labs(x = "Psychopathy", y = "Alexithymia", title = "Relationship between Psychopathy, Anxiety, Alexithymia", color = "STAI-Trait")
+
+ggplot( filtered_wide_data , 
+        aes( x = PCLR_Total_Score_Prorated , # psychopathy on x
+             y = TAS_Total_Score , # alexithymia on y
+             color = STAI_Trait_Anxiety ) ) + # anxiety by color
+  geom_smooth( method = "lm" , # association line
+               color = "black" ) +
+  geom_point( ) +
+  scale_color_gradient( low = "blue" , 
+                        high = "red" ) + # scale dot color to demonstrate high/low anxiety score
+  labs( x = "Psychopathy" , 
+        y = "Alexithymia" , 
+        title = "Relationship between Psychopathy, Anxiety, Alexithymia" , 
+        color = "STAI-Trait" )
+
 psytascorrelation <- corr.test(
-  x = filtered_wide_data$PCLR_Total_Score_Prorated,
-  y = filtered_wide_data$TAS_Total_Score)
+  x = filtered_wide_data$PCLR_Total_Score_Prorated ,
+  y = filtered_wide_data$TAS_Total_Score ) # correlate pclr & tas
+
 staitascorrelation <- corr.test(
-  x = filtered_wide_data$STAI_Trait_Anxiety,
-  y = filtered_wide_data$TAS_Total_Score)
+  x = filtered_wide_data$STAI_Trait_Anxiety ,
+  y = filtered_wide_data$TAS_Total_Score ) # correlate stai & tas
+
 ```
 
 Figure\ \@ref(fig:c-path-scatterplot) shows a low correlation between psychopathy and alexithymia ($r$ = `r psytascorrelation$r`). Participant scores on the STAI-Trait are illustrated by the color of each point. It appears that those lower in trait anxiety seem to fall toward the lower end of the alexithymia spectrum ($r$ = `r staitascorrelation$r`). However, distinctions are hardly discernable across the PCL--R dimension. While not statistically calculated, these suppositions fall in line with prior research suggesting alexithymia may result from increased stress to the environment [@karukiviDevelopmentAlexithymicPersonality2014].
 
 (ref:a-path-caption) Scatterplot demonstrating relationship between the interactive term of psychopathy and trait anxiety with borderline personality disorder in our sample of incarcerated women.
 ``` {r a-path-scatterplot, fig.cap="(ref:a-path-caption)", echo=FALSE, out.width='100%'}
-ggplot(filtered_wide_data, aes(x = PCLR_Total_Score_Prorated, y = PAIBOR_Total_Score, color = STAI_Trait_Anxiety)) +
-  geom_smooth(method = "lm", color = "black") +
-  geom_point() + 
-  scale_color_gradient(low = "blue", high = "red") +
-  labs(x = "Psychopathy", y = "BPD", title = "Relationship between Psychopathy, Anxiety, BPD", color = "STAI-Trait")
+
+ggplot( filtered_wide_data , 
+        aes(x = PCLR_Total_Score_Prorated , # psychopathy on x
+            y = PAIBOR_Total_Score , # bpd on y
+            color = STAI_Trait_Anxiety ) ) + # anxiety by color
+  geom_smooth( method = "lm" , # association line
+               color = "black" ) +
+  geom_point( ) + 
+  scale_color_gradient( low = "blue" , 
+                        high = "red" ) + # scale dot color to demonstrate high/low anxiety score
+  labs( x = "Psychopathy" , 
+        y = "BPD" , 
+        title = "Relationship between Psychopathy, Anxiety, BPD" , 
+        color = "STAI-Trait" )
+
 psybpdcorrelation <- corr.test(
   x = filtered_wide_data$PCLR_Total_Score_Prorated,
-  y = filtered_wide_data$PAIBOR_Total_Score)
+  y = filtered_wide_data$PAIBOR_Total_Score) # correlate pclr and pai
+
 staibpdcorrelation <- corr.test(
   x = filtered_wide_data$STAI_Trait_Anxiety,
-  y = filtered_wide_data$PAIBOR_Total_Score)
+  y = filtered_wide_data$PAIBOR_Total_Score) # correlate stai and pai
+
 ```
 
 Figure\ \@ref(fig:a-path-scatterplot) shows a moderate correlation between psychopathy and BPD ($r$ = `r psybpdcorrelation$r`). Participant scores on the STAI-Trait are illustrated similarly here ($r$ = `r staibpdcorrelation$r`). The distribution of STAI-Trait scores appears to be more mixed here, which once again aligns with prior research regarding the presence of internalizing features such as anxiety across presentations of BPD [@beauchaineMultifinalityDevelopmentPersonality2009].
 
 ```{r standardizing-variables}
+
 filtered_wide_data$PAIBOR_Total_Score_z <-
-  zscore(filtered_wide_data$PAIBOR_Total_Score)
+  zscore( filtered_wide_data$PAIBOR_Total_Score ) # bpd assessment score
+
 filtered_wide_data$PCLR_STAI_Trait_z <-
-  zscore(filtered_wide_data$PCLR_STAI_Trait)
+  zscore( filtered_wide_data$PCLR_STAI_Trait ) # psychopathy interaction assessment score
+
 filtered_wide_data$TAS_Total_Score_z <-
-  zscore(filtered_wide_data$TAS_Total_Score)
+  zscore( filtered_wide_data$TAS_Total_Score ) # alexithymia assessment score
+
 filtered_wide_data$TAS_Factor1_Difficulty_Identifying_Feeling_z <-
-  zscore(filtered_wide_data$TAS_Factor1_Difficulty_Identifying_Feeling)
+  zscore( filtered_wide_data$TAS_Factor1_Difficulty_Identifying_Feeling ) # alexithymia assessment f1 score
+
 filtered_wide_data$TAS_Factor2_Difficulty_Describing_Feelings_z <-
-  zscore(filtered_wide_data$TAS_Factor2_Difficulty_Describing_Feelings)
+  zscore( filtered_wide_data$TAS_Factor2_Difficulty_Describing_Feelings ) # alexithymia assessment f2 score
+
 filtered_wide_data$TAS_Factor3_Externally_Oriented_Thinking_z <-
-  zscore(filtered_wide_data$TAS_Factor3_Externally_Oriented_Thinking)
+  zscore( filtered_wide_data$TAS_Factor3_Externally_Oriented_Thinking ) # alexithymia assessment f3 score
+
 ```
 
 ``` {r prelim-regression-input, echo=FALSE, out.width='100%'}
-po_path <- lm(TAS_Total_Score_z ~ PCLR_STAI_Trait_z, 
-              data = filtered_wide_data)
-pm_path <- lm(PAIBOR_Total_Score_z ~ PCLR_STAI_Trait_z, 
-              data = filtered_wide_data)
-mo_path <- lm(TAS_Total_Score_z ~ PAIBOR_Total_Score_z, 
-              data = filtered_wide_data)
+
+po_path <- lm( TAS_Total_Score_z ~ 
+                 PCLR_STAI_Trait_z , 
+              data = filtered_wide_data ) # predictor-outcome
+pm_path <- lm( PAIBOR_Total_Score_z ~ 
+                 PCLR_STAI_Trait_z , 
+              data = filtered_wide_data ) # predictor-mediator
+mo_path <- lm( TAS_Total_Score_z ~ 
+                 PAIBOR_Total_Score_z , 
+              data = filtered_wide_data ) # mediator-outcome
+
 ```
 
 ``` {r prelim-regression-output, echo=FALSE, results='asis', warning=FALSE}
-stargazer(po_path, pm_path, mo_path, title = "Preliminary Regression Results", header = FALSE, type = 'latex', dep.var.labels = c("P-O Path", "P-M Path", "M-O Path"), covariate.labels = c("PsychopathyXAnxiety", "BPD"), column.sep.width = "1pt", label = "tab:prelim-regression-output", out="prelim-regression-output.png")
+
+# create a table that outputs simple regression of predictor on outcome, predictor on mediator, and mediator on outcome. See Baron & Kenny (1986)
+stargazer( po_path , 
+           pm_path , 
+           mo_path , 
+           title = "Preliminary Regression Results" , 
+           header = FALSE , 
+           type = 'latex' , 
+           dep.var.labels = c( "P-O Path" , 
+                               "P-M Path" , 
+                               "M-O Path" ) , 
+           covariate.labels = c( "PsychopathyXAnxiety" , 
+                                 "BPD" ) , 
+           column.sep.width = "1pt" , 
+           label = "tab:prelim-regression-output" , 
+           out = "prelim-regression-output.png" )
+
 ```
 
 All assessment scores, including the interactive term of psychopathy and trait anxiety, were standardized. In order to run a mediation analysis, one must ensure significant relationships exist between predictor and outcome, predictor and mediator, and mediator and outcome. The present data support these requirements, thus we were able to proceed with our mediation analysis. Results for these preliminary analyses can be seen in Table\ \@ref(tab:prelim-regression-output).
@@ -332,114 +421,168 @@ Mediation analyses with bootstrapping were conducted to test the primary hypothe
 To uniquely characterize secondary psychopathy, the interaction term of PCL--R Total Score and STAI Trait Anxiety was entered as the predictor, and PAI-BOR Total Score was entered as the mediating term. Total Score on the TAS was our outcome variable. A significant Average Causal Mediation Effect (ACME) would demonstrate support of our hypothesis.
 
 ``` {r simple-regression-input, echo=FALSE, out.width='100%'}
-direct_model <- lm(TAS_Total_Score_z ~ PCLR_STAI_Trait_z, 
-                   data = filtered_wide_data)
-direct_model1 <- lm(TAS_Factor1_Difficulty_Identifying_Feeling_z ~ 
-                      PCLR_STAI_Trait_z, 
-                    data = filtered_wide_data)
-direct_model2 <- lm(TAS_Factor2_Difficulty_Describing_Feelings_z ~ 
-                      PCLR_STAI_Trait_z, 
-                    data = filtered_wide_data)
-direct_model3 <- lm(TAS_Factor3_Externally_Oriented_Thinking_z ~ 
-                      PCLR_STAI_Trait_z, 
-                    data = filtered_wide_data)
+
+direct_model <- lm( TAS_Total_Score_z ~ # tas total
+                      PCLR_STAI_Trait_z , # pclr
+                   data = filtered_wide_data )
+
+direct_model1 <- lm( TAS_Factor1_Difficulty_Identifying_Feeling_z ~ # tas f1
+                      PCLR_STAI_Trait_z , # pclr
+                    data = filtered_wide_data )
+
+direct_model2 <- lm( TAS_Factor2_Difficulty_Describing_Feelings_z ~ # tas f2
+                      PCLR_STAI_Trait_z , # pclr
+                    data = filtered_wide_data )
+
+direct_model3 <- lm( TAS_Factor3_Externally_Oriented_Thinking_z ~ # tas f3
+                      PCLR_STAI_Trait_z , # pclr
+                    data = filtered_wide_data )
+
 ```
 
 ```{r simple-regression-output, results = 'asis', warning=FALSE}
-stargazer(direct_model, 
-          direct_model1, 
-          direct_model2, 
-          direct_model3, 
-        title = "Simple Linear Regression Results", 
-        header = FALSE, 
-        type = 'latex', 
-        dep.var.labels = c(
-          "TAS Total", 
-          "Factor 1", 
-          "Factor 2", 
-          "Factor 3"), 
-        covariate.labels = c(
-          "PsychopathyXAnxiety"), 
-        column.sep.width = "1pt", 
-        label = "tab:simple-regression-output")
+
+# create a table that outputs simple regression of psychopathy(predictor) on tas total,1,2,3(outcome)
+stargazer( direct_model , 
+           direct_model1 , 
+           direct_model2 , 
+           direct_model3 , 
+        title = "Simple Linear Regression Results" , 
+        header = FALSE , 
+        type = 'latex' , 
+        dep.var.labels = c( "TAS Total" , 
+                            "Factor 1" , 
+                            "Factor 2" , 
+                            "Factor 3" ) , 
+        covariate.labels = c( "PsychopathyXAnxiety" ) , 
+        column.sep.width = "1pt" , 
+        label = "tab:simple-regression-output" )
+
 ```
 
 ```{r mult-regression-input, echo=FALSE, out.width='100%'}
-mediator_model_total <- lm(PAIBOR_Total_Score_z ~ PCLR_STAI_Trait_z, 
-                           data = filtered_wide_data)
-model_total <- lm(TAS_Total_Score_z ~ 
-                    PCLR_STAI_Trait_z + PAIBOR_Total_Score_z, 
-                  data = filtered_wide_data)
-mediation_result_total <- mediate(mediator_model_total, model_total, 
-                                  treat = "PCLR_STAI_Trait_z", 
-                                  mediator = "PAIBOR_Total_Score_z", 
-                                  boot=TRUE, sims=500)
-mediator_model_tasf1 <- lm(PAIBOR_Total_Score_z ~ PCLR_STAI_Trait_z, 
-                           data = filtered_wide_data)
-model_tasf1 <- lm(TAS_Factor1_Difficulty_Identifying_Feeling_z ~ 
-                    PCLR_STAI_Trait_z + PAIBOR_Total_Score_z, 
-                  data = filtered_wide_data)
-mediation_result_tasf1 <- mediate(mediator_model_tasf1, model_tasf1, 
-                                  treat = "PCLR_STAI_Trait_z", 
-                                  mediator = "PAIBOR_Total_Score_z", 
-                                  boot=TRUE, sims=500)
-mediator_model_tasf2 <- lm(PAIBOR_Total_Score_z ~ PCLR_STAI_Trait_z, 
-                           data = filtered_wide_data)
-model_tasf2 <- lm(TAS_Factor2_Difficulty_Describing_Feelings_z ~ 
-                    PCLR_STAI_Trait_z + PAIBOR_Total_Score_z, 
-                  data = filtered_wide_data)
-mediation_result_tasf2 <- mediate(mediator_model_tasf2, model_tasf2, 
-                                  treat = "PCLR_STAI_Trait_z", 
-                                  mediator = "PAIBOR_Total_Score_z", 
-                                  boot=TRUE, sims=500)
-mediator_model_tasf3 <- lm(PAIBOR_Total_Score_z ~ PCLR_STAI_Trait_z, 
-                           data = filtered_wide_data)
-model_tasf3 <- lm(TAS_Factor3_Externally_Oriented_Thinking_z ~ 
-                    PCLR_STAI_Trait_z + PAIBOR_Total_Score_z, 
-                  data = filtered_wide_data)
-mediation_result_tasf3 <- mediate(mediator_model_tasf3, model_tasf3, 
-                                  treat = "PCLR_STAI_Trait_z", 
-                                  mediator = "PAIBOR_Total_Score_z", 
-                                  boot=TRUE, sims=500)
+
+mediator_model_total <- lm( PAIBOR_Total_Score_z ~ # mediator
+                             PCLR_STAI_Trait_z , # predictor
+                           data = filtered_wide_data )
+
+model_total <- lm( TAS_Total_Score_z ~  # outcome
+                    PCLR_STAI_Trait_z + # predictor
+                     PAIBOR_Total_Score_z , # mediator
+                  data = filtered_wide_data )
+
+mediation_result_total <- mediate( mediator_model_total , # p-m
+                                   model_total , # p-m-o
+                                  treat = "PCLR_STAI_Trait_z" , # predictor
+                                  mediator = "PAIBOR_Total_Score_z" , # mediator
+                                  boot = TRUE, # bootstrapped
+                                  sims = 500 ) # 500 simulations
+
+
+mediator_model_tasf1 <- lm( PAIBOR_Total_Score_z ~ # mediator
+                              PCLR_STAI_Trait_z , # predictor
+                           data = filtered_wide_data )
+
+model_tasf1 <- lm( TAS_Factor1_Difficulty_Identifying_Feeling_z ~ # outcome
+                    PCLR_STAI_Trait_z + # predictor
+                     PAIBOR_Total_Score_z , # mediator
+                  data = filtered_wide_data )
+
+mediation_result_tasf1 <- mediate( mediator_model_tasf1 , # p-m
+                                   model_tasf1 , # p-m-o
+                                  treat = "PCLR_STAI_Trait_z" , # predictor
+                                  mediator = "PAIBOR_Total_Score_z" , # mediator
+                                  boot = TRUE , # bootstrapped
+                                  sims = 500 ) # 500 simulations
+
+
+mediator_model_tasf2 <- lm( PAIBOR_Total_Score_z ~ # mediator
+                             PCLR_STAI_Trait_z , # predictor
+                           data = filtered_wide_data )
+
+model_tasf2 <- lm( TAS_Factor2_Difficulty_Describing_Feelings_z ~ # outcome
+                    PCLR_STAI_Trait_z + # predictor
+                     PAIBOR_Total_Score_z , # mediator
+                  data = filtered_wide_data )
+
+mediation_result_tasf2 <- mediate( mediator_model_tasf2 , # p-m
+                                   model_tasf2 , # p-m-o
+                                  treat = "PCLR_STAI_Trait_z" , # predictor
+                                  mediator = "PAIBOR_Total_Score_z" , # mediator
+                                  boot = TRUE , # bootstrapped
+                                  sims = 500 ) # 500 simulations
+
+
+mediator_model_tasf3 <- lm( PAIBOR_Total_Score_z ~ # mediator
+                              PCLR_STAI_Trait_z , # predictor
+                           data = filtered_wide_data )
+
+model_tasf3 <- lm( TAS_Factor3_Externally_Oriented_Thinking_z ~ # outcome
+                    PCLR_STAI_Trait_z + # predictor
+                     PAIBOR_Total_Score_z , # mediator
+                  data = filtered_wide_data )
+
+mediation_result_tasf3 <- mediate( mediator_model_tasf3 , # p-m
+                                   model_tasf3 , # p-m-o
+                                  treat = "PCLR_STAI_Trait_z" , # predictor
+                                  mediator = "PAIBOR_Total_Score_z" , # mediator
+                                  boot = TRUE , # bootstrapped
+                                  sims = 500 ) # 500 simulations
+
 ```
 
 ```{r mult-regression-output, results = 'asis', warning=FALSE}
-stargazer(model_total, 
-          model_tasf1, 
-          model_tasf2, 
-          model_tasf3, 
-        title = "Multiple Linear Regression Results", 
-        header = FALSE, 
-        type = 'latex', 
-        dep.var.labels = c(
-          "TAS Total", 
-          "Factor 1", 
-          "Factor 2", 
-          "Factor 3"), 
-        covariate.labels = c(
-          "PsychopathyXAnxiety", 
-          "BPD"), 
-        column.sep.width = "1pt", 
-        label = "tab:mult-regression-output")
+
+# create a table that outputs multiple regression of psychopathy(predictor) & bpd(mediator) on tas total,1,2,3(outcome)
+stargazer( model_total , 
+           model_tasf1 , 
+           model_tasf2 , 
+           model_tasf3 , 
+        title = "Multiple Linear Regression Results" , 
+        header = FALSE , 
+        type = 'latex' , 
+        dep.var.labels = c( "TAS Total" , 
+                            "Factor 1" , 
+                            "Factor 2" , 
+                            "Factor 3" ) , 
+        covariate.labels = c( "PsychopathyXAnxiety" , 
+                              "BPD" ) , 
+        column.sep.width = "1pt" , 
+        label = "tab:mult-regression-output" )
+
 ```
 
-```{r mediation-plot, results='hide', fig.cap="Plot of Total Mediation Relationship", label='mediation-plot', out.width='100%'}
-plot(mediation_result_total)
-summary(mediation_result_total) # full mediation?!
+```{r mediation-summaries, echo=FALSE, results='hide'}
+
+summary( mediation_result_total ) # full mediation?!
+
+summary( mediation_result_tasf1 ) # full mediation?!
+
+summary( mediation_result_tasf2 ) # full mediation?!
+
+summary( mediation_result_tasf3 ) # effect goes away... so interesting!!!!
+
 ```
 
-```{r mediation-plots-subfactors}
-#plot(mediation_result_tasf1)
-#summary(mediation_result_tasf1) # full mediation?!
-#plot(mediation_result_tasf2)
-#summary(mediation_result_tasf2) # full mediation?!
-#plot(mediation_result_tasf3)
-#summary(mediation_result_tasf3) # effect goes away... so interesting!!!!
+```{r mediation-plot, results='hide', fig.cap="Direct and Mediated Effects Exploring TAS Factors", label='mediation-plot', out.width='100%'}
+
+par( mfrow = c( 2 , 2 ) , mar = c( 3 , 4 , 3 , 4 ) + 0.1 )  # arrange plots in a 2x2 grid
+plot( mediation_result_total ) # TAS total
+mtext( "Total" , side = 3 , line = 1 , cex = 1.2 )
+plot( mediation_result_tasf1 ) # TAS factor 1
+mtext( "Factor 1" , side = 3 , line = 1 , cex = 1.2 )
+plot( mediation_result_tasf2 ) # TAS factor 2
+mtext( "Factor 2" , side = 3 , line = 1 , cex = 1.2 )
+plot( mediation_result_tasf3 ) # TAS factor 3
+mtext( "Factor 3" , side = 3 , line = 1 , cex = 1.2 )
+
 ```
 
 The total effect present in our model reached significance ($p$ `r apa_p(mediation_result_total$tau.p, add_equals=T)`). There is a significant relationship between predictor and outcome ($p$ `r apa_p(summary(direct_model)$coefficients["PCLR_STAI_Trait_z", "Pr(>|t|)"], add_equals=T)`). However, this effect goes away when adding BPD as a mediator (CI [`r mediation_result_total$z.avg.ci[1]`, `r mediation_result_total$z.avg.ci[2]`], $p$ `r apa_p(mediation_result_total$z.avg.p, add_equals=T)`). This suggests that the presence of BPD acts as a mechanism through which the predictor influences the outcome. The significant, full mediation effect we observed suggests that the total effect of the predictor on the outcome is wholly explained by the mediator (CI [`r mediation_result_total$n.avg.ci[1]`, `r mediation_result_total$n.avg.ci[2]`], $p$ `r apa_p(mediation_result_total$n.avg.p, add_equals=T)`). Put simply, BPD acts as a medium through which the entire effect between secondary psychopathy and alexithymia occurs. Detailed results, including coefficients and standard errors, for our simple linear regression and multiple linear regression can be seen in Tables\ \@ref(tab:simple-regression-output) & \@ref(tab:mult-regression-output), respectively.
 
-Figure\ \@ref(fig:mediation-plot) visualizes how this relationship changes with the inclusion of BPD as mediator. Here, we can see the Average Direct Effect (ADE) of our interaction term on alexithymia becomes ambiguous. Both the ACME and Total Effect evidently illustrate a significant positive impact on our outcome term.
+Figure\ \@ref(fig:mediation-plot) visualizes the directed and mediated relationships of interest. Every plot maintains our index of secondary psychopathy as predictor and BPD as mediator. TAS total scores, as well as each of their three subfactors, were entered uniquely as the outcome variable. Within each plot, we can see how the relationship between predictor and outcome changes with the inclusion of the mediator. Across all four plots, we can begin to understand which aspects of the outcome variable are impacted.
+
+We can see the Average Direct Effect (ADE) of our interaction term on alexithymia becomes ambiguous in plots estimating Total, Factor 1, and Factor 2 scores. Both the ACME and Total Effect evidently illustrate a significant positive impact on our outcome term. While the total effect seems to be significant in Factor 3, both BPD and Psychopathy on their own seem to play ambiguous roles.
 
 Three subfactors defined in the TAS are believed to compose alexithymia: difficulty identifying feelings (Factor 1), difficulty describing feelings (Factor 2), and externally-oriented thinking (Factor 3). As we collected subfactor scores for every participant, an exploratory analysis could be conducted to get a sense of what specific parts of emotional processing psychopathy and BPD may be impacting. The right three columns of Table\ \@ref(tab:simple-regression-output) highlight a significant, positive impact of our predictive interaction term on all three subfactors of alexithymia. In other words, the interaction of psychopathy and trait anxiety can anticipate the presence of difficulty identifying feelings, difficulty describing feelings, and externally-oriented thinking.
 
@@ -499,7 +642,7 @@ c_scatter <- ggplot(filtered_wide_data, aes(x = PCLR_Total_Score_Prorated, y = T
   geom_smooth(method = "lm", color = "black") +
   geom_point() +
   scale_color_gradient(low = "blue", high = "red") +
-  labs(x = "Psychopathy", y = "Alexithymia", title = "Relationship between Psychopathy, Anxiety, Alexithymia", color = "STAI-Trait") + theme_minimal()
+  labs(x = "Psychopathy", y = "Alexithymia", title = "Relationship between Psychopathy, Anxiety, Alexithymia", color = "STAI-Trait")
 
 ggsave("c_scatter.png", c_scatter, width = 10, height = 6, units = "in")
 
@@ -510,7 +653,7 @@ a_scatter <- ggplot(filtered_wide_data, aes(x = PCLR_Total_Score_Prorated, y = P
   geom_smooth(method = "lm", color = "black") +
   geom_point() + 
   scale_color_gradient(low = "blue", high = "red") +
-  labs(x = "Psychopathy", y = "BPD", title = "Relationship between Psychopathy, Anxiety, BPD", color = "STAI-Trait") + theme_minimal()
+  labs(x = "Psychopathy", y = "BPD", title = "Relationship between Psychopathy, Anxiety, BPD", color = "STAI-Trait")
 
 ggsave("a_scatter.png", a_scatter, width = 10, height = 6, units = "in")
 ```
